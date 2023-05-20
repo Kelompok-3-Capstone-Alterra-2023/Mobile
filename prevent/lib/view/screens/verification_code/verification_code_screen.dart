@@ -13,8 +13,6 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  final Color focusedBorderColor = colorStyleFifth;
-  final Color borderColor = const Color(0xFFDED9D9);
   @override
   void dispose() {
     pinController.dispose();
@@ -32,7 +30,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: borderColor),
+        border: Border.all(color: greyColorSecond),
       ),
     );
     return Scaffold(
@@ -54,7 +52,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
               'Kode Verifikasi',
               style: TextStyle(
                 color: colorStyleSeventh,
-                fontWeight: FontWeight.w700,
+                fontWeight: bold,
                 fontSize: 32,
               ),
               textAlign: TextAlign.center,
@@ -80,10 +78,10 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     Directionality(
                       textDirection: TextDirection.ltr,
                       child: Pinput(
-                        preFilledWidget: const Text(
+                        preFilledWidget: Text(
                           '-',
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                            fontWeight: reguler,
                             fontSize: 24,
                           ),
                         ),
@@ -178,7 +176,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                         focusedPinTheme: pinTheme.copyWith(
                           decoration: pinTheme.decoration!.copyWith(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: focusedBorderColor),
+                            border: Border.all(color: colorStyleFifth),
                           ),
                         ),
                         errorPinTheme: pinTheme.copyBorderWith(

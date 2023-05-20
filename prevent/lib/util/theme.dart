@@ -41,6 +41,7 @@ Color informationFourth = const Color(0XFF021D7E);
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color greyColor = Colors.grey;
+Color greyColorSecond = const Color(0xFFDED9D9);
 
 
 // Typograpghy

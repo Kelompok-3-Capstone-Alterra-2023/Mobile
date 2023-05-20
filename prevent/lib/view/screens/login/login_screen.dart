@@ -194,17 +194,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
-                            // Navigator.pushAndRemoveUntil(context,
+                            // Navigator.push(
+                            //     context,
                             //     MaterialPageRoute(
-                            //   builder: (context) {
-                            //     return const MyHomePage(title: 'My Homepage');
-                            //   },
-                            // ), (route) => false);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const VerificationCodeScreen()));
+                            //         builder: (context) =>
+                            //             const VerificationCodeScreen()));
                           }
                         },
                         child: Text(
