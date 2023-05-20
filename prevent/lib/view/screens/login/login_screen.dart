@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         label: Text(
                           'Email',
                           style: GoogleFonts.poppins(
-                              fontWeight: reguler, color: colorStyleFifth),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         label: Text(
                           'Password',
                           style: GoogleFonts.poppins(
-                              fontWeight: reguler, color: colorStyleFifth),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
