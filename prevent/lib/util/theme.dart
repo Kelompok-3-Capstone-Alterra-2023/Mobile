@@ -7,6 +7,8 @@ Color colorStyleThird = const Color(0XFFC7E8AF);
 Color colorStyleFourth = const Color(0XFFB3C99A);
 Color colorStyleFifth = const Color(0XFF7CA153);
 Color colorStyleSixth = const Color(0xff506835);
+Color colorStyleSeventh = const Color(0XFF506736);
+
 
 // Color Danger
 Color dangerFirst = const Color(0XFFEFC0BF);
@@ -39,6 +41,7 @@ Color informationFourth = const Color(0XFF021D7E);
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color greyColor = Colors.grey;
+
 
 // Typograpghy
 FontWeight light = FontWeight.w300;

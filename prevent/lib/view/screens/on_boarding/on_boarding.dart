@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/login/login_screen.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -118,7 +119,10 @@ class OnBoarding extends StatelessWidget {
               width: 200,
               height: 50,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()));
+                },
                 style: TextButton.styleFrom(
                   side: BorderSide(
                     color: colorStyleFifth,
@@ -142,7 +146,10 @@ class OnBoarding extends StatelessWidget {
           ),
         ),
       ],
-      onDone: () {},
+      onDone: () {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+      },
       showSkipButton: true,
       showNextButton: true,
       showDoneButton: false,

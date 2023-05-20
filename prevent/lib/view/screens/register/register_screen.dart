@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:intl/intl.dart';
-import 'package:prevent/main.dart';
-import 'package:prevent/views/screens/register/register_view_model.dart';
+import 'package:prevent/view_models/register_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/theme.dart';
 import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -17,8 +17,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final primaryColor = const Color(0xff7CA153);
-  final secondaryColor = const Color(0xff506736);
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterViewModel>(context);
@@ -32,9 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Text(
               'Sign Up',
               style: GoogleFonts.poppins(
-                  color: secondaryColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700),
+                  color: colorStyleSeventh, fontSize: 32, fontWeight: bold),
             ),
             const SizedBox(
               height: 11,
@@ -42,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Text(
               'Halo selamat datang di aplikasi prevent!, untuk mendaftar silahkan lengkapi data diri terlebih dahulu!',
               style: GoogleFonts.poppins(
-                  fontSize: 12, fontWeight: FontWeight.w400),
+                  fontSize: 12, fontWeight: reguler, color: blackColor),
             ),
             const SizedBox(
               height: 30,
@@ -62,8 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -71,13 +66,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Username',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -100,8 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -109,13 +103,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Email',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -141,8 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -150,13 +143,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Tanggal Lahir',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         suffixIcon: IconButton(
                             onPressed: () {
@@ -164,7 +157,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                             icon: Icon(
                               Icons.date_range_outlined,
-                              color: Colors.grey[700],
+                              color: greyColor,
                             )),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -188,8 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -197,13 +189,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Password',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -216,14 +208,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ? Eva.eye_off_outline
                                 : Eva.eye_outline,
                             color: provider.obscureText
-                                ? Colors.grey[700]
-                                : primaryColor,
+                                ? greyColor
+                                : colorStyleFifth,
                           ),
                           onPressed: () {
                             provider.toggleObscureText();
                           },
                         ),
-                        focusColor: primaryColor,
+                        focusColor: blackColor,
                         fillColor: const Color(0xffffffff),
                         filled: true,
                       ),
@@ -243,8 +235,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -252,13 +243,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Confirm Password',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: blackColor),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -271,15 +262,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ? Eva.eye_off_outline
                                 : Eva.eye_outline,
                             color: provider.obscureText
-                                ? Colors.grey[700]
-                                : primaryColor,
+                                ? greyColor
+                                : colorStyleFifth,
                           ),
                           onPressed: () {
                             provider.toggleObscureText();
                           },
                         ),
-                        focusColor: primaryColor,
-                        fillColor: const Color(0xffffffff),
+                        focusColor: blackColor,
+                        fillColor: whiteColor,
                         filled: true,
                       ),
                     ),
@@ -291,25 +282,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
+                            backgroundColor: colorStyleFifth,
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
-                            Navigator.pushAndRemoveUntil(context,
-                                MaterialPageRoute(
-                              builder: (context) {
-                                return const MyHomePage(title: 'My Homepage');
-                              },
-                            ), (route) => false);
+                            // Navigator.pushAndRemoveUntil(context,
+                            //     MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return const MyHomePage(title: 'My Homepage');
+                            //   },
+                            // ), (route) => false);
                           }
                         },
                         child: Text(
                           'Sign Up',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w700, fontSize: 16),
+                              fontWeight: bold, fontSize: 16),
                         ),
                       ),
                     ),
@@ -321,7 +312,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.grey[400],
+                            color: greyColor,
                           ),
                         ),
                         Padding(
@@ -329,13 +320,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Text(
                             'Atau Sign Up dengan',
                             style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w400, fontSize: 12),
+                                fontWeight: reguler, fontSize: 12),
                           ),
                         ),
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.grey[400],
+                            color: greyColor,
                           ),
                         ),
                       ],
@@ -348,12 +339,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffffffff),
+                          backgroundColor: whiteColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(10),
                               ),
-                              side: BorderSide(color: primaryColor)),
+                              side: BorderSide(color: colorStyleFifth)),
                         ),
                         onPressed: () {},
                         child: Row(
@@ -369,9 +360,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Text(
                                 'Google',
                                 style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: reguler,
                                     fontSize: 16,
-                                    color: primaryColor),
+                                    color: colorStyleFifth),
                               ),
                             ]),
                       ),
@@ -381,7 +372,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         Text('Sudah Punya Akun?',
                             style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: reguler,
                               fontSize: 12,
                             )),
                         TextButton(
@@ -396,9 +387,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Text(
                             'Sign In',
                             style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: bold,
                                 fontSize: 12,
-                                color: secondaryColor),
+                                color: colorStyleSeventh),
                           ),
                         ),
                       ],

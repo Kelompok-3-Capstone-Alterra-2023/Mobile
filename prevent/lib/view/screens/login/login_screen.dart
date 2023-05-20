@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:prevent/main.dart';
-import 'package:prevent/views/screens/login/login_view_model.dart';
+import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/theme.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,14 +16,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final primaryColor = const Color(0xff7CA153);
-  final secondaryColor = const Color(0xff506736);
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LoginViewModel>(context);
     return Scaffold(
-      backgroundColor: const Color(0xffFFFFFF),
+      backgroundColor: whiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 18, right: 18, top: 80),
@@ -32,17 +29,14 @@ class _LoginScreenState extends State<LoginScreen> {
             Text(
               'Sign In',
               style: GoogleFonts.poppins(
-                  color: secondaryColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700),
+                  color: colorStyleSeventh, fontSize: 32, fontWeight: bold),
             ),
             const SizedBox(
               height: 11,
             ),
             Text(
               'Hallo Selamat Datang di Aplikasi Prevent!, Untuk masuk silahkan isi data kamu terlebih dahulu ya!',
-              style: GoogleFonts.poppins(
-                  fontSize: 12, fontWeight: FontWeight.w400),
+              style: GoogleFonts.poppins(fontSize: 12, fontWeight: reguler),
             ),
             const SizedBox(
               height: 45,
@@ -62,8 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -71,13 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Email',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: colorStyleFifth),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -101,8 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xff757575)),
+                          borderSide: BorderSide(color: blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -110,13 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Radius.circular(12),
                           ),
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: colorStyleFifth,
                           ),
                         ),
                         label: Text(
                           'Password',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400, color: primaryColor),
+                              fontWeight: reguler, color: colorStyleFifth),
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -129,15 +121,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ? Eva.eye_off_outline
                                 : Eva.eye_outline,
                             color: provider.obscureText
-                                ? Colors.grey[700]
-                                : primaryColor,
+                                ? greyColor
+                                : colorStyleFifth,
                           ),
                           onPressed: () {
                             provider.toggleObscureText();
                           },
                         ),
-                        focusColor: primaryColor,
-                        fillColor: const Color(0xffffffff),
+                        focusColor: colorStyleFifth,
+                        fillColor: whiteColor,
                         filled: true,
                       ),
                     ),
@@ -151,12 +143,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 24,
                               child: Theme(
                                 data: ThemeData(
-                                    unselectedWidgetColor: primaryColor),
+                                    unselectedWidgetColor: colorStyleFifth),
                                 child: Checkbox(
                                   shape: const RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5))),
-                                  activeColor: primaryColor,
+                                  activeColor: colorStyleFifth,
                                   value: provider.rememberMe,
                                   onChanged: (value) {
                                     provider.toggleRememberMe();
@@ -170,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               'Remember Me',
                               style: GoogleFonts.poppins(
-                                  fontSize: 12, fontWeight: FontWeight.w400),
+                                  fontSize: 12, fontWeight: reguler),
                             ),
                           ],
                         ),
@@ -179,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Lupa Password?',
                             style: GoogleFonts.poppins(
-                                color: secondaryColor,
+                                color: colorStyleSeventh,
                                 fontSize: 12,
-                                fontWeight: FontWeight.w700),
+                                fontWeight: bold),
                           ),
                         ),
                       ],
@@ -194,25 +186,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
+                            backgroundColor: colorStyleFifth,
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
-                            Navigator.pushAndRemoveUntil(context,
-                                MaterialPageRoute(
-                              builder: (context) {
-                                return const MyHomePage(title: 'My Homepage');
-                              },
-                            ), (route) => false);
+                            // Navigator.pushAndRemoveUntil(context,
+                            //     MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return const MyHomePage(title: 'My Homepage');
+                            //   },
+                            // ), (route) => false);
                           }
                         },
                         child: Text(
                           'Sign In',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w700, fontSize: 16),
+                              fontWeight: bold, fontSize: 16),
                         ),
                       ),
                     ),
@@ -224,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.grey[400],
+                            color: greyColor,
                           ),
                         ),
                         Padding(
@@ -232,13 +224,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Atau Sign In dengan',
                             style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w400, fontSize: 12),
+                                fontWeight: reguler, fontSize: 12),
                           ),
                         ),
                         Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.grey[400],
+                            color: greyColor,
                           ),
                         ),
                       ],
@@ -251,12 +243,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 56,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffffffff),
+                          backgroundColor: whiteColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(10),
                               ),
-                              side: BorderSide(color: primaryColor)),
+                              side: BorderSide(color: colorStyleFifth)),
                         ),
                         onPressed: () {},
                         child: Row(
@@ -272,9 +264,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Text(
                                 'Google',
                                 style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: reguler,
                                     fontSize: 16,
-                                    color: primaryColor),
+                                    color: colorStyleFifth),
                               ),
                             ]),
                       ),
@@ -284,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text('Belum punya akun?',
                             style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: reguler,
                               fontSize: 12,
                             )),
                         TextButton(
@@ -299,9 +291,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Text(
                             'Sign Up',
                             style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w700,
+                                fontWeight: bold,
                                 fontSize: 12,
-                                color: secondaryColor),
+                                color: colorStyleSeventh),
                           ),
                         ),
                       ],
