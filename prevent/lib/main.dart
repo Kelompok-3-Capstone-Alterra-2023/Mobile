@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/register_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:prevent/view/screen/on_boarding/on_boarding.dart';
+import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -17,13 +18,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: true,
-      title: 'Prevent',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LoginViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => RegisterViewModel(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Prevent',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const OnBoarding(),
       ),
-      home: const OnBoarding(),
     );
   }
 }
