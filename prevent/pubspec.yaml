@@ -38,6 +38,11 @@ dependencies:
   
   # Splash Screen
   flutter_native_splash: ^2.2.19
+  # OnBoarding Screen
+  introduction_screen: ^3.1.8
+  # Shared Preferences
+  shared_preferences: ^2.1.1
+  google_fonts: ^4.0.4
 
 
 
