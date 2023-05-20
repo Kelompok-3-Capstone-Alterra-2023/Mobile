@@ -215,8 +215,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             provider.toggleObscureText();
                           },
                         ),
-                        focusColor: blackColor,
-                        fillColor: const Color(0xffffffff),
+                        focusColor: colorStyleFifth,
+                        fillColor: whiteColor,
                         filled: true,
                       ),
                     ),
