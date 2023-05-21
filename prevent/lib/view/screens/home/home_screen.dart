@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:iconify_flutter/icons/simple_line_icons.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/widgets/sidebar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    int pageIndex = 0;
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: colorStyleFifth,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
-              // TODO: Side Bar
+              scaffoldKey.currentState!.openDrawer();
             },
             icon: Iconify(
               SimpleLineIcons.menu,
@@ -297,6 +302,62 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      drawer: const SideBar(),
+      // bottomNavigationBar: Container(
+      //   height: 74,
+      //   decoration: BoxDecoration(
+      //     border: Border(
+      //       top: BorderSide(
+      //         color: colorNavBar,
+      //         width: 1.0,
+      //       ),
+      //     ),
+      //   ),
+      //   child: BottomNavigationBar(
+      //     selectedFontSize: 10,
+      //     unselectedFontSize: 10,
+      //     showSelectedLabels: true,
+      //     showUnselectedLabels: true,
+      //     selectedItemColor: colorNavBar,
+      //     unselectedItemColor: colorUnselectedNavBar,
+      //     selectedLabelStyle: GoogleFonts.inter(
+      //         fontSize: 10, fontWeight: reguler, color: colorNavBar),
+      //     unselectedLabelStyle: GoogleFonts.inter(
+      //         fontSize: 10, fontWeight: reguler, color: colorUnselectedNavBar),
+      //     elevation: 0,
+      //     backgroundColor: whiteColor,
+      //     items: <BottomNavigationBarItem>[
+      //       BottomNavigationBarItem(
+      //         icon: SvgPicture.asset(
+      //           'assets/icons/home.svg',
+      //           color: pageIndex == 0 ? colorNavBar : colorUnselectedNavBar,
+      //         ),
+      //         label: 'Beranda',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: SvgPicture.asset(
+      //           'assets/icons/riwayat_konsul.svg',
+      //           color: pageIndex == 2 ? colorNavBar : colorUnselectedNavBar,
+      //         ),
+      //         label: 'Riwayat Konsultasi',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: SvgPicture.asset(
+      //           'assets/icons/notif.svg',
+      //           color: pageIndex == 1 ? colorNavBar : colorUnselectedNavBar,
+      //         ),
+      //         label: 'Notifikasi',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: SvgPicture.asset(
+      //           'assets/icons/profil.svg',
+      //           color: pageIndex == 3 ? colorNavBar : colorUnselectedNavBar,
+      //         ),
+      //         label: 'Profil',
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
