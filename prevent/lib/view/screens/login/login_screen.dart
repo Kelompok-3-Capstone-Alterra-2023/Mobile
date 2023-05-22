@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
+import 'package:prevent/view/screens/verification_code/verification_code_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -194,12 +195,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
+
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(
                               builder: (context) {
                                 return const ConsultationScreen();
                               },
                             ));
+
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             const VerificationCodeScreen()));
+
                           }
                         },
                         child: Text(

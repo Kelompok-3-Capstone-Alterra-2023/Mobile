@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:intl/intl.dart';
+import 'package:prevent/view/screens/verification_code/verification_code_screen.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -295,6 +296,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //     return const MyHomePage(title: 'My Homepage');
                             //   },
                             // ), (route) => false);
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const VerificationCodeScreen()));
                           }
                         },
                         child: Text(
