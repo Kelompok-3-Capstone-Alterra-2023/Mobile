@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const OnBoarding(),
+        home: const ViewAllDoctorScreen(),
       ),
     );
   }
