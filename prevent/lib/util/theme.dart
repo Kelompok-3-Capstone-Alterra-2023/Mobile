@@ -8,7 +8,8 @@ Color colorStyleFourth = const Color(0XFFB3C99A);
 Color colorStyleFifth = const Color(0XFF7CA153);
 Color colorStyleSixth = const Color(0xff506835);
 Color colorStyleSeventh = const Color(0XFF506736);
-
+Color colorNavBar = const Color(0XFF6FB54E);
+Color colorUnselectedNavBar = const Color(0XFF8A8A8A);
 
 // Color Danger
 Color dangerFirst = const Color(0XFFEFC0BF);
@@ -38,11 +39,10 @@ Color informationThird = const Color(0XFF022397);
 Color informationFourth = const Color(0XFF021D7E);
 
 // Color White, Black, Gray
-Color whiteColor = Colors.white;
+Color whiteColor = const Color(0xffFFFFFF);
 Color blackColor = Colors.black;
 Color greyColor = Colors.grey;
 Color greyColorSecond = const Color(0xFFDED9D9);
-
 
 // Typograpghy
 FontWeight light = FontWeight.w300;
