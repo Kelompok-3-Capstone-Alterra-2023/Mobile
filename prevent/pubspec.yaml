@@ -49,7 +49,10 @@ dependencies:
   introduction_screen: ^3.1.8
   # Shared Preferences
   shared_preferences: ^2.1.1
+  # Flutter Svg
   flutter_svg: ^1.1.6
+  # Pinput for verif code
+  pinput: ^2.2.31
 
 
 
