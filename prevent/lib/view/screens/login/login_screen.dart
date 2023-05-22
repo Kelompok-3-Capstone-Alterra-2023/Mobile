@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
-import 'package:prevent/view/screens/verification_code/verification_code_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../util/theme.dart';
-import '../consultation/consultation_screen.dart';
+import '../home/home_screen.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -195,20 +194,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
-
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(
                               builder: (context) {
-                                return const ConsultationScreen();
+                                return const HomeScreen();
                               },
                             ));
-
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             const VerificationCodeScreen()));
-
                           }
                         },
                         child: Text(
