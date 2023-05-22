@@ -199,7 +199,7 @@ packages:
     source: hosted
     version: "2.2.19"
   flutter_svg:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_svg
       sha256: "6ff9fa12892ae074092de2fa6a9938fb21dbabfdaa2ff57dc697ff912fc8d4b2"
@@ -408,6 +408,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  pinput:
+    dependency: "direct main"
+    description:
+      name: pinput
+      sha256: "1773743c188cdd2f8d0398ea708ec72645bb41ac9311755c4f7bb03a4184bdcf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.31"
   platform:
     dependency: transitive
     description:
@@ -509,6 +517,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smart_auth:
+    dependency: transitive
+    description:
+      name: smart_auth
+      sha256: "8cfaec55b77d5930ed1666bb7ae70db5bade099bb1422401386853b400962113"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.8"
   source_span:
     dependency: transitive
     description:
@@ -573,6 +589,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  universal_platform:
+    dependency: transitive
+    description:
+      name: universal_platform
+      sha256: d315be0f6641898b280ffa34e2ddb14f3d12b1a37882557869646e0cc363d0cc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   vector_math:
     dependency: transitive
     description:
@@ -615,4 +639,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=2.19.4 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.7.0"
