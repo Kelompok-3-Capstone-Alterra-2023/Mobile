@@ -5,6 +5,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:iconify_flutter/icons/simple_line_icons.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/widgets/sidebar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -93,6 +94,10 @@ class HomeScreen extends StatelessWidget {
                                           Radius.circular(10))),
                                   backgroundColor: colorStyleFifth),
                               onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => ConsultationScreen()));
                                 // TODO: Memilih Konsultasi
                               },
                               child: Text(
