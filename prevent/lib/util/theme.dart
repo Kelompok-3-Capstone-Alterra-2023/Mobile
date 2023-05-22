@@ -8,6 +8,7 @@ Color colorStyleFourth = const Color(0XFFB3C99A);
 Color colorStyleFifth = const Color(0XFF7CA153);
 Color colorStyleSixth = const Color(0xff506835);
 Color colorStyleSeventh = const Color(0XFF506736);
+Color colorStyleEighth = const Color(0XFF2F5146);
 
 
 // Color Danger
