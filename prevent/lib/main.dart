@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:prevent/Screen/forgot_page.dart';
+import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
+import 'package:prevent/view/screens/home/home_screen.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/register_view_model.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+  );
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LoginViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => RegisterViewModel(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Prevent',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const ViewAllDoctorScreen(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: const ForgotPassScreen(),
     );
   }
 }
