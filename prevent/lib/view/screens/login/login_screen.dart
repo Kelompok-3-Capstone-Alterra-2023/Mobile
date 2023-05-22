@@ -6,6 +6,7 @@ import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../util/theme.dart';
+import '../consultation/consultation_screen.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -193,12 +194,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           final form = provider.formKey;
                           if (form.currentState!.validate()) {
-                            // Navigator.pushAndRemoveUntil(context,
-                            //     MaterialPageRoute(
-                            //   builder: (context) {
-                            //     return const MyHomePage(title: 'My Homepage');
-                            //   },
-                            // ), (route) => false);
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(
+                              builder: (context) {
+                                return const ConsultationScreen();
+                              },
+                            ));
                           }
                         },
                         child: Text(

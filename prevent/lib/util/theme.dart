@@ -9,7 +9,6 @@ Color colorStyleFifth = const Color(0XFF7CA153);
 Color colorStyleSixth = const Color(0xff506835);
 Color colorStyleSeventh = const Color(0XFF506736);
 
-
 // Color Danger
 Color dangerFirst = const Color(0XFFEFC0BF);
 Color dangerSecond = const Color(0XFFC73830);
@@ -42,6 +41,9 @@ Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color greyColor = Colors.grey;
 
+// Color offline online
+Color onlineColor = const Color(0xFF3FEA3B);
+Color offlineColor = const Color(0xFFEA2B2B);
 
 // Typograpghy
 FontWeight light = FontWeight.w300;
