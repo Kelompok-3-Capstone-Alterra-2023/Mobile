@@ -19,7 +19,10 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back)),
           ),
           Container(
             margin: const EdgeInsets.all(9),
