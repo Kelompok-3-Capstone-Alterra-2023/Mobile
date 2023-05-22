@@ -87,7 +87,7 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Jumlah kolom dalam GridView
                 childAspectRatio:
-                    0.7, // Perbandingan aspek antara lebar dan tinggi item
+                    0.65, // Perbandingan aspek antara lebar dan tinggi item
                 mainAxisSpacing: 6,
                 crossAxisSpacing: 8,
               ),
