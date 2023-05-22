@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
+import 'package:prevent/view/screens/forgot_password/forgot_page.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/screens/verification_code/verification_code_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
@@ -170,7 +171,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const ForgotPassScreen()));
+                          },
                           child: Text(
                             'Lupa Password?',
                             style: GoogleFonts.poppins(

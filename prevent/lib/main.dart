@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ViewAllDoctorScreen(),
+        home: const OnBoarding(),
       ),
     );
   }
