@@ -7,6 +7,7 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 
 class ConsultationScreen extends StatefulWidget {
   const ConsultationScreen({super.key});
@@ -76,7 +77,12 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                     style: GoogleFonts.poppins(
                         color: blackColor, fontSize: 10, fontWeight: bold),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => ViewAllDoctorScreen()));
+                  },
                 ),
               ],
             ),
