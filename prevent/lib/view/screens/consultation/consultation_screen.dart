@@ -4,7 +4,6 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ic.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/ph.dart';
-import 'package:iconify_flutter/icons/ri.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
@@ -88,7 +87,7 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => ViewAllDoctorScreen()));
+                            builder: (_) => const ViewAllDoctorScreen()));
                   },
                 ),
               ],
@@ -252,45 +251,49 @@ class ButtonConsultation extends StatelessWidget {
               side: BorderSide(color: blackColor)),
         ),
         onPressed: onPressed,
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: colorStyleFifth,
-                radius: 25,
-                child: Iconify(
-                  iconData,
-                  color: whiteColor,
-                  size: 30,
-                ),
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    text,
-                    style: GoogleFonts.poppins(
-                        fontWeight: semiBold, fontSize: 10, color: blackColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: colorStyleFifth,
+                  radius: 25,
+                  child: Iconify(
+                    iconData,
+                    color: whiteColor,
+                    size: 30,
                   ),
-                  Text(
-                    'Lihat Semua',
-                    style: GoogleFonts.poppins(
-                        fontWeight: reguler, fontSize: 8, color: blackColor),
-                  )
-                ],
-              ),
-            ],
-          ),
-          const Iconify(
-            Ic.chevron_right,
-            size: 28,
-          ),
-        ]),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text,
+                      style: GoogleFonts.poppins(
+                          fontWeight: semiBold,
+                          fontSize: 10,
+                          color: blackColor),
+                    ),
+                    Text(
+                      'Lihat Semua',
+                      style: GoogleFonts.poppins(
+                          fontWeight: reguler, fontSize: 8, color: blackColor),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            const Iconify(
+              Ic.chevron_right,
+              size: 28,
+            ),
+          ],
+        ),
       ),
     );
   }

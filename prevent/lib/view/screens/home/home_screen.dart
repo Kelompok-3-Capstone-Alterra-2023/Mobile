@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/eva.dart';
 import 'package:iconify_flutter/icons/simple_line_icons.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
@@ -24,23 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: provider.scaffoldKey,
       appBar: AppBar(
-        backgroundColor: colorStyleFifth,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            provider.scaffoldKey.currentState!.openDrawer();
-          },
-          icon: Iconify(
-            SimpleLineIcons.menu,
-            color: whiteColor,
-            size: 30,
-          ),
-        ),
-        title: Image.asset(
-          'assets/images/text_logo.png',
-          width: 128,
-        ),
+        title: Image.asset('assets/images/logo_app.png'),
         centerTitle: true,
+        backgroundColor: colorStyleFifth,
         actions: [
           IconButton(
             onPressed: () {
