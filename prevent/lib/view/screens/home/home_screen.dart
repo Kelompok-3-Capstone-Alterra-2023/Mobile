@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:iconify_flutter/icons/simple_line_icons.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/widgets/sidebar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -121,7 +121,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      // TODO: Navigasi ke semua artikel
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ViewAllArticleScreen()));
                     },
                     child: Text(
                       'Lihat Semua',
