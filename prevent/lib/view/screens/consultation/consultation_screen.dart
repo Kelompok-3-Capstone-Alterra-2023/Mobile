@@ -5,9 +5,13 @@ import 'package:iconify_flutter/icons/ic.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
+import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
+
+import '../../widgets/home/side_bar.dart';
+import '../view_all_doctor/custom_search.dart';
 
 class ConsultationScreen extends StatefulWidget {
   const ConsultationScreen({super.key});
@@ -26,15 +30,18 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
         backgroundColor: colorStyleFifth,
         actions: [
           IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
             icon: Iconify(
-              Ri.search_line,
+              Zondicons.search,
+              size: 24,
               color: whiteColor,
             ),
-            onPressed: () {},
-          )
+          ),
         ],
       ),
-      drawer: Drawer(backgroundColor: colorStyleFifth),
+      drawer: const SideBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 14, right: 8, left: 8),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

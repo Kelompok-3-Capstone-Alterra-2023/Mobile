@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 
 import '../../../util/theme.dart';
 
@@ -56,6 +57,12 @@ class MenuHome extends StatelessWidget {
                                 backgroundColor: colorStyleFifth),
                             onPressed: () {
                               // TODO: Memilih Konsultasi
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ConsultationScreen(),
+                                ),
+                              );
                             },
                             child: Text(
                               'Konsultasi',

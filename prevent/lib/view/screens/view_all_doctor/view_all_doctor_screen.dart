@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/zondicons.dart'; // for Non Colorful Icons
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
 
+import '../../widgets/home/side_bar.dart';
 import 'custom_search.dart';
 
 class ViewAllDoctorScreen extends StatelessWidget {
@@ -21,7 +22,6 @@ class ViewAllDoctorScreen extends StatelessWidget {
           height: 100,
         ),
         backgroundColor: colorStyleFifth,
-        // leading: Icon(Icons.menu),
         actions: [
           IconButton(
             onPressed: () {
@@ -32,67 +32,10 @@ class ViewAllDoctorScreen extends StatelessWidget {
               size: 24,
               color: whiteColor,
             ),
-          )
+          ),
         ],
       ),
-      drawer: Drawer(
-        backgroundColor: colorStyleFifth,
-        child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                height: 80,
-                width: double.infinity,
-                color: Colors.blue,
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  children: const [
-                    Text('Name'),
-                    Text('Gmail'),
-                  ],
-                ),
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.favorite_outline,
-                  color: Color(0XFF2F5146),
-                ),
-                title: Text(
-                  'Dokter Favorite',
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: reguler,
-                    color: colorStyleEighth,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Image.asset(
-                  'assets/images/konsultasiberjalan_icon.png',
-                  width: 24,
-                  height: 24,
-                ),
-                title: const Text('Konsultasi Berjalan'),
-              ),
-              const ListTile(
-                leading: Icon(
-                  Icons.settings_outlined,
-                  color: Color(0XFF2F5146),
-                ),
-                title: Text('Pengaturan'),
-              ),
-              const ListTile(
-                leading: Icon(
-                  Icons.help_outline,
-                  color: Color(0XFF2F5146),
-                ),
-                title: Text('Pusat Bantuan'),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: const SideBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: Column(
