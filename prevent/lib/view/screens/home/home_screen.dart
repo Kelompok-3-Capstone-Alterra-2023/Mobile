@@ -1,118 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/eva.dart';
 import 'package:iconify_flutter/icons/simple_line_icons.dart';
+import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/widgets/sidebar_widget.dart';
+import 'package:prevent/view/widgets/home/side_bar.dart';
+import 'package:provider/provider.dart';
+import '../../../view_models/home_view_model.dart';
+import '../../widgets/home/bottom_nav.dart';
+import '../view_all_doctor/custom_search.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-    int pageIndex = 0;
+    final provider = Provider.of<HomeViewModel>(context, listen: true);
     return Scaffold(
-      key: scaffoldKey,
+      key: provider.scaffoldKey,
       appBar: AppBar(
-        backgroundColor: colorStyleFifth,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              scaffoldKey.currentState!.openDrawer();
-            },
-            icon: Iconify(
-              SimpleLineIcons.menu,
-              color: whiteColor,
-              size: 30,
-            )),
-        title: Image.asset(
-          'assets/images/text_logo.png',
-          width: 128,
-        ),
+        title: Image.asset('assets/images/logo_app.png'),
         centerTitle: true,
+        backgroundColor: colorStyleFifth,
         actions: [
           IconButton(
-              onPressed: () {
-                // TODO: Fitur Search
-              },
-              icon: Iconify(
-                Eva.search_outline,
-                color: whiteColor,
-                size: 45,
-              ))
-        ],
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      'assets/images/homepage_one.png',
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 14,
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Kesehatan Mental Prioritas Global',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontWeight: bold,
-                                fontSize: 12.5,
-                                color: successThird),
-                          ),
-                          Text(
-                            'Prevent! merupakan salah satu platform konsultasi psikolog terbaik yang bisa bantu hadapi permsalahanmu!',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontWeight: reguler,
-                                fontSize: 10,
-                                color: blackColor),
-                          ),
-                          TextButton(
-                              style: TextButton.styleFrom(
-                                  minimumSize: const Size(170, 40),
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  backgroundColor: colorStyleFifth),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => ConsultationScreen()));
-                                // TODO: Memilih Konsultasi
-                              },
-                              child: Text(
-                                'Konsultasi',
-                                style: GoogleFonts.poppins(
-                                    fontWeight: bold,
-                                    fontSize: 15,
-                                    color: whiteColor),
-                              ))
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
+            icon: Iconify(
+              Zondicons.search,
+              size: 24,
+              color: whiteColor,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -310,63 +236,12 @@ class HomeScreen extends StatelessWidget {
             )
           ],
         ),
+          ),
+        ],
       ),
+      body: provider.boddy(),
       drawer: const SideBar(),
-      // bottomNavigationBar: Container(
-      //   height: 74,
-      //   decoration: BoxDecoration(
-      //     border: Border(
-      //       top: BorderSide(
-      //         color: colorNavBar,
-      //         width: 1.0,
-      //       ),
-      //     ),
-      //   ),
-      //   child: BottomNavigationBar(
-      //     selectedFontSize: 10,
-      //     unselectedFontSize: 10,
-      //     showSelectedLabels: true,
-      //     showUnselectedLabels: true,
-      //     selectedItemColor: colorNavBar,
-      //     unselectedItemColor: colorUnselectedNavBar,
-      //     selectedLabelStyle: GoogleFonts.inter(
-      //         fontSize: 10, fontWeight: reguler, color: colorNavBar),
-      //     unselectedLabelStyle: GoogleFonts.inter(
-      //         fontSize: 10, fontWeight: reguler, color: colorUnselectedNavBar),
-      //     elevation: 0,
-      //     backgroundColor: whiteColor,
-      //     items: <BottomNavigationBarItem>[
-      //       BottomNavigationBarItem(
-      //         icon: SvgPicture.asset(
-      //           'assets/icons/home.svg',
-      //           color: pageIndex == 0 ? colorNavBar : colorUnselectedNavBar,
-      //         ),
-      //         label: 'Beranda',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: SvgPicture.asset(
-      //           'assets/icons/riwayat_konsul.svg',
-      //           color: pageIndex == 2 ? colorNavBar : colorUnselectedNavBar,
-      //         ),
-      //         label: 'Riwayat Konsultasi',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: SvgPicture.asset(
-      //           'assets/icons/notif.svg',
-      //           color: pageIndex == 1 ? colorNavBar : colorUnselectedNavBar,
-      //         ),
-      //         label: 'Notifikasi',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: SvgPicture.asset(
-      //           'assets/icons/profil.svg',
-      //           color: pageIndex == 3 ? colorNavBar : colorUnselectedNavBar,
-      //         ),
-      //         label: 'Profil',
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      bottomNavigationBar: const BottomNav(),
     );
   }
 }
