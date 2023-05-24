@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/view/screens/consultation_history/consultation_history_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ViewAllDoctorScreen(),
+        home: const ConsultationHistoryScreen(),
       ),
     );
   }
