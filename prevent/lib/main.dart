@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ConsultationHistoryScreen(),
+        home: const OnBoarding(),
       ),
     );
   }
