@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:prevent/Screen/reset_page.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/forgot_password/reset_page.dart';
+import 'package:prevent/view/screens/login/login_screen.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
@@ -20,7 +23,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const LoginScreen()));
                 },
                 icon: const Icon(Icons.arrow_back)),
           ),
@@ -31,11 +35,14 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            margin:
-                const EdgeInsets.only(left: 43, right: 43, top: 15, bottom: 11),
-            child: const Text(
+            margin: const EdgeInsets.only(left: 43, right: 43, bottom: 11),
+            child: Text(
               'Lupa Password?',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 32,
+                color: colorStyleSeventh,
+              ),
             ),
           ),
           Container(
@@ -50,8 +57,26 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
             child: TextFormField(
               controller: _emailController,
-              decoration: const InputDecoration(
-                  labelText: 'Email', border: OutlineInputBorder()),
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                  borderSide: BorderSide(
+                    color: colorStyleFifth,
+                  ),
+                ),
+                label: Text(
+                  'Email',
+                  style: GoogleFonts.poppins(
+                      fontWeight: reguler, color: blackColor),
+                ),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
             ),
           ),
           Container(
@@ -61,8 +86,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   minimumSize: MaterialStateProperty.all(
                     Size(MediaQuery.of(context).size.width, 50),
                   ),
-                  backgroundColor: MaterialStateProperty.all(Colors.black)),
-              onPressed: () => Navigator.push(
+                  backgroundColor: MaterialStateProperty.all(colorStyleFifth)),
+              onPressed: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const ResetPassScreen())),

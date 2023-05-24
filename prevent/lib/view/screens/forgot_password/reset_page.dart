@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/forgot_password/forgot_page.dart';
 
 class ResetPassScreen extends StatefulWidget {
   const ResetPassScreen({Key? key}) : super(key: key);
@@ -20,7 +23,10 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
             alignment: Alignment.centerLeft,
             child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ForgotPassScreen()));
                 },
                 icon: const Icon(Icons.arrow_back)),
           ),
@@ -31,29 +37,48 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            margin:
-                const EdgeInsets.only(left: 43, right: 43, top: 15, bottom: 11),
-            child: const Text(
-              'Lupa Password?',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+            margin: const EdgeInsets.only(left: 27, right: 27, bottom: 11),
+            child: Text(
+              'Atur Ulang Password',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                color: colorStyleSeventh,
+              ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 24),
             child: TextFormField(
               obscureText: obscureNew,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                  borderSide: BorderSide(
+                    color: colorStyleFifth,
+                  ),
+                ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                      obscureNew ? Icons.visibility : Icons.visibility_off),
+                      obscureNew ? Icons.visibility_off : Icons.visibility),
                   onPressed: () {
                     setState(() {
                       obscureNew = !obscureNew;
                     });
                   },
                 ),
-                labelText: 'New Password',
-                border: const OutlineInputBorder(),
+                label: Text(
+                  'Kata Sandi Baru',
+                  style: GoogleFonts.poppins(
+                      fontWeight: reguler, color: blackColor),
+                ),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
               ),
             ),
           ),
@@ -62,17 +87,33 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
             child: TextFormField(
               obscureText: obscureConfirm,
               decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                  borderSide: BorderSide(
+                    color: colorStyleFifth,
+                  ),
+                ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                      obscureConfirm ? Icons.visibility : Icons.visibility_off),
+                      obscureConfirm ? Icons.visibility_off : Icons.visibility),
                   onPressed: () {
                     setState(() {
                       obscureConfirm = !obscureConfirm;
                     });
                   },
                 ),
-                labelText: 'Confirm Password',
-                border: const OutlineInputBorder(),
+                label: Text(
+                  'Ulangi Kata Sandi',
+                  style: GoogleFonts.poppins(
+                      fontWeight: reguler, color: blackColor),
+                ),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
               ),
             ),
           ),
@@ -83,7 +124,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   minimumSize: MaterialStateProperty.all(
                     Size(MediaQuery.of(context).size.width, 50),
                   ),
-                  backgroundColor: MaterialStateProperty.all(Colors.black)),
+                  backgroundColor: MaterialStateProperty.all(colorStyleFifth)),
               onPressed: () {},
               child: const Text(
                 'Kirim',
