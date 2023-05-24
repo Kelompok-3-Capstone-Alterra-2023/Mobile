@@ -7,9 +7,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Center(
-          child: Text('NotificationScreen'),
-        ),
+        child: Text('NotificationScreen'),
       ),
     );
   }
