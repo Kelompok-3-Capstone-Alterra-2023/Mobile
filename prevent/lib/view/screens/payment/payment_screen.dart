@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -22,9 +23,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Icons.arrow_back_rounded,
               color: blackColor,
             )),
-        title: const Text(
+        title: Text(
           'Pembayaran',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         elevation: 0,
         backgroundColor: whiteColor,
@@ -54,19 +55,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Fauzan',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Text(
                           'Psikolog Klinis',
-                          style: TextStyle(fontSize: 12),
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, fontWeight: reguler),
                         ),
                         Text(
                           'Trauma, Stress, Depresi',
-                          style: TextStyle(fontSize: 10),
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: reguler),
                         ),
                       ],
                     ),
@@ -82,39 +85,42 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Rincian Biaya',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.poppins(
+                          fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Sesi Konsultasi via Chat',
-                          style: TextStyle(fontSize: 10),
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: reguler),
                         ),
                         Text(
                           'Rp200.000',
-                          style: TextStyle(fontSize: 10),
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: reguler),
                         ),
                       ],
                     ),
-                    const Text(
+                    Text(
                       'ID : 123ECD345',
-                      style: TextStyle(fontSize: 10),
+                      style: GoogleFonts.poppins(
+                          fontSize: 10, fontWeight: reguler),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Sub Total',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Rp200.000',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -131,10 +137,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Pilih Metode Pembayaran',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.poppins(
+                          fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 10,
@@ -143,22 +149,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10)),
-                      child: PaymentRadio(),
+                      child: const PaymentRadio(),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Total Biaya',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Text(
                           'Rp202.000',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         )
                       ],
@@ -179,9 +185,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   'Bayar',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                 )),
           )
         ],
@@ -227,13 +233,13 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 width: 64,
                 height: 32,
               ),
-              const Text(
+              Text(
                 'Qris',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               ),
-              const Text(
+              Text(
                 'Rp2.000',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
           ),
@@ -252,13 +258,13 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 width: 64,
                 height: 32,
               ),
-              const Text(
+              Text(
                 'GoPay',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               ),
-              const Text(
+              Text(
                 'Rp2.500',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
           ),
@@ -277,13 +283,13 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 width: 64,
                 height: 32,
               ),
-              const Text(
+              Text(
                 'Dana',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               ),
-              const Text(
+              Text(
                 'Rp1.500',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
           ),
@@ -302,13 +308,13 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 width: 64,
                 height: 32,
               ),
-              const Text(
+              Text(
                 'LinkAja',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               ),
-              const Text(
+              Text(
                 'Rp1.500',
-                style: TextStyle(fontSize: 15),
+                style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
           ),
