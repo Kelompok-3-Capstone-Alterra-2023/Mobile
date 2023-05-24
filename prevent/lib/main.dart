@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
