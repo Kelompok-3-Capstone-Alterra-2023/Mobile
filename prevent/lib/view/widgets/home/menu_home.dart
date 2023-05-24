@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 
 import '../../../util/theme.dart';
@@ -88,15 +89,19 @@ class MenuHome extends StatelessWidget {
                   'Artikel Terbaru',
                   style: GoogleFonts.poppins(fontSize: 13, fontWeight: bold),
                 ),
-                InkWell(
-                  onTap: () {
-                    // TODO: Navigasi ke semua artikel
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => ViewAllArticleScreen()));
                   },
                   child: Text(
                     'Lihat Semua',
-                    style: GoogleFonts.poppins(fontSize: 10, fontWeight: bold),
+                    style: GoogleFonts.poppins(
+                        fontSize: 10, fontWeight: bold, color: blackColor),
                   ),
-                )
+                ),
               ],
             ),
           ),
