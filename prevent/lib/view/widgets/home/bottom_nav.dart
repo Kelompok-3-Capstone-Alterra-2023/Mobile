@@ -31,6 +31,7 @@ class _BottomNavState extends State<BottomNav> {
         ),
       ),
       child: BottomNavigationBar(
+        backgroundColor: whiteColor,
         currentIndex: provider.selectedIndex,
         selectedFontSize: 10,
         unselectedFontSize: 10,
