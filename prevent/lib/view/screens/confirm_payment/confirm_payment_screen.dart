@@ -13,46 +13,6 @@ class ConfirmPayment extends StatefulWidget {
 }
 
 class _ConfirmPaymentState extends State<ConfirmPayment> {
-  late Timer _timer;
-  int _start = 3600;
-
-  String getTimerText() {
-    int minutes = (_start % 3600) ~/ 60;
-    int seconds = _start % 60;
-
-    String minutesText = minutes.toString().padLeft(2, '0');
-    String secondsText = seconds.toString().padLeft(2, '0');
-
-    return '$minutesText:$secondsText';
-  }
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(oneSec, (timer) {
-      if (_start == 0) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
-        timer.cancel();
-      } else {
-        setState(() {
-          _start--;
-        });
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +51,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   style: GoogleFonts.poppins(
                       fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-                const TimerExample(start: 3600)
+                const AppTimer(start: 3600)
               ],
             ),
           ),

@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 
-class TimerExample extends StatefulWidget {
+class AppTimer extends StatefulWidget {
   final int start;
 
-  const TimerExample({super.key, required this.start});
+  const AppTimer({super.key, required this.start});
 
   @override
-  _TimerExampleState createState() => _TimerExampleState();
+  _AppTimerState createState() => _AppTimerState();
 }
 
-class _TimerExampleState extends State<TimerExample> {
+class _AppTimerState extends State<AppTimer> {
   late Timer _timer;
   late int _start;
 
