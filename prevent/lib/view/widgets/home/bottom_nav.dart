@@ -17,12 +17,7 @@ class _BottomNavState extends State<BottomNav> {
     final provider = Provider.of<HomeViewModel>(context, listen: true);
 
     void onItemTapped(int index) {
-      setState(
-        () {
-          /// Akan bertambah 1 selectedIndexnya
-          provider.selectedIndex = index;
-        },
-      );
+      provider.selectedIndex = index;
     }
 
     return Container(
