@@ -11,107 +11,122 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
-          backgroundColor: whiteColor,
-          title: Text(
-            'Pengaturan',
-            style: GoogleFonts.inter(
-              color: blackColor,
-              fontWeight: semiBold,
-            ),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                  // Navigasi ke Pengaturan Akun User
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => UserAccountSettings()),
-                  );
-                },
-                child: SizedBox(
-                  height: 80,
-                  child: Card(
-                    child: Center(
-                      child: ListTile(
-                        leading: const Icon(Icons.manage_accounts_outlined),
-                        title: Text(
-                          'Pengaturan akun user',
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                  // Navigasi ke Pengaturan Pilihan Bahasa
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => LanguageSelectSettings()),
-                  );
-                },
-                child: SizedBox(
-                  height: 80,
-                  child: Card(
-                    child: Center(
-                      child: ListTile(
-                        leading: const Icon(Icons.language_rounded),
-                        title: Text(
-                          'Pilihan Bahasa',
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Keluar',
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: bold,
-                    color: const Color(0XFFC73830),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text('Versi aplikasi 1.1.1',
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: medium,
-                  ))
-            ],
+        backgroundColor: whiteColor,
+        title: Text(
+          'Pengaturan',
+          style: GoogleFonts.inter(
+            color: blackColor,
+            fontWeight: semiBold,
           ),
-        ));
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                // Navigasi ke Pengaturan Akun User
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const UserAccountSettings()),
+                );
+              },
+              child: SizedBox(
+                height: 80,
+                child: Card(
+                  child: Center(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.manage_accounts_outlined,
+                        color: blackColor,
+                      ),
+                      title: Text(
+                        'Pengaturan akun user',
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {
+                // Navigasi ke Pengaturan Pilihan Bahasa
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const LanguageSelectSettings()),
+                );
+              },
+              child: SizedBox(
+                height: 80,
+                child: Card(
+                  child: Center(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.language_rounded,
+                        color: blackColor,
+                      ),
+                      title: Text(
+                        'Pilihan Bahasa',
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        color: blackColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'Keluar',
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: bold,
+                  color: const Color(0XFFC73830),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text('Versi aplikasi 1.1.1',
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: medium,
+                ))
+          ],
+        ),
+      ),
+    );
   }
 }

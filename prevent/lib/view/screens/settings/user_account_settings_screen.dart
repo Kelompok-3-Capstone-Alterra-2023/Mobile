@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/view/screens/settings/delete_account.dart';
+import 'package:prevent/view/screens/settings/notificationSettings.dart';
 
 import '../../../util/theme.dart';
 
@@ -37,7 +38,7 @@ class UserAccountSettings extends StatelessWidget {
             InkWell(
               borderRadius: BorderRadius.circular(10),
               onTap: () {
-                // Navigasi ke Pengaturan Akun User
+                // Navigasi ke Delete Account
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => DeleteAccount()),
@@ -48,7 +49,10 @@ class UserAccountSettings extends StatelessWidget {
                 child: Card(
                   child: Center(
                     child: ListTile(
-                      leading: const Icon(Icons.delete_outlined),
+                      leading: Icon(
+                        Icons.delete_outlined,
+                        color: blackColor,
+                      ),
                       title: Text(
                         'Hapus akun',
                         style: GoogleFonts.inter(
@@ -56,7 +60,10 @@ class UserAccountSettings extends StatelessWidget {
                           fontWeight: semiBold,
                         ),
                       ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        color: blackColor,
+                      ),
                     ),
                   ),
                 ),
@@ -65,10 +72,10 @@ class UserAccountSettings extends StatelessWidget {
             InkWell(
               borderRadius: BorderRadius.circular(10),
               onTap: () {
-                // Navigasi ke Pengaturan Akun User
+                // Navigasi ke Pengaturan Notifikasi
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => UserAccountSettings()),
+                  MaterialPageRoute(builder: (_) => NotificationSettings()),
                 );
               },
               child: SizedBox(
@@ -76,7 +83,10 @@ class UserAccountSettings extends StatelessWidget {
                 child: Card(
                   child: Center(
                     child: ListTile(
-                      leading: const Icon(Icons.notifications_none_outlined),
+                      leading: Icon(
+                        Icons.notifications_none_outlined,
+                        color: blackColor,
+                      ),
                       title: Text(
                         'Pengaturan Notifikasi',
                         style: GoogleFonts.inter(
@@ -84,7 +94,10 @@ class UserAccountSettings extends StatelessWidget {
                           fontWeight: semiBold,
                         ),
                       ),
-                      trailing: const Icon(Icons.chevron_right_rounded),
+                      trailing: Icon(
+                        Icons.chevron_right_rounded,
+                        color: blackColor,
+                      ),
                     ),
                   ),
                 ),
