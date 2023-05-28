@@ -12,6 +12,8 @@ class ConsultationCallScreen extends StatefulWidget {
 }
 
 class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
+  ResepAlert dialog = ResepAlert();
+  DialogCloseSession dialogClose = DialogCloseSession();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +121,15 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: reguler),
             ),
           ),
+          // ElevatedButton(
+          //     onPressed: () {
+          //       showDialog(
+          //           context: context,
+          //           builder: (context) {
+          //             return dialogClose;
+          //           });
+          //     },
+          //     child: const Text('test'))
         ],
       ),
     );
