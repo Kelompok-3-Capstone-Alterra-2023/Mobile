@@ -10,9 +10,7 @@ class NotificationScreen extends StatelessWidget {
       drawer: const SideBar(),
       appBar: AppBar(),
       body: Center(
-        child: Center(
-          child: Text('NotificationScreen'),
-        ),
+        child: Text('NotificationScreen'),
       ),
     );
   }

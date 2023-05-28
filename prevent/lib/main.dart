@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/view/screens/settings/delete_account.dart';
+import 'package:prevent/view/screens/settings/language_select_settings.dart';
+import 'package:prevent/view_models/home_view_model.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/register_view_model.dart';
+import 'package:prevent/view_models/settings_view_model.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
@@ -32,6 +38,7 @@ class MyApp extends StatelessWidget {
           create: (context) => HomeViewModel(),
         ),
         ChangeNotifierProvider(
+          create: (context) => SettingsViewModel(),
           create: (context) => SearchArticleViewModel(),
         ),
       ],
