@@ -35,22 +35,25 @@ class NotificationScreen extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const SideBar(),
-
       body: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+        padding: const EdgeInsets.only(left: 8, right: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: 10,
+                separatorBuilder: (context, index) => Divider(
+                  thickness: 2,
+                  color: greyColor,
+                ),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {},
                     child: SizedBox(
                       height: 130,
                       width: MediaQuery.of(context).size.width,
-                      child: Card(
+                      child: SizedBox(
                         child: Row(
                           children: [
                             SizedBox(
@@ -85,18 +88,20 @@ class NotificationScreen extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Iconify(
+                                      const Iconify(
                                         Zondicons.time,
                                         size: 12,
                                       ),
                                       const SizedBox(
                                         width: 4,
                                       ),
-                                      Text('24-04-28 10:36',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 10,
-                                            fontWeight: reguler,
-                                          ))
+                                      Text(
+                                        '24-04-28 10:36',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 10,
+                                          fontWeight: reguler,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -112,6 +117,7 @@ class NotificationScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
     );
   }
 }
