@@ -39,6 +39,8 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsViewModel(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => SearchArticleViewModel(),
         ),
       ],
