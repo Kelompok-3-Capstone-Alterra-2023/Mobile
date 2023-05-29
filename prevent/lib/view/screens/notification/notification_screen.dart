@@ -35,6 +35,7 @@ class NotificationScreen extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const SideBar(),
+
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: Column(
@@ -53,8 +54,8 @@ class NotificationScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 55,
-                              height: 80,
+                              width: 60,
+                              height: 90,
                               child: Image.asset(
                                 'assets/images/notif_picture.png',
                                 fit: BoxFit.cover,
@@ -111,7 +112,6 @@ class NotificationScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }
