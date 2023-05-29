@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/article/detail_article_screen.dart';
 import 'package:prevent/view/screens/article/search_article_screen.dart';
 
 class ViewAllArticleScreen extends StatefulWidget {
@@ -162,6 +163,12 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
             ),
           ),
           InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DetailArticleScreen()));
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
               child: ListView.separated(

@@ -4,6 +4,9 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/consultation_history/detail_consultation_history.dart';
+
+import '../view_all_doctor/custom_search.dart';
 
 class ConsultationHistoryScreen extends StatefulWidget {
   const ConsultationHistoryScreen({super.key});
@@ -27,7 +30,9 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
             icon: Iconify(
               Ri.search_line,
               color: blackColor,
@@ -75,6 +80,13 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                           return Column(
                             children: [
                               ListTile(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return const DetailConsultationHistoryScreen();
+                                    },
+                                  ));
+                                },
                                 leading: const CircleAvatar(
                                   radius: 25,
                                   backgroundImage: AssetImage(
@@ -125,6 +137,13 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                           return Column(
                             children: [
                               ListTile(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return const DetailConsultationHistoryScreen();
+                                    },
+                                  ));
+                                },
                                 leading: const CircleAvatar(
                                   radius: 25,
                                   backgroundImage: AssetImage(
