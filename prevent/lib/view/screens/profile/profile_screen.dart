@@ -38,188 +38,195 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: whiteColor,
           foregroundColor: blackColor,
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 61, vertical: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  radius: 85,
-                  backgroundColor: colorNavBar,
-                  backgroundImage:
-                      const AssetImage('assets/images/dummy_profile.png'),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 61, vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: CircleAvatar(
+                    radius: 85,
+                    backgroundColor: colorNavBar,
+                    backgroundImage:
+                        const AssetImage('assets/images/dummy_profile.png'),
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Edit',
-                      style: GoogleFonts.inter(color: blackColor, fontSize: 16),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Edit',
+                          style: GoogleFonts.inter(
+                              color: blackColor, fontSize: 16),
+                        ),
+                        const SizedBox(width: 10),
+                        Icon(
+                          Icons.edit_outlined,
+                          color: blackColor,
+                          size: 20,
+                        )
+                      ],
                     ),
-                    const SizedBox(width: 10),
-                    Icon(
-                      Icons.edit_outlined,
-                      color: blackColor,
-                      size: 20,
-                    )
-                  ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 380,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Nama',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
-                          ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
+                SizedBox(
+                  height: 380,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
                             child: Text(
-                              'Ananda Putri',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Username',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
+                              'Nama',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
                           ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              'Ananda Putri',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'No. Telp',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
                           ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                'Ananda Putri',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
                             child: Text(
-                              '085678905436',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Email',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
+                              'Username',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
                           ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              'anandaptri12@gmail.com',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Alamat',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
                           ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                'Ananda Putri',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
                             child: Text(
-                              'Jl. Soreang-Kopo No. 127 ',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Jenis Kelamin',
-                            style: GoogleFonts.inter(
-                                fontSize: 16, fontWeight: semiBold),
+                              'No. Telp',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
                           ),
-                        ),
-                        const Text(
-                          ': ',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Expanded(
-                            flex: 2,
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                '085678905436',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
                             child: Text(
-                              'Perempuan',
-                              style: GoogleFonts.inter(fontSize: 16),
-                            ))
-                      ],
-                    ),
-                  ],
+                              'Email',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                'anandaptri12@gmail.com',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Alamat',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                'Jl. Soreang-Kopo No. 127 ',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Jenis Kelamin',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ': ',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                'Perempuan',
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
