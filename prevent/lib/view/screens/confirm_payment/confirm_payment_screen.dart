@@ -1,9 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/widgets/timer.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ConfirmPayment extends StatefulWidget {
   ConfirmPayment({Key? key}) : super(key: key);
@@ -188,7 +187,13 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         style: GoogleFonts.poppins(
                             fontSize: 10, fontWeight: reguler),
                       ),
-                      // QR Code
+                      Center(
+                        child: QrImageView(
+                          data: 'testing',
+                          version: QrVersions.auto,
+                          size: 150,
+                        ),
+                      ),
                       Text(
                         'Catatan',
                         style:

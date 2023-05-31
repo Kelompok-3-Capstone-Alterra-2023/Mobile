@@ -53,6 +53,7 @@ dependencies:
   flutter_svg: ^1.1.6
   # Pinput for verif code
   pinput: ^2.2.31
+  qr_flutter: ^4.1.0
 
 
 
