@@ -191,7 +191,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         child: QrImageView(
                           data: 'testing',
                           version: QrVersions.auto,
-                          size: 150,
+                          size: MediaQuery.of(context).size.height / 5,
                         ),
                       ),
                       Text(
