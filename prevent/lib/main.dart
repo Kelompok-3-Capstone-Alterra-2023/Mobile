@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: ConfirmPayment(),
+        home: const OnBoarding(),
       ),
     );
   }
