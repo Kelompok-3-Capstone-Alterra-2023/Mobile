@@ -55,6 +55,8 @@ dependencies:
   pinput: ^2.2.31
   # Weekly Date Picker for select schedule
   weekly_date_picker: ^1.3.0
+  # Calendar Date Picker 2 for main date picker
+  calendar_date_picker2: ^0.5.2
 
 flutter_native_splash:
   android: true

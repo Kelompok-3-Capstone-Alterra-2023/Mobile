@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/healthicons.dart';
-import 'package:iconify_flutter/icons/mingcute.dart';
 import 'package:iconify_flutter/icons/raphael.dart';
 import 'package:intl/intl.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
