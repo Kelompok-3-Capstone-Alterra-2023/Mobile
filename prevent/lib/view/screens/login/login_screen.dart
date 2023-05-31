@@ -8,7 +8,6 @@ import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../util/theme.dart';
-import '../consultation/consultation_screen.dart';
 import '../register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -137,38 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: Theme(
-                                data: ThemeData(
-                                    unselectedWidgetColor: colorStyleFifth),
-                                child: Checkbox(
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5))),
-                                  activeColor: colorStyleFifth,
-                                  value: provider.rememberMe,
-                                  onChanged: (value) {
-                                    provider.toggleRememberMe();
-                                  },
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Text(
-                              'Remember Me',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 12, fontWeight: reguler),
-                            ),
-                          ],
-                        ),
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacement(
