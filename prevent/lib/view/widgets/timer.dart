@@ -5,8 +5,11 @@ import 'package:prevent/view/screens/home/home_screen.dart';
 
 class AppTimer extends StatefulWidget {
   final int start;
+  final double? size;
+  final Color? fontColor;
 
-  const AppTimer({super.key, required this.start});
+  const AppTimer({super.key, required this.start, this.fontColor, this.size});
+
 
   @override
   _AppTimerState createState() => _AppTimerState();
@@ -15,11 +18,16 @@ class AppTimer extends StatefulWidget {
 class _AppTimerState extends State<AppTimer> {
   late Timer _timer;
   late int _start;
+  late double? _size;
+  late Color? _fontColor;
+
 
   @override
   void initState() {
     super.initState();
     _start = widget.start;
+    _size = widget.size;
+    _fontColor = widget.fontColor;
     startTimer();
   }
 
@@ -60,7 +68,8 @@ class _AppTimerState extends State<AppTimer> {
   Widget build(BuildContext context) {
     return Text(
       getTimerText(),
-      style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.bold),
+      style: GoogleFonts.poppins(
+          fontSize: _size, fontWeight: FontWeight.bold, color: _fontColor),
     );
   }
 }

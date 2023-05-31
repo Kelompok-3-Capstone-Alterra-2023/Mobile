@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/settings/settings_screen.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -81,6 +82,8 @@ class SideBar extends StatelessWidget {
               ),
               onTap: () {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => SettingsScreen()));
               },
             ),
             ListTile(
