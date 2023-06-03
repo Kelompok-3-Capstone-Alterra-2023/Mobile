@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  calendar_date_picker2:
+    dependency: "direct main"
+    description:
+      name: calendar_date_picker2
+      sha256: f7ecd632260f2af6cfb72f6b7878f847b0a61821d50f26df9bd00b0a336d0cac
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
   characters:
     dependency: transitive
     description:
@@ -656,6 +664,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  week_of_year:
+    dependency: transitive
+    description:
+      name: week_of_year
+      sha256: "1315ead65c5243b32a76920ac601adc33661712ba9cbd3c775b8871905f37317"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
+  weekly_date_picker:
+    dependency: "direct main"
+    description:
+      name: weekly_date_picker
+      sha256: e348964ae54ee16b4c449fb7e2d71dbaf44205d8d5dcc3540455e8babd2da2d2
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   win32:
     dependency: transitive
     description:
