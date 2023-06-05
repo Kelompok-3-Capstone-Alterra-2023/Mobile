@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../util/common.dart';
+
+// import '../util/common.dart';
+
 class SettingsViewModel extends ChangeNotifier {
+  // void listDeleteAccount(BuildContext context) {
+  //   List<String> list = [
+  //     AppLocalizations.of(context)!.reasonDeleteAccountOne,
+  //     AppLocalizations.of(context)!.reasonDeleteAccountTwo,
+  //     AppLocalizations.of(context)!.reasonDeleteAccountThree,
+  //     // 'Saya ingin menghapus profil',
+  //     // "Saya tidak akan menggunakan lagi",
+  //     // "Lainnya"
+  //   ];
+  // }
+
+  // AppLocalizations.of(context)!.inputReason
   List<String> list = [
     'Saya ingin menghapus profil',
     "Saya tidak akan menggunakan lagi",
@@ -18,6 +34,7 @@ class SettingsViewModel extends ChangeNotifier {
   String termsAndConditionsSecond = 'Semua Profil akan dihapus.';
   String termsAndConditionsThird =
       'Semua Riwayat pesanan menjadi tidak tersedia.';
+  // String termsAndConditionsThirder = AppLocalizations.of(context)!.onBoardingOneTitle;
 
   bool agreeToTheTermsAndConditions = false;
 

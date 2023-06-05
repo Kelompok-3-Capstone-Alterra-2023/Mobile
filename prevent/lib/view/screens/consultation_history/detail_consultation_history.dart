@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class DetailConsultationHistoryScreen extends StatefulWidget {
@@ -20,7 +21,8 @@ class _DetailConsultationHistoryScreenState
       appBar: AppBar(
         iconTheme: IconThemeData(color: blackColor),
         title: Text(
-          'Riwayat Konsultasi',
+          AppLocalizations.of(context)!.consultationHistory,
+          // 'Riwayat Konsultasi',
           style: TextStyle(color: blackColor),
         ),
         backgroundColor: whiteColor,
@@ -37,7 +39,8 @@ class _DetailConsultationHistoryScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Detail Konsultasi',
+                      AppLocalizations.of(context)!.consultationDetails,
+                      // 'Detail Konsultasi',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -68,7 +71,8 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Nama Dokter',
+                                      AppLocalizations.of(context)!.doctorName,
+                                      // 'Nama Dokter',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -92,7 +96,8 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Bidang',
+                                      AppLocalizations.of(context)!.field,
+                                      // 'Bidang',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -115,7 +120,8 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Metode',
+                                      AppLocalizations.of(context)!.method,
+                                      // 'Metode',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -138,7 +144,8 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Durasi',
+                                      AppLocalizations.of(context)!.duration,
+                                      // 'Durasi',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -162,7 +169,8 @@ class _DetailConsultationHistoryScreenState
                       height: 19,
                     ),
                     Text(
-                      'Diagnosa',
+                      AppLocalizations.of(context)!.diagnosis,
+                      // 'Diagnosa',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -191,7 +199,8 @@ class _DetailConsultationHistoryScreenState
                       height: 30,
                     ),
                     Text(
-                      'Detail Pembayaran',
+                      AppLocalizations.of(context)!.paymentDetails,
+                      // 'Detail Pembayaran',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -202,7 +211,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Biaya Konsultasi',
+                          AppLocalizations.of(context)!.consultationFee,
+                          // 'Biaya Konsultasi',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -221,7 +231,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Biaya Obat',
+                          AppLocalizations.of(context)!.drugCost,
+                          // 'Biaya Obat',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -247,7 +258,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Total',
+                          AppLocalizations.of(context)!.amount,
+                          // 'Total',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -276,7 +288,8 @@ class _DetailConsultationHistoryScreenState
                           borderRadius: BorderRadius.all(Radius.circular(10)))),
                   onPressed: () {},
                   child: Text(
-                    'Unduh Bukti',
+                    AppLocalizations.of(context)!.downloadEvidence,
+                    // 'Unduh Bukti',
                     style: GoogleFonts.poppins(fontWeight: bold, fontSize: 16),
                   ),
                 ),

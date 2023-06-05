@@ -6,6 +6,7 @@ import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation_history/detail_consultation_history.dart';
 
+import '../../../util/common.dart';
 import '../view_all_doctor/custom_search.dart';
 
 class ConsultationHistoryScreen extends StatefulWidget {
@@ -22,7 +23,8 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Riwayat Konsultasi',
+          AppLocalizations.of(context)!.consultationHistory,
+          // 'Riwayat Konsultasi',
           style: TextStyle(color: blackColor),
         ),
         centerTitle: true,
@@ -52,7 +54,8 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                   tabs: [
                     Tab(
                         child: Text(
-                      'Riwayat Berjalan',
+                      AppLocalizations.of(context)!.sliderRunningHistory,
+                      // 'Riwayat Berjalan',
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: semiBold,
@@ -60,7 +63,8 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                     )),
                     Tab(
                         child: Text(
-                      'Riwayat Konsultasi',
+                      AppLocalizations.of(context)!.consultationHistory,
+                      // 'Riwayat Konsultasi',
                       style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: semiBold,
@@ -100,9 +104,13 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                                       style: GoogleFonts.poppins(
                                           fontSize: 12, fontWeight: medium),
                                     ),
-                                    Text('Metode Telepon',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 12, fontWeight: reguler)),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .telephoneMethod,
+                                      // 'Metode Telepon',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, fontWeight: reguler),
+                                    ),
                                   ],
                                 ),
                                 subtitle: Row(children: [
@@ -157,9 +165,13 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                                       style: GoogleFonts.poppins(
                                           fontSize: 12, fontWeight: medium),
                                     ),
-                                    Text('Metode Telepon',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 12, fontWeight: reguler)),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .telephoneMethod,
+                                      // 'Metode Telepon',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, fontWeight: reguler),
+                                    ),
                                   ],
                                 ),
                                 subtitle: Row(children: [

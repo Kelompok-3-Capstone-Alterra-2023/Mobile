@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class NotificationSettings extends StatelessWidget {
@@ -21,7 +22,8 @@ class NotificationSettings extends StatelessWidget {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Pengaturan notifikasi',
+          AppLocalizations.of(context)!.notificationSettings,
+          // 'Pengaturan notifikasi',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -40,7 +42,8 @@ class NotificationSettings extends StatelessWidget {
                     color: blackColor,
                   ),
                   title: Text(
-                    'Notifikasi di aplikasi',
+                    AppLocalizations.of(context)!.appNotifications,
+                    // 'Notifikasi di aplikasi',
                     style: GoogleFonts.inter(
                       fontSize: 16,
                       fontWeight: semiBold,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/util/common.dart';
 import 'package:prevent/view/screens/settings/delete_account.dart';
 import 'package:prevent/view/screens/settings/language_select_settings.dart';
 import 'package:prevent/view_models/home_view_model.dart';
@@ -39,11 +40,15 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsViewModel(),
-          create: (context) => SearchArticleViewModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SearchArticleViewModel(),
+        )
       ],
       child: MaterialApp(
         title: 'Prevent',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

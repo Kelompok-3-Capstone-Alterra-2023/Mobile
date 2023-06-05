@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 import '../../../view_models/home_view_model.dart';
 
@@ -44,7 +45,7 @@ class _BottomNavState extends State<BottomNav> {
                   ? colorNavBar
                   : colorUnselectedNavBar,
             ),
-            label: 'Beranda',
+            label: AppLocalizations.of(context)!.btmNavBarHome,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -53,7 +54,8 @@ class _BottomNavState extends State<BottomNav> {
                   ? colorNavBar
                   : colorUnselectedNavBar,
             ),
-            label: 'Riwayat Konsultasi',
+            // label: 'Riwayat Konsultasi',
+            label: AppLocalizations.of(context)!.btmNavBarHistory,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -62,7 +64,8 @@ class _BottomNavState extends State<BottomNav> {
                   ? colorNavBar
                   : colorUnselectedNavBar,
             ),
-            label: 'Notifikasi',
+            // label: 'Notifikasi',
+            label: AppLocalizations.of(context)!.btmNavBarNotif,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -71,7 +74,8 @@ class _BottomNavState extends State<BottomNav> {
                   ? colorNavBar
                   : colorUnselectedNavBar,
             ),
-            label: 'Profil',
+            // label: 'Profil',
+            label: AppLocalizations.of(context)!.btmNavBarProfil,
           ),
         ],
         onTap: onItemTapped,

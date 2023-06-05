@@ -7,6 +7,7 @@ import 'package:prevent/view/screens/verification_code/verification_code_screen.
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 import '../login/login_screen.dart';
 
@@ -29,7 +30,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              'Sign Up',
+              AppLocalizations.of(context)!.signUp,
+              // 'Sign Up',
               style: GoogleFonts.poppins(
                   color: colorStyleSeventh, fontSize: 32, fontWeight: bold),
             ),
@@ -37,7 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 11,
             ),
             Text(
-              'Halo selamat datang di aplikasi prevent!, untuk mendaftar silahkan lengkapi data diri terlebih dahulu!',
+              AppLocalizations.of(context)!.signUpTitle,
+              // 'Halo selamat datang di aplikasi prevent!, untuk mendaftar silahkan lengkapi data diri terlebih dahulu!',
               style: GoogleFonts.poppins(
                   fontSize: 12, fontWeight: reguler, color: blackColor),
             ),
@@ -52,7 +55,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: provider.usernameController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Username tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputUsername;
+
+                          // return 'Username tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -71,7 +76,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         label: Text(
-                          'Username',
+                          AppLocalizations.of(context)!.titleUsername,
+                          // 'Username',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -89,7 +95,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: provider.emailController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Username tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputEmail;
+                          // return 'Email tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -108,7 +115,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         label: Text(
-                          'Email',
+                          AppLocalizations.of(context)!.titleEmail,
+                          // 'Email',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -129,7 +137,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Tanggal lahir tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputDateOfBirth;
+                          // return 'Tanggal lahir tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -148,7 +157,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         label: Text(
-                          'Tanggal Lahir',
+                          AppLocalizations.of(context)!.titleDateOfBirth,
+                          // 'Tanggal Lahir',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -175,7 +185,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: provider.passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Password tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputPass;
+                          // return 'Password tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -194,7 +205,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         label: Text(
-                          'Password',
+                          AppLocalizations.of(context)!.titlePass,
+                          // 'Password',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -229,7 +241,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: provider.confirmPasswordController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Password tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputConfirmPass;
+                          // return 'Konfirmasi Password tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -248,7 +261,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         label: Text(
-                          'Confirm Password',
+                          AppLocalizations.of(context)!.titleConfirmPass,
+                          // 'Confirm Password',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -305,7 +319,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           }
                         },
                         child: Text(
-                          'Sign Up',
+                          AppLocalizations.of(context)!.signUp,
+                          // 'Sign Up',
                           style: GoogleFonts.poppins(
                               fontWeight: bold, fontSize: 16),
                         ),
@@ -325,7 +340,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Atau Sign Up dengan',
+                            AppLocalizations.of(context)!.otherSignUp,
+                            // 'Atau Sign Up dengan',
                             style: GoogleFonts.poppins(
                                 fontWeight: reguler, fontSize: 12),
                           ),
@@ -365,7 +381,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 width: 10,
                               ),
                               Text(
-                                'Google',
+                                AppLocalizations.of(context)!.google,
+                                // 'Google',
                                 style: GoogleFonts.poppins(
                                     fontWeight: reguler,
                                     fontSize: 16,
@@ -377,11 +394,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Sudah Punya Akun?',
-                            style: GoogleFonts.poppins(
-                              fontWeight: reguler,
-                              fontSize: 12,
-                            )),
+                        Text(
+                          AppLocalizations.of(context)!.haveAccount,
+                          // 'Sudah Punya Akun?',
+                          style: GoogleFonts.poppins(
+                            fontWeight: reguler,
+                            fontSize: 12,
+                          ),
+                        ),
                         TextButton(
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(context,
@@ -392,7 +412,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ), (route) => false);
                           },
                           child: Text(
-                            'Sign In',
+                            AppLocalizations.of(context)!.signIn,
+                            // 'Sign In',
                             style: GoogleFonts.poppins(
                                 fontWeight: bold,
                                 fontSize: 12,

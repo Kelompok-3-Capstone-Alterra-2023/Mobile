@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/view/screens/settings/delete_account.dart';
 import 'package:prevent/view/screens/settings/notificationSettings.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class UserAccountSettings extends StatelessWidget {
@@ -23,7 +24,8 @@ class UserAccountSettings extends StatelessWidget {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Pengaturan akun user',
+          AppLocalizations.of(context)!.useraccountsetting,
+          // 'Pengaturan akun user',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -54,7 +56,8 @@ class UserAccountSettings extends StatelessWidget {
                         color: blackColor,
                       ),
                       title: Text(
-                        'Hapus akun',
+                        AppLocalizations.of(context)!.deleteAccount,
+                        // 'Hapus akun',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: semiBold,
@@ -88,7 +91,8 @@ class UserAccountSettings extends StatelessWidget {
                         color: blackColor,
                       ),
                       title: Text(
-                        'Pengaturan Notifikasi',
+                        AppLocalizations.of(context)!.notificationSettings,
+                        // 'Pengaturan Notifikasi',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: semiBold,

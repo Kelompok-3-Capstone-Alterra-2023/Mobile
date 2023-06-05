@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/settings/user_account_settings_screen.dart';
 
+import '../../../util/common.dart';
 import 'language_select_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -23,7 +24,8 @@ class SettingsScreen extends StatelessWidget {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Pengaturan',
+          AppLocalizations.of(context)!.settings,
+          // 'Pengaturan',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -55,7 +57,8 @@ class SettingsScreen extends StatelessWidget {
                         color: blackColor,
                       ),
                       title: Text(
-                        'Pengaturan akun user',
+                        AppLocalizations.of(context)!.useraccountsetting,
+                        // 'Pengaturan akun user',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: semiBold,
@@ -90,7 +93,8 @@ class SettingsScreen extends StatelessWidget {
                         color: blackColor,
                       ),
                       title: Text(
-                        'Pilihan Bahasa',
+                        AppLocalizations.of(context)!.languageOptions,
+                        // 'Pilihan Bahasa',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: semiBold,
@@ -108,7 +112,8 @@ class SettingsScreen extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: Text(
-                'Keluar',
+                AppLocalizations.of(context)!.logOut,
+                // 'Keluar',
                 style: GoogleFonts.inter(
                   fontSize: 16,
                   fontWeight: bold,
@@ -119,11 +124,14 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Text('Versi aplikasi 1.1.1',
-                style: GoogleFonts.inter(
-                  fontSize: 16,
-                  fontWeight: medium,
-                ))
+            Text(
+              AppLocalizations.of(context)!.applicationVersion,
+              // 'Versi aplikasi 1.1.1',
+              style: GoogleFonts.inter(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
           ],
         ),
       ),

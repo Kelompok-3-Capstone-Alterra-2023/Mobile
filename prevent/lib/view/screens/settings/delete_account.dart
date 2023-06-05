@@ -4,6 +4,7 @@ import 'package:prevent/view/screens/settings/dropdown/drop_down.dart';
 import 'package:prevent/view/screens/settings/warning_delete_account_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 import '../../../view_models/settings_view_model.dart';
 
@@ -41,7 +42,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Hapus akun',
+          AppLocalizations.of(context)!.deleteAccount,
+          // 'Hapus akun',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -54,7 +56,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mengapa kamu ingin menghapus akun?',
+              AppLocalizations.of(context)!.reasonForDeletingAccount,
+              // 'Mengapa kamu ingin menghapus akun?',
               style: GoogleFonts.inter(fontSize: 16, fontWeight: semiBold),
             ),
             const SizedBox(
@@ -84,15 +87,18 @@ class _DeleteAccountState extends State<DeleteAccount> {
                         print(provider.groupValue);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Harap masukan alasan Anda!'),
+                          SnackBar(
+                            content:
+                                Text(AppLocalizations.of(context)!.inputReason),
+                            // content: Text('Harap masukan alasan Anda!'),
                             backgroundColor: Colors.red,
                           ),
                         );
                       }
                     },
                     child: Text(
-                      'Lanjut',
+                      AppLocalizations.of(context)!.continuee,
+                      // 'Lanjut',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 16),
                     ),

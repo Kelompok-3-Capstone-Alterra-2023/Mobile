@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/settings/settings_screen.dart';
 
+import '../../../util/common.dart';
+
 class SideBar extends StatelessWidget {
   const SideBar({
     super.key,
@@ -42,7 +44,8 @@ class SideBar extends StatelessWidget {
                 color: const Color(0xff2F5146),
               ),
               title: Text(
-                'Dokter Favorite',
+                AppLocalizations.of(context)!.favoriteDoctorSideBar,
+                // 'Dokter Favorite',
                 style: GoogleFonts.inter(
                     color: const Color(0xff2F5146),
                     fontSize: 15,
@@ -58,7 +61,8 @@ class SideBar extends StatelessWidget {
                 color: const Color(0xff2F5146),
               ),
               title: Text(
-                'Konsultasi Berjalan',
+                AppLocalizations.of(context)!.ongoingConsultationSideBar,
+                // 'Konsultasi Berjalan',
                 style: GoogleFonts.inter(
                     color: const Color(0xff2F5146),
                     fontSize: 15,
@@ -74,7 +78,8 @@ class SideBar extends StatelessWidget {
                 color: const Color(0xff2F5146),
               ),
               title: Text(
-                'Pengaturan',
+                AppLocalizations.of(context)!.settingsSideBar,
+                // 'Pengaturan',
                 style: GoogleFonts.inter(
                     color: const Color(0xff2F5146),
                     fontSize: 15,
@@ -92,7 +97,8 @@ class SideBar extends StatelessWidget {
                 color: const Color(0xff2F5146),
               ),
               title: Text(
-                'Pusat Bantuan',
+                AppLocalizations.of(context)!.helpCenterSideBar,
+                // 'Pusat Bantuan',
                 style: GoogleFonts.inter(
                     color: const Color(0xff2F5146),
                     fontSize: 15,
@@ -105,7 +111,8 @@ class SideBar extends StatelessWidget {
             const Spacer(),
             ListTile(
               title: Text(
-                'Version 1.0.1',
+                AppLocalizations.of(context)!.versionSideBar,
+                // 'Version 1.0.1',
                 style: GoogleFonts.poppins(fontSize: 12),
               ),
             ),
