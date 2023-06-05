@@ -1,4 +1,3 @@
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
@@ -20,9 +19,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final List<DateTime?> _dialogCalendarPickerValue = [
-    DateTime.now(),
-  ];
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterViewModel>(context);
@@ -137,9 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     TextFormField(
                       controller: provider.tanggalController =
                           TextEditingController(
-                        text: provider.date
-                            .map((e) => DateFormat('dd/MM/yyyy').format(e!))
-                            .join(', '),
+                        text: DateFormat('dd/MM/yyyy').format(provider.date),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -169,61 +163,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               fontWeight: reguler, color: blackColor),
                         ),
                         suffixIcon: IconButton(
-                            onPressed: () async {
-                              final values =
-                                  await showCalendarDatePicker2Dialog(
-                                context: context,
-                                config:
-                                    CalendarDatePicker2WithActionButtonsConfig(
-                                        cancelButtonTextStyle:
-                                            TextStyle(color: colorStyleFifth),
-                                        cancelButton: Container(
-                                          height: 30,
-                                          width: 130,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              border:
-                                                  Border.all(color: greyColor)),
-                                          child: Center(
-                                            child: Text(
-                                              'Clear all',
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 14,
-                                                  fontWeight: semiBold),
-                                            ),
-                                          ),
-                                        ),
-                                        okButton: Container(
-                                          height: 30,
-                                          width: 130,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              color: colorStyleFifth),
-                                          child: Center(
-                                            child: Text(
-                                              'Apply',
-                                              style: GoogleFonts.poppins(
-                                                  color: whiteColor,
-                                                  fontSize: 14,
-                                                  fontWeight: semiBold),
-                                            ),
-                                          ),
-                                        ),
-                                        okButtonTextStyle:
-                                            TextStyle(color: colorStyleFifth),
-                                        selectedDayHighlightColor:
-                                            colorStyleFifth,
-                                        centerAlignModePicker: true),
-                                dialogSize: const Size(325, 400),
-                                borderRadius: BorderRadius.circular(15),
-                                value: _dialogCalendarPickerValue,
-                                dialogBackgroundColor: whiteColor,
-                              );
-                              if (values != null) {
-                                provider.setDate(values);
-                              }
+                            onPressed: () {
+                              provider.selectDate(context, provider);
                             },
                             icon: Icon(
                               Icons.date_range_outlined,

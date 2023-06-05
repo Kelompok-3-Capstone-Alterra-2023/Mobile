@@ -13,19 +13,44 @@ class RegisterViewModel extends ChangeNotifier {
 
   bool obscureText = true;
   // tanggal
-  List<DateTime?> _date = [
-    DateTime.now(),
-  ];
+  DateTime _date = DateTime.now();
   final currentDate = DateTime.now();
-  List<DateTime?> get date => _date;
+  DateTime get date => _date;
 
   void toggleObscureText() {
     obscureText = !obscureText;
     notifyListeners();
   }
 
-  void setDate(List<DateTime?> value) {
-    _date = value;
+  void updateDate(DateTime selectDate) {
+    _date = selectDate;
     notifyListeners();
+  }
+
+  Future<void> selectDate(
+      BuildContext context, RegisterViewModel provider) async {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme.copyWith(
+      primary: primaryColor,
+      onPrimary: Colors.white,
+    );
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: theme.copyWith(
+            colorScheme: colorScheme,
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      provider.updateDate(pickedDate);
+    }
   }
 }
