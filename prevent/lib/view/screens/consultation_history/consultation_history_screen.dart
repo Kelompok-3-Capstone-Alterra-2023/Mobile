@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation_history/detail_consultation_history.dart';
+import 'package:prevent/view/widgets/home/side_bar.dart';
 
 import '../view_all_doctor/custom_search.dart';
 
@@ -40,6 +41,7 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
           )
         ],
       ),
+      drawer: const SideBar(),
       backgroundColor: whiteColor,
       body: DefaultTabController(
           length: 2,

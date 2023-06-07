@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/consultation/consultation_call_screen.dart';
 import 'package:prevent/view/widgets/timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -12,6 +15,33 @@ class ConfirmPayment extends StatefulWidget {
 }
 
 class _ConfirmPaymentState extends State<ConfirmPayment> {
+  String text_status = 'Menunggu Pembayaran';
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    timer = Timer(const Duration(seconds: 8), () {
+      setState(() {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => ConsultationCallScreen()));
+      });
+    });
+
+    Timer(Duration(seconds: 5), () {
+      setState(() {
+        text_status = 'Berhasil'; // Mengubah teks setelah 5 detik
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +116,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      'Berhasil',
+                      text_status,
                       style: GoogleFonts.poppins(
                           color: colorStyleSeventh,
                           fontSize: 12,
@@ -149,6 +179,16 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),
                   ],
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Lihat Rincian',
+                        style: GoogleFonts.poppins(
+                            fontSize: 15, fontWeight: reguler),
+                      )),
                 ),
                 Container(
                   decoration: BoxDecoration(
