@@ -64,47 +64,51 @@ class NotificationScreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Sesi Konsultasi',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan \nPsikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 \nvia chat. ',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: reguler,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Iconify(
-                                        Zondicons.time,
-                                        size: 12,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sesi Konsultasi',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: bold,
                                       ),
-                                      const SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        '24-04-28 10:36',
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
                                         style: GoogleFonts.poppins(
-                                          fontSize: 10,
+                                          fontSize: 12,
                                           fontWeight: reguler,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Iconify(
+                                          Zondicons.time,
+                                          size: 12,
+                                        ),
+                                        const SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text(
+                                          '24-04-28 10:36',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            fontWeight: reguler,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
