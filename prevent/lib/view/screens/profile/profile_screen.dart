@@ -80,6 +80,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      // Nama
                       Row(
                         children: [
                           Expanded(
@@ -91,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
@@ -104,6 +105,8 @@ class ProfileScreen extends StatelessWidget {
                               ))
                         ],
                       ),
+
+                      // Username
                       Row(
                         children: [
                           Expanded(
@@ -115,7 +118,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
@@ -128,6 +131,8 @@ class ProfileScreen extends StatelessWidget {
                               ))
                         ],
                       ),
+
+                      // No Telpon
                       Row(
                         children: [
                           Expanded(
@@ -139,7 +144,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
@@ -152,6 +157,8 @@ class ProfileScreen extends StatelessWidget {
                               ))
                         ],
                       ),
+
+                      // Email
                       Row(
                         children: [
                           Expanded(
@@ -163,19 +170,20 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
-                              flex: 2,
-                              child: Text(
-                                'anandaptri12@gmail.com',
+                            flex: 2,
+                            child: Text('anandaptri12345@gmail.com',
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(fontSize: 16),
-                              ))
+                                style: GoogleFonts.inter(fontSize: 16)),
+                          ),
                         ],
                       ),
+
+                      // Alamat
                       Row(
                         children: [
                           Expanded(
@@ -187,7 +195,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
@@ -200,6 +208,8 @@ class ProfileScreen extends StatelessWidget {
                               ))
                         ],
                       ),
+
+                      // Jenis Kelamin
                       Row(
                         children: [
                           Expanded(
@@ -211,7 +221,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           const Text(
-                            ': ',
+                            ':\t',
                             style: TextStyle(fontSize: 16),
                           ),
                           Expanded(
