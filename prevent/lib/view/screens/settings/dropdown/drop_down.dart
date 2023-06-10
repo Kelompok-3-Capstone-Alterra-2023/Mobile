@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../util/common.dart';
 import '../../../../view_models/settings_view_model.dart';
 import 'expanded_section.dart';
 import 'my_scrollbar.dart';
@@ -18,6 +19,7 @@ class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingsViewModel>(context, listen: true);
+    // provider.title = AppLocalizations.of(context)!.dropDownFirst;
     return Container(
       height: 400,
       width: double.infinity,
@@ -66,6 +68,8 @@ class _DropDownState extends State<DropDown> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
                                   child: Text(
+                                    // AppLocalizations.of(context)!
+                                    //     .dropDownFirst,
                                     provider.title,
                                   ),
                                 ),

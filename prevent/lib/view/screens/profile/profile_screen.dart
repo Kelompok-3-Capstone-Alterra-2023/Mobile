@@ -5,6 +5,8 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
+import '../../../util/common.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -30,7 +32,8 @@ class ProfileScreen extends StatelessWidget {
             },
           ),
           title: Text(
-            'Profile',
+            AppLocalizations.of(context)!.profileFirst,
+            // 'Profile',
             style: GoogleFonts.inter(fontSize: 16, fontWeight: semiBold),
           ),
           centerTitle: true,
@@ -61,7 +64,8 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Edit',
+                          AppLocalizations.of(context)!.profileSecond,
+                          // 'Edit',
                           style: GoogleFonts.inter(
                               color: blackColor, fontSize: 16),
                         ),
@@ -86,85 +90,8 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              'Nama',
-                              style: GoogleFonts.inter(
-                                  fontSize: 16, fontWeight: semiBold),
-                            ),
-                          ),
-                          const Text(
-                            ':\t',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: Text(
-                                'Ananda Putri',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(fontSize: 16),
-                              ))
-                        ],
-                      ),
-
-                      // Username
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              'Username',
-                              style: GoogleFonts.inter(
-                                  fontSize: 16, fontWeight: semiBold),
-                            ),
-                          ),
-                          const Text(
-                            ':\t',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: Text(
-                                'Ananda Putri',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(fontSize: 16),
-                              ))
-                        ],
-                      ),
-
-                      // No Telpon
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              'No. Telp',
-                              style: GoogleFonts.inter(
-                                  fontSize: 16, fontWeight: semiBold),
-                            ),
-                          ),
-                          const Text(
-                            ':\t',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: Text(
-                                '085678905436',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(fontSize: 16),
-                              ))
-                        ],
-                      ),
-
-                      // Email
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              'Email',
+                              AppLocalizations.of(context)!.profileThird,
+                              // 'Nama',
                               style: GoogleFonts.inter(
                                   fontSize: 16, fontWeight: semiBold),
                             ),
@@ -175,10 +102,97 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 2,
-                            child: Text('anandaptri12345@gmail.com',
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(fontSize: 16)),
+                            child: Text(
+                              // AppLocalizations.of(context)!.titleEmail,
+                              'Ananda Putri',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.inter(fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      // Username
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              AppLocalizations.of(context)!.profileFourth,
+                              // 'Username',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ':\t',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              'Ananda Putri',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.inter(fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      // No Telpon
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              AppLocalizations.of(context)!.profileFifth,
+                              // 'No. Telp',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ':\t',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              '085678905436',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.inter(fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      // Email
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              AppLocalizations.of(context)!.profileSixth,
+                              // 'Email',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ':\t',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              'anandaptri12345@gmail.com',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.inter(fontSize: 16),
+                            ),
                           ),
                         ],
                       ),
@@ -189,7 +203,8 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              'Alamat',
+                              AppLocalizations.of(context)!.profileSeventh,
+                              // 'Alamat',
                               style: GoogleFonts.inter(
                                   fontSize: 16, fontWeight: semiBold),
                             ),
@@ -215,7 +230,8 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              'Jenis Kelamin',
+                              AppLocalizations.of(context)!.profileEighth,
+                              // 'Jenis Kelamin',
                               style: GoogleFonts.inter(
                                   fontSize: 16, fontWeight: semiBold),
                             ),
@@ -227,7 +243,8 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                               flex: 2,
                               child: Text(
-                                'Perempuan',
+                                AppLocalizations.of(context)!.profileNinth,
+                                // 'Perempuan',
                                 style: GoogleFonts.inter(fontSize: 16),
                               ))
                         ],

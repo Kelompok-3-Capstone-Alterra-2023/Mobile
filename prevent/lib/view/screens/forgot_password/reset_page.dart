@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/forgot_password/forgot_page.dart';
 
+import '../../../util/common.dart';
+
 class ResetPassScreen extends StatefulWidget {
   const ResetPassScreen({Key? key}) : super(key: key);
 
@@ -39,7 +41,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(left: 27, right: 27, bottom: 11),
             child: Text(
-              'Atur Ulang Password',
+              AppLocalizations.of(context)!.resetFirst,
+              // 'Atur Ulang Password',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -70,7 +73,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   },
                 ),
                 label: Text(
-                  'Kata Sandi Baru',
+                  AppLocalizations.of(context)!.resetSecond,
+                  // 'Kata Sandi Baru',
                   style: GoogleFonts.poppins(
                       fontWeight: reguler, color: blackColor),
                 ),
@@ -105,7 +109,8 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   },
                 ),
                 label: Text(
-                  'Ulangi Kata Sandi',
+                  AppLocalizations.of(context)!.resetThird,
+                  // 'Ulangi Kata Sandi',
                   style: GoogleFonts.poppins(
                       fontWeight: reguler, color: blackColor),
                 ),
@@ -126,8 +131,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                   ),
                   backgroundColor: MaterialStateProperty.all(colorStyleFifth)),
               onPressed: () {},
-              child: const Text(
-                'Kirim',
+              child: Text(
+                AppLocalizations.of(context)!.resetFourth,
+                // 'Kirim',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

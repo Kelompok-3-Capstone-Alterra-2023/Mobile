@@ -9,6 +9,7 @@ import 'package:iconify_flutter/icons/raphael.dart';
 import 'package:intl/intl.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class SelectScheduleScreen extends StatefulWidget {
@@ -36,7 +37,8 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: blackColor),
         title: Text(
-          'Pilih Jadwal',
+          AppLocalizations.of(context)!.selectScheduleFirst,
+          // 'Pilih Jadwal',
           style: TextStyle(color: blackColor),
         ),
         backgroundColor: whiteColor,
@@ -68,12 +70,14 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                             fontSize: 20, fontWeight: medium),
                       ),
                       Text(
-                        'Psikolog',
+                        AppLocalizations.of(context)!.selectScheduleSecond,
+                        // 'Psikolog',
                         style: GoogleFonts.poppins(
                             fontSize: 20, fontWeight: medium),
                       ),
                       Text(
-                        'Psikolog Klinis',
+                        AppLocalizations.of(context)!.selectScheduleThird,
+                        // 'Psikolog Klinis',
                         style: GoogleFonts.poppins(
                             fontSize: 12, fontWeight: reguler),
                       ),
@@ -101,7 +105,8 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Pilih Tanggal & Waktu Konsultasi',
+                          AppLocalizations.of(context)!.selectScheduleFourth,
+                          // 'Pilih Tanggal & Waktu Konsultasi',
                           style: GoogleFonts.poppins(
                               fontSize: 14, fontWeight: semiBold),
                         ),
@@ -138,64 +143,61 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                           height: 340,
                           width: MediaQuery.of(context).size.width,
                           child: Container(
-                              color: whiteColor,
-                              child: ListView.builder(
-                                itemCount: timeOptions.length,
-                                itemBuilder: (context, index) {
-                                  String key =
-                                      timeOptions.keys.elementAt(index);
-                                  Iterable<String> times = timeOptions[key]!;
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Wrap(
-                                        spacing: 8.0,
-                                        children: times.map((time) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10, top: 5),
-                                            child: ChoiceChip(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 3,
-                                                      vertical: 2),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  side: BorderSide(
-                                                      color: colorStyleFifth)),
-                                              label: Text(time),
-                                              selected: selectedTime == time,
-                                              onSelected: (isSelected) {
-                                                setState(() {
-                                                  if (isSelected) {
-                                                    selectedTime = time;
-                                                  } else {
-                                                    selectedTime = null;
-                                                  }
-                                                });
-                                              },
-                                              selectedColor: colorStyleFifth,
-                                              labelStyle: TextStyle(
-                                                  color: selectedTime == time
-                                                      ? whiteColor
-                                                      : colorStyleFifth,
-                                                  fontWeight: medium,
-                                                  fontSize: 10),
-                                              backgroundColor: whiteColor,
-                                            ),
-                                          );
-                                        }).toList(),
-                                      ),
-                                      Divider(
-                                        thickness: 1,
-                                        color: greyColor,
-                                      ),
-                                    ],
-                                  );
-                                },
-                              )),
+                            color: whiteColor,
+                            child: ListView.builder(
+                              itemCount: timeOptions.length,
+                              itemBuilder: (context, index) {
+                                String key = timeOptions.keys.elementAt(index);
+                                Iterable<String> times = timeOptions[key]!;
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Wrap(
+                                      spacing: 8.0,
+                                      children: times.map((time) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, top: 5),
+                                          child: ChoiceChip(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 3, vertical: 2),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                side: BorderSide(
+                                                    color: colorStyleFifth)),
+                                            label: Text(time),
+                                            selected: selectedTime == time,
+                                            onSelected: (isSelected) {
+                                              setState(() {
+                                                if (isSelected) {
+                                                  selectedTime = time;
+                                                } else {
+                                                  selectedTime = null;
+                                                }
+                                              });
+                                            },
+                                            selectedColor: colorStyleFifth,
+                                            labelStyle: TextStyle(
+                                                color: selectedTime == time
+                                                    ? whiteColor
+                                                    : colorStyleFifth,
+                                                fontWeight: medium,
+                                                fontSize: 10),
+                                            backgroundColor: whiteColor,
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ),
+                                    Divider(
+                                      thickness: 1,
+                                      color: greyColor,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 15,
@@ -213,7 +215,8 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                               showBottomSheet(context);
                             },
                             child: Text(
-                              'Selanjutnya',
+                              AppLocalizations.of(context)!.selectScheduleFifth,
+                              // 'Selanjutnya',
                               style: GoogleFonts.poppins(
                                   fontWeight: bold, fontSize: 16),
                             ),
@@ -249,128 +252,147 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                   const BorderRadius.vertical(top: Radius.circular(10))),
           child: Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 16),
-            child: Column(children: [
-              Text(
-                'Ketika sudah menjadwalkan konsultasi, Mohon diingat agar...',
-                style: TextStyle(fontSize: 16, fontWeight: medium),
-              ),
-              const SizedBox(
-                height: 33,
-              ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: colorStyleFifth,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Iconify(
-                      Raphael.clock,
-                      color: whiteColor,
+            child: Column(
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.selectScheduleSixth,
+                  // 'Ketika sudah menjadwalkan konsultasi, Mohon diingat agar...',
+                  style: TextStyle(fontSize: 16, fontWeight: medium),
+                ),
+                const SizedBox(
+                  height: 33,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          color: colorStyleFifth,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Iconify(
+                        Raphael.clock,
+                        color: whiteColor,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 19,
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: 'Mengikuti konsultasi ',
-                      style: TextStyle(fontSize: 11, color: blackColor),
-                      children: [
-                        TextSpan(
-                          text: 'tepat waktu, ',
-                          style: TextStyle(fontWeight: semiBold),
-                        ),
-                        const TextSpan(
-                          text:
-                              'dokter akan menunggu \ndi sesi konsultasi hingga anda hadir selama 10 menit.',
-                        ),
-                      ],
+                    const SizedBox(
+                      width: 19,
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 26,
-              ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: colorStyleFifth,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: SvgPicture.asset(
-                        'assets/icons/solar_call-chat-bold.svg',
-                        color: whiteColor),
-                  ),
-                  const SizedBox(
-                    width: 19,
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: 'Memberi kabar kepada Dokter jika ingin',
-                      style: TextStyle(fontSize: 11, color: blackColor),
-                      children: [
-                        TextSpan(
-                          text: ' membatalkan \njanji konsultasi',
-                          style: TextStyle(fontWeight: semiBold),
-                        ),
-                        const TextSpan(
-                          text:
-                              ' selambat-lambatnya 30 menit sebelum \njadwal yang ditentukan.',
-                        ),
-                      ],
+                    Text.rich(
+                      TextSpan(
+                        // text: 'Mengikuti konsultasi',
+                        text:
+                            AppLocalizations.of(context)!.selectScheduleSeventh,
+                        style: TextStyle(fontSize: 11, color: blackColor),
+                        children: [
+                          TextSpan(
+                            // text: 'tepat waktu,',
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleEighth,
+                            style: TextStyle(fontWeight: semiBold),
+                          ),
+                          TextSpan(
+                            // text:
+                            // 'dokter akan menunggu \ndi sesi konsultasi hingga anda hadir selama 10 menit.',
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleNinth,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          color: colorStyleFifth,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: SvgPicture.asset(
+                          'assets/icons/solar_call-chat-bold.svg',
+                          color: whiteColor),
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 26,
-              ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: colorStyleFifth,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Iconify(
-                      Healthicons.call_centre,
-                      color: whiteColor,
+                    const SizedBox(
+                      width: 19,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 19,
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: 'Menginformasikan Customer Service jika',
-                      style: TextStyle(fontSize: 11, color: blackColor),
-                      children: [
-                        TextSpan(
-                          text: ' terdapat',
-                          style: TextStyle(fontWeight: semiBold),
-                        ),
-                        const TextSpan(
-                          text:
-                              ' \nkendala pada pengembalian dana ataupun Dokter yang \ntidak dapat hadir pada sesi konsultasi.',
-                        ),
-                      ],
+                    Text.rich(
+                      TextSpan(
+                        // text: 'Memberi kabar kepada Dokter jika ingin',
+                        text: AppLocalizations.of(context)!.selectScheduleTenth,
+                        style: TextStyle(fontSize: 11, color: blackColor),
+                        children: [
+                          TextSpan(
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleEleventh,
+                            // text: ' membatalkan \njanji konsultasi',
+                            style: TextStyle(fontWeight: semiBold),
+                          ),
+                          TextSpan(
+                            // text:
+                            //     ' selambat-lambatnya 30 menit sebelum \njadwal yang ditentukan.',
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleTwelfth,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          color: colorStyleFifth,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Iconify(
+                        Healthicons.call_centre,
+                        color: whiteColor,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              SizedBox(
+                    const SizedBox(
+                      width: 19,
+                    ),
+                    Text.rich(
+                      TextSpan(
+                        // text: 'Menginformasikan Customer Service jika',
+                        text: AppLocalizations.of(context)!
+                            .selectScheduleThirteenth,
+                        style: TextStyle(fontSize: 11, color: blackColor),
+                        children: [
+                          TextSpan(
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleFourteenth,
+                            // text: ' terdapat',
+                            style: TextStyle(fontWeight: semiBold),
+                          ),
+                          TextSpan(
+                            // text:
+                            //     ' \nkendala pada pengembalian dana ataupun Dokter yang \ntidak dapat hadir pada sesi konsultasi.',
+                            text: AppLocalizations.of(context)!
+                                .selectScheduleFifteenth,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 38,
                   child: ElevatedButton(
@@ -381,12 +403,15 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                                 BorderRadius.all(Radius.circular(10)))),
                     onPressed: () {},
                     child: Text(
-                      'Oke',
+                      AppLocalizations.of(context)!.selectScheduleSixteenth,
+                      // 'Oke',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 12),
                     ),
-                  ))
-            ]),
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },

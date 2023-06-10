@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:prevent/util/theme.dart';
 
+import '../../../util/common.dart';
+
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
 
@@ -49,7 +51,8 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
             ),
             const SizedBox(height: 53),
             Text(
-              'Kode Verifikasi',
+              AppLocalizations.of(context)!.verificationCodeFirst,
+              // 'Kode Verifikasi',
               style: TextStyle(
                 color: colorStyleSeventh,
                 fontWeight: bold,
@@ -58,10 +61,11 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 11),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 50),
               child: Text(
-                'Silahkan Masukkan kode verifikasi yang telah kamu terima.',
+                AppLocalizations.of(context)!.verificationCodeSecond,
+                // 'Silahkan Masukkan kode verifikasi yang telah kamu terima.',
                 style: TextStyle(
                   fontSize: 12,
                 ),
@@ -95,7 +99,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                         validator: (value) {
                           return value == '22222' || value == '12345'
                               ? null
-                              : 'Opss! Kode Verifikasi yang kamu masukkan salah.';
+                              : AppLocalizations.of(context)!
+                                  .verificationCodeThird;
+                          // 'Opss! Kode Verifikasi yang kamu masukkan salah.';
                         },
                         errorBuilder: (context, error) {
                           return error.isNotEmpty
@@ -122,7 +128,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        'Opss! Kode Verifikasi yang kamu masukkan salah.',
+                                        AppLocalizations.of(context as BuildContext)!
+                                            .verificationCodeThird,
+                                        // 'Opss! Kode Verifikasi yang kamu masukkan salah.',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: dangerFifth,
@@ -155,7 +163,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                       ),
                                       const SizedBox(width: 7),
                                       Text(
-                                        'Kode harus diisi.',
+                                        AppLocalizations.of(context as BuildContext)!
+                                            .verificationCodeFourth,
+                                        // 'Kode harus diisi.',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: dangerFifth,
@@ -207,18 +217,25 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             ),
                           ),
                         ),
-                        child: const Text('Kirim'),
+                        child: Text(
+                          AppLocalizations.of(context)!.resetFourth,
+                          // 'Kirim',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 40),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Saya tidak menerima kode! '),
+                        Text(
+                          AppLocalizations.of(context)!.verificationCodeSixth,
+                          // 'Saya tidak menerima kode!',
+                        ),
                         InkWell(
                           onTap: () {},
                           child: Text(
-                            'Kirim ulang',
+                            AppLocalizations.of(context)!.verificationCodeSeventh,
+                            // 'Kirim ulang',
                             style: TextStyle(color: colorStyleSeventh),
                           ),
                         )

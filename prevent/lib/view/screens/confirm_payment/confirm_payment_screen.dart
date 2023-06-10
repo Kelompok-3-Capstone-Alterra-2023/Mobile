@@ -7,6 +7,8 @@ import 'package:prevent/view/screens/consultation/consultation_call_screen.dart'
 import 'package:prevent/view/widgets/timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../../util/common.dart';
+
 class ConfirmPayment extends StatefulWidget {
   ConfirmPayment({Key? key}) : super(key: key);
 
@@ -57,7 +59,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
           ),
         ),
         title: Text(
-          'Verivikasi Pembayaran',
+          AppLocalizations.of(context)!.confirmPaymentFirst,
+          // 'Verifikasi Pembayaran',
           style: GoogleFonts.inter(
               fontWeight: semiBold, color: Colors.black, fontSize: 16),
         ),
@@ -76,7 +79,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Lakukan Pembayaran Dalam',
+                  AppLocalizations.of(context)!.confirmPaymentSecond,
+                  // 'Lakukan Pembayaran Dalam',
                   style: GoogleFonts.poppins(
                       fontSize: 15, fontWeight: FontWeight.bold),
                 ),
@@ -96,11 +100,13 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Nomor Transaksi',
+                      AppLocalizations.of(context)!.confirmPaymentThird,
+                      // 'Nomor Transaksi',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
+                      // AppLocalizations.of(context)!.telephoneMethod,
                       '123ECD456',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
@@ -111,7 +117,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Status Pembayaran',
+                      AppLocalizations.of(context)!.confirmPaymentFourth,
+                      // 'Status Pembayaran',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -128,7 +135,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Email',
+                      AppLocalizations.of(context)!.titleEmail,
+                      // 'Email',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -143,12 +151,14 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Waktu Transaksi',
+                      AppLocalizations.of(context)!.confirmPaymentFifth,
+                      // 'Waktu Transaksi',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      '21 Agustus 2023 20:11:17',
+                      AppLocalizations.of(context)!.confirmPaymentSixth,
+                      // '21 Agustus 2023 20:11:17',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -169,12 +179,14 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Total Pembayaran',
+                      AppLocalizations.of(context)!.confirmPaymentSeventh,
+                      // 'Total Pembayaran',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),
                     Text(
-                      'Rp202.000',
+                      // AppLocalizations.of(context)!.telephoneMethod,
+                      'Rp. 202.000',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),
@@ -185,7 +197,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                   child: TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Lihat Rincian',
+                        AppLocalizations.of(context)!.confirmPaymentEighth,
+                        // 'Lihat Rincian',
                         style: GoogleFonts.poppins(
                             fontSize: 15, fontWeight: reguler),
                       )),
@@ -202,7 +215,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Metode Pembayaran',
+                            AppLocalizations.of(context)!.confirmPaymentNineth,
+                            // 'Metode Pembayaran',
                             style: GoogleFonts.poppins(
                                 fontWeight: bold, fontSize: 15),
                           ),
@@ -223,7 +237,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         ],
                       ),
                       Text(
-                        'Scan kode QR / download QR / screenshoot QR dibawah ini dengan aplikasi digital wallet untuk membayar',
+                        AppLocalizations.of(context)!.confirmPaymentTenth,
+                        // 'Scan kode QR / download QR / screenshoot QR dibawah ini dengan aplikasi digital wallet untuk membayar',
                         style: GoogleFonts.poppins(
                             fontSize: 10, fontWeight: reguler),
                       ),
@@ -235,12 +250,14 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                         ),
                       ),
                       Text(
-                        'Catatan',
+                        AppLocalizations.of(context)!.confirmPaymentEleventh,
+                        // 'Catatan',
                         style:
                             GoogleFonts.poppins(fontWeight: bold, fontSize: 10),
                       ),
                       Text(
-                        '1. Mohon diingat agar membayar sebelum timer waktu habis!\n 2. Jika timer waktu telah habis, maka user dapat memesan ulang transaksi yang dipilih\n 3. Halaman akan ter-refresh secara otomatis jika terdapat perubahan status.\n4. Mohon lakukan pembayaran sesuai dengan nominal yang tertera\n5. Proses konfirmasi pembayaran otomatis 1-5 menit setelah melakukan pembayaran.',
+                        AppLocalizations.of(context)!.confirmPaymentTwelfth,
+                        // '1. Mohon diingat agar membayar sebelum timer waktu habis!\n 2. Jika timer waktu telah habis, maka user dapat memesan ulang transaksi yang dipilih\n 3. Halaman akan ter-refresh secara otomatis jika terdapat perubahan status.\n4. Mohon lakukan pembayaran sesuai dengan nominal yang tertera\n5. Proses konfirmasi pembayaran otomatis 1-5 menit setelah melakukan pembayaran.',
                         style: GoogleFonts.poppins(
                             fontSize: 10, fontWeight: reguler),
                       )

@@ -6,6 +6,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
+import '../../../util/common.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -15,7 +17,8 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Notifikasi',
+          AppLocalizations.of(context)!.notificationFirst,
+          // 'Notifikasi',
           style: GoogleFonts.inter(
               fontWeight: bold, fontSize: 15, color: blackColor),
         ),
@@ -71,7 +74,8 @@ class NotificationScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Sesi Konsultasi',
+                                      AppLocalizations.of(context)!.notificationSecond,
+                                      // 'Sesi Konsultasi',
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,
                                         fontWeight: bold,
@@ -79,7 +83,9 @@ class NotificationScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
+                                        AppLocalizations.of(context)!
+                                            .notificationThird,
+                                        // 'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat.',
                                         style: GoogleFonts.poppins(
                                           fontSize: 12,
                                           fontWeight: reguler,

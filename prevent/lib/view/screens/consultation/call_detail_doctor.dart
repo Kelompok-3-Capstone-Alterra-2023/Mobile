@@ -10,6 +10,8 @@ import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
+import '../../../util/common.dart';
+
 class DetailCallDoctorScreen extends StatelessWidget {
   const DetailCallDoctorScreen({super.key});
 
@@ -29,11 +31,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
             )),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.share,
-                color: blackColor,
-              ))
+            onPressed: () {},
+            icon: Icon(
+              Icons.share,
+              color: blackColor,
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -87,7 +90,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'online',
+                              AppLocalizations.of(context)!.callDetailDoctorFirst,
+                              // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
                                   fontSize: 15,
@@ -127,12 +131,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'Psikolog Klinis',
+                      AppLocalizations.of(context)!.callDetailDoctorSecond,
+                      // 'Psikolog Klinis',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      AppLocalizations.of(context)!.callDetailDoctorThird,
+                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -144,21 +150,23 @@ class DetailCallDoctorScreen extends StatelessWidget {
                           color: const Color(0xffd8d8d8),
                           borderRadius: BorderRadius.circular(10)),
                       child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.work,
-                              size: 14,
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              '4 Tahun',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 8, fontWeight: medium),
-                            )
-                          ]),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.work,
+                            size: 14,
+                          ),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.callDetailDoctorFourth,
+                            // '4 Tahun',
+                            style: GoogleFonts.poppins(
+                                fontSize: 8, fontWeight: medium),
+                          )
+                        ],
+                      ),
                     ),
                     Text(
                       NumberFormat.simpleCurrency(name: 'IDR').format(200000),
@@ -177,21 +185,30 @@ class DetailCallDoctorScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Alumnus',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 10,
-                                    fontWeight: semiBold,
-                                  )),
-                              Text('Universitas Pajajaran, 2019',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
-                              Text('Universitas Airlangga, 2016',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  ))
+                              Text(
+                                AppLocalizations.of(context)!.callDetailDoctorFifth,
+                                // 'Alumnus',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.callDetailDoctorSixth,
+                                // 'Universitas Padjadjaran, 2019',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.callDetailDoctorSeventh,
+                                // 'Universitas Airlangga, 2016',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              )
                             ],
                           )
                         ],
@@ -209,17 +226,22 @@ class DetailCallDoctorScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Praktik di',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 10,
-                                    fontWeight: semiBold,
-                                  )),
                               Text(
-                                  'Praktik Soerojo Hospital Magelang, Jawa Tengah',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
+                                AppLocalizations.of(context)!.callDetailDoctorEighth,
+                                // 'Praktik di',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.callDetailDoctorNinth,
+                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -233,16 +255,20 @@ class DetailCallDoctorScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('No. STR',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 10,
-                                    fontWeight: semiBold,
-                                  )),
-                              Text('14248822203190653321',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
+                              Text(
+                                'No. STR',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Text(
+                                '14248822203190653321',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -266,7 +292,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       height: 220,
                       child: Column(children: [
                         Text(
-                          'Kapan Kamu Ingin Konsultasi?',
+                          AppLocalizations.of(context)!.callDetailDoctorTenth,
+                          // 'Kapan Kamu Ingin Konsultasi?',
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: semiBold),
                         ),
@@ -290,18 +317,25 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) => PaymentScreen())),
-                                      child: Text('Konsultasi Sekarang',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                            fontWeight: semiBold,
-                                          )),
+                                      child: Text(
+                                        AppLocalizations.of(context)!
+                                            .callDetailDoctorEleventh,
+                                        // 'Konsultasi Sekarang',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: semiBold,
+                                        ),
+                                      ),
                                     ),
                                     Text(
-                                        'Konsultasi akan dimulai sekarang juga',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12,
-                                          fontWeight: reguler,
-                                        )),
+                                      AppLocalizations.of(context)!
+                                          .callDetailDoctorTwelfth,
+                                      // 'Konsultasi akan dimulai sekarang juga',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -331,16 +365,23 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Konsultasi Nanti',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: semiBold,
-                                        )),
-                                    Text('Atur Tanggal & Waktu konsultasimu',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12,
-                                          fontWeight: reguler,
-                                        )),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .callDetailDoctorThirteenth,
+                                      // 'Konsultasi Nanti',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontWeight: semiBold,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.callDetailDoctorFourteenth,
+                                      // 'Atur Tanggal & Waktu konsultasimu',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -356,7 +397,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                 ),
                 buttonColor: colorStyleFifth,
                 child: Text(
-                  'Chat',
+                  AppLocalizations.of(context)!.callDetailDoctorFifteenth,
+                  // 'Chat',
                   style: GoogleFonts.poppins(
                       fontSize: 16, fontWeight: bold, color: whiteColor),
                 ),

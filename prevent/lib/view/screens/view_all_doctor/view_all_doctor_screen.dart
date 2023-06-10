@@ -5,6 +5,7 @@ import 'package:iconify_flutter/icons/zondicons.dart'; // for Non Colorful Icons
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
 
+import '../../../util/common.dart';
 import '../../widgets/home/side_bar.dart';
 import 'custom_search.dart';
 
@@ -44,7 +45,8 @@ class ViewAllDoctorScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 12),
               child: Text(
-                'Dokter Tersedia',
+                AppLocalizations.of(context)!.consultationFourth,
+                // 'Dokter Tersedia',
                 textAlign: TextAlign.start,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
@@ -96,7 +98,9 @@ class ViewAllDoctorScreen extends StatelessWidget {
                                         width: 8,
                                       ),
                                       Text(
-                                        'Tersedia',
+                                        AppLocalizations.of(context)!
+                                            .consultationSixth,
+                                        // 'Tersedia',
                                         style: GoogleFonts.poppins(
                                             fontSize: 12, fontWeight: semiBold),
                                       ),
@@ -132,7 +136,9 @@ class ViewAllDoctorScreen extends StatelessWidget {
                                     height: 4,
                                   ),
                                   Text(
-                                    'Psikolog Klinis',
+                                    AppLocalizations.of(context)!
+                                        .consultationSeventh,
+                                    // 'Psikolog Klinis',
                                     style: GoogleFonts.poppins(
                                       fontSize: 12,
                                       fontWeight: medium,
@@ -142,7 +148,9 @@ class ViewAllDoctorScreen extends StatelessWidget {
                                     height: 4,
                                   ),
                                   Text(
-                                    'Trauma, Stress, Depresi',
+                                    AppLocalizations.of(context)!
+                                        .consultationEighth,
+                                    // 'Trauma, Stress, Depresi',
                                     style: GoogleFonts.poppins(
                                       fontSize: 10,
                                       fontWeight: medium,
@@ -170,7 +178,9 @@ class ViewAllDoctorScreen extends StatelessWidget {
                                           width: 4,
                                         ),
                                         Text(
-                                          '4 Tahun',
+                                          AppLocalizations.of(context)!
+                                              .consultationNinth,
+                                          // '4 Tahun',
                                           style: GoogleFonts.poppins(
                                               fontSize: 10,
                                               fontWeight: semiBold),

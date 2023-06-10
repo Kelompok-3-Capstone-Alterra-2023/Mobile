@@ -6,6 +6,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/article/detail_article_screen.dart';
 import 'package:prevent/view/screens/article/search_article_screen.dart';
 
+import '../../../util/common.dart';
+
 class ViewAllArticleScreen extends StatefulWidget {
   const ViewAllArticleScreen({super.key});
 
@@ -30,7 +32,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
           ),
         ),
         title: Text(
-          'Artikel',
+          AppLocalizations.of(context)!.viewAllArticleFirst,
+          // 'Artikel',
           style: TextStyle(color: blackColor),
         ),
         actions: [
@@ -82,7 +85,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                           backgroundColor: colorStyleFifth),
                       onPressed: () {},
                       child: Text(
-                        'Semua',
+                        AppLocalizations.of(context)!.viewAllArticleSecond,
+                        // 'Semua',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: whiteColor),
                       )),
@@ -100,7 +104,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Kesehatan Mental',
+                        AppLocalizations.of(context)!.viewAllArticleThird,
+                        // 'Kesehatan Mental',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -118,7 +123,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Stress',
+                        AppLocalizations.of(context)!.viewAllArticleFourth,
+                        // 'Stress',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -136,7 +142,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Depresi',
+                        AppLocalizations.of(context)!.viewAllArticleFifth,
+                        // 'Depresi',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -153,7 +160,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                     ),
                     onPressed: () {},
                     child: Text(
-                      'Ganguan Kepribadian',
+                      AppLocalizations.of(context)!.viewAllArticleSixth,
+                      // 'Gangguan Kepribadian',
                       style: GoogleFonts.poppins(
                           fontSize: 10, color: colorStyleFifth),
                     ),
@@ -199,20 +207,24 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                                     color: colorStyleThird,
                                     border: Border.all(color: colorStyleFifth),
                                   ),
-                                  child: const FittedBox(
+                                  child: FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: Text(
-                                      'Stres',
+                                      AppLocalizations.of(context)!
+                                          .viewAllArticleFourth,
+                                      // 'Stress',
                                       style: TextStyle(fontSize: 8),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 14),
-                                const Flexible(
+                                Flexible(
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 32),
                                     child: Text(
-                                      'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
+                                      AppLocalizations.of(context)!
+                                          .detailArticleFirst,
+                                      // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
                                       overflow: TextOverflow.fade,
                                       style: TextStyle(fontSize: 12),
                                     ),

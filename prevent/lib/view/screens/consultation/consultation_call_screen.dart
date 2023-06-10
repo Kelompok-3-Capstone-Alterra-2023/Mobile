@@ -4,6 +4,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/widgets/alert_dialog.dart';
 import 'package:prevent/view/widgets/timer.dart';
 
+import '../../../util/common.dart';
+
 class ConsultationCallScreen extends StatefulWidget {
   ConsultationCallScreen({Key? key}) : super(key: key);
 
@@ -28,7 +30,8 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
               color: blackColor,
             )),
         title: Text(
-          'Nama dokter',
+          AppLocalizations.of(context)!.consultationCallFirst,
+          // 'Nama dokter',
           style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold, color: blackColor),
         ),
@@ -64,12 +67,14 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
                           fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     Text(
-                      'Psikolog Klinis',
+                      AppLocalizations.of(context)!.consultationCallSecond,
+                      // 'Psikolog Klinis',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      'Trauma, Stress, Depresi',
+                      AppLocalizations.of(context)!.consultationCallThird,
+                      // 'Trauma, Stress, Depresi',
                       style: GoogleFonts.poppins(
                           fontSize: 10, fontWeight: reguler),
                     ),
@@ -83,7 +88,8 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
             color: Color(0xffececec),
           ),
           Text(
-            'Waktu Konsultasi',
+            AppLocalizations.of(context)!.consultationCallFourth,
+            // 'Waktu Konsultasi',
             style: GoogleFonts.poppins(fontSize: 20, fontWeight: bold),
           ),
           const AppTimer(
@@ -94,14 +100,16 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
           Container(
             padding: const EdgeInsets.all(10),
             child: Text(
-              'Konsultasi dengan Dokter',
+              AppLocalizations.of(context)!.consultationCallFifth,
+              // 'Konsultasi dengan Dokter',
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: bold),
             ),
           ),
           Container(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 65),
             child: Text(
-              'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
+              AppLocalizations.of(context)!.consultationCallSixth,
+              // 'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: reguler),
             ),
@@ -109,6 +117,7 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
           Container(
             padding: const EdgeInsets.all(10),
             child: Text(
+              // AppLocalizations.of(context)!.telephoneMethod,
               '+62 888 2323 4444',
               style: GoogleFonts.poppins(fontSize: 32, fontWeight: bold),
             ),
@@ -116,7 +125,8 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
           Container(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 65),
             child: Text(
-              'User dipersilahkan untuk menghubungi dokter melalui nomor tersebut, dimohon kepada user untuk berkonsultasi dengan dokter tepat waktu.',
+              AppLocalizations.of(context)!.consultationCallSeventh,
+              // 'User dipersilahkan untuk menghubungi dokter melalui nomor tersebut, dimohon kepada user untuk berkonsultasi dengan dokter tepat waktu.',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: reguler),
             ),

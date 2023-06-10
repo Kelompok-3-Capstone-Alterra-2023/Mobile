@@ -7,6 +7,7 @@ import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 import '../register/register_screen.dart';
 
@@ -26,24 +27,27 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 18, right: 18, top: 80),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              'Sign In',
-              style: GoogleFonts.poppins(
-                  color: colorStyleSeventh, fontSize: 32, fontWeight: bold),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            Text(
-              'Hallo Selamat Datang di Aplikasi Prevent!, Untuk masuk silahkan isi data kamu terlebih dahulu ya!',
-              style: GoogleFonts.poppins(fontSize: 12, fontWeight: reguler),
-            ),
-            const SizedBox(
-              height: 45,
-            ),
-            Form(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.signIn,
+                // 'Sign In',
+                style: GoogleFonts.poppins(
+                    color: colorStyleSeventh, fontSize: 32, fontWeight: bold),
+              ),
+              const SizedBox(
+                height: 11,
+              ),
+              Text(
+                AppLocalizations.of(context)!.signInTitle,
+                // 'Hallo Selamat Datang di Aplikasi Prevent!, Untuk masuk silahkan isi data kamu terlebih dahulu ya!',
+                style: GoogleFonts.poppins(fontSize: 12, fontWeight: reguler),
+              ),
+              const SizedBox(
+                height: 45,
+              ),
+              Form(
                 key: provider.formKey,
                 child: Column(
                   children: [
@@ -51,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: provider.emailController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Email tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputEmail;
+                          // return 'Email tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -70,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         label: Text(
-                          'Email',
+                          AppLocalizations.of(context)!.titleEmail,
+                          // 'Email',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -89,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: provider.passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Password tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputPass;
+                          // return 'Password tidak boleh kosong!';
                         } else {
                           return null;
                         }
@@ -108,7 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         label: Text(
-                          'Password',
+                          AppLocalizations.of(context)!.titlePass,
+                          // 'Password',
                           style: GoogleFonts.poppins(
                               fontWeight: reguler, color: blackColor),
                         ),
@@ -146,7 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     builder: (_) => const ForgotPassScreen()));
                           },
                           child: Text(
-                            'Lupa Password?',
+                            AppLocalizations.of(context)!.forgotPass,
+                            // 'Lupa Password?',
                             style: GoogleFonts.poppins(
                                 color: colorStyleSeventh,
                                 fontSize: 12,
@@ -179,7 +188,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         child: Text(
-                          'Sign In',
+                          AppLocalizations.of(context)!.btnSignIn,
+                          // 'Sign In',
                           style: GoogleFonts.poppins(
                               fontWeight: bold, fontSize: 16),
                         ),
@@ -199,7 +209,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Atau Sign In dengan',
+                            AppLocalizations.of(context)!.otherSignIn,
+                            // 'Atau Sign In dengan',
                             style: GoogleFonts.poppins(
                                 fontWeight: reguler, fontSize: 12),
                           ),
@@ -239,7 +250,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: 10,
                               ),
                               Text(
-                                'Google',
+                                AppLocalizations.of(context)!.google,
+                                // 'Google',
                                 style: GoogleFonts.poppins(
                                     fontWeight: reguler,
                                     fontSize: 16,
@@ -251,11 +263,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Belum punya akun?',
-                            style: GoogleFonts.poppins(
-                              fontWeight: reguler,
-                              fontSize: 12,
-                            )),
+                        Text(
+                          AppLocalizations.of(context)!.notHaveAccount,
+                          // 'Belum punya akun?',
+                          style: GoogleFonts.poppins(
+                            fontWeight: reguler,
+                            fontSize: 12,
+                          ),
+                        ),
                         TextButton(
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(context,
@@ -266,7 +281,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ), (route) => false);
                           },
                           child: Text(
-                            'Sign Up',
+                            AppLocalizations.of(context)!.signUp,
+                            // 'Sign Up',
                             style: GoogleFonts.poppins(
                                 fontWeight: bold,
                                 fontSize: 12,
@@ -276,8 +292,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ],
-                ))
-          ]),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
