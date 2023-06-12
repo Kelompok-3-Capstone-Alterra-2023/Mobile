@@ -4,6 +4,8 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/login/login_screen.dart';
 
+import '../../../util/common.dart';
+
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
 
@@ -19,7 +21,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 1
         PageViewModel(
           titleWidget: Text(
-            'Psikolog Terbaik',
+            AppLocalizations.of(context)!.onBoardingOneTitle,
+            // 'Psikolog Terbaik',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -28,7 +31,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Kamu gak harus selesein semua masalahmu sendirian kok! Temukan psikolog terbaik di prevent yang siap bantu kamu kapanpun.',
+            AppLocalizations.of(context)!.onBoardingOneSubTitle,
+            // 'Kamu gak harus selesein semua masalahmu sendirian kok! Temukan psikolog terbaik di prevent yang siap bantu kamu kapanpun.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -51,7 +55,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 2
         PageViewModel(
           titleWidget: Text(
-            'Update Artikel',
+            AppLocalizations.of(context)!.onBoardingTwoTitle,
+            // 'Update Artikel',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -60,7 +65,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Bingung mau baca informasi kesehatan mental dimana? Tenang! Prevent selalu update artikel terbaru agar kamu selalu terinformasi dimanapun!.',
+            AppLocalizations.of(context)!.onBoardingTwoSubTitle,
+            // 'Bingung mau baca informasi kesehatan mental dimana? Tenang! Prevent selalu update artikel terbaru agar kamu selalu terinformasi dimanapun!.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -84,7 +90,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 3
         PageViewModel(
           titleWidget: Text(
-            'Manfaatnya Terbukti',
+            AppLocalizations.of(context)!.onBoardingThreeTitle,
+            // 'Manfaatnya Terbukti',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -93,7 +100,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Banyak pengguna yang telah berhasil melalui masa sulitnya bareng prevent!.',
+            AppLocalizations.of(context)!.onBoardingThreeSubTitle,
+            // 'Banyak pengguna yang telah berhasil melalui masa sulitnya bareng prevent!.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -134,7 +142,8 @@ class OnBoarding extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Tutup',
+                  AppLocalizations.of(context)!.btnTutup,
+                  // 'Tutup',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: reguler,

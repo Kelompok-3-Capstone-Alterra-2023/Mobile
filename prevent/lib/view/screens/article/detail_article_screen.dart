@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
 
+import '../../../util/common.dart';
+
 class DetailArticleScreen extends StatelessWidget {
   const DetailArticleScreen({super.key});
 
@@ -20,7 +22,8 @@ class DetailArticleScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Kesehatan Mental',
+          AppLocalizations.of(context)!.subTitleArticle,
+          // 'Kesehatan Mental',
           style: TextStyle(color: blackColor),
         ),
         actions: [
@@ -45,9 +48,10 @@ class DetailArticleScreen extends StatelessWidget {
         child: ListView(
           children: [
             const SizedBox(height: 30),
-            const Text(
-              'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
-              style: TextStyle(fontSize: 24),
+            Text(
+              AppLocalizations.of(context)!.detailArticleFirst,
+              // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
+              style: const TextStyle(fontSize: 24),
             ),
             const SizedBox(height: 8),
             Row(
@@ -62,22 +66,25 @@ class DetailArticleScreen extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      'Kesehatan Mental',
+                      AppLocalizations.of(context)!.subTitleArticle,
+                      // 'Kesehatan Mental',
                       style: TextStyle(fontSize: 8, color: colorNavBar),
                     ),
                   ),
                 ),
                 const SizedBox(width: 4),
-                const Text(
-                  '30 menit',
-                  style: TextStyle(fontSize: 8),
+                Text(
+                  AppLocalizations.of(context)!.detailArticleSecond,
+                  // '30 menit',
+                  style: const TextStyle(fontSize: 8),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Ditinjau oleh Dr. Fauzan Hakim M.Psi.Psi 25 April 2023',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.detailArticleThird,
+              // 'Ditinjau oleh Dr. Fauzan Hakim M.Psi.Psi 25 April 2023',
+              style: const TextStyle(
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -92,18 +99,25 @@ class DetailArticleScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 26),
-            const Paragraph(
-                text:
-                    'Prevent! Jakarta – Libur Lebaran yang cukup panjang menjadi waktu yang tepat bagi banyak orang untuk kembali ke kampung halaman dan berkumpul bersama keluarga. Bukan itu saja, ini menjadi momen kamu bisa beristirahat tanpa melakukan pekerjaan sehari-hari. Dengan begitu, energi akan kembali terkumpul saat libur Lebaran usai.'),
-            const Paragraph(
-                text:
-                    'Namun, ada sebagian orang yang malah merasakan cemas, khawatir, dan tidak bersemangat untuk kembali melakukan rutinitas sehari-hari. Bahkan, kamu merasa sedih saat tiba di rumah ketika akan memulai pekerjaan dan kegiatan sehari-hari setelah libur Lebaran. Hati-hati, bisa jadi kamu ternyata mengalami holiday blues, lho!'),
-            const Paragraph(
-                text:
-                    'Inilah Tanda Holiday Blues yang Perlu Kamu Waspadai\nBerlibur adalah salah satu cara yang baik untuk menjaga kesehatan mental. Kegiatan ini membantu kamu menurunkan tingkat stres, gangguan cemas, hingga depresi. Namun, waspada terhadap holiday blues atau post holiday syndrome yang bisa dialami oleh siapa saja setelah liburan panjang.'),
-            const Paragraph(
-                text:
-                    'Umumnya, kebahagiaan pengidap post holiday syndrome tidak akan bertahan lama. Setelah menjalani liburan, banyak orang yang kembali merasakan sedih atau perasaan tidak senang. Penyebab post holiday blues bisa terjadi akibat kelelahan baik secara fisik maupun psikis setelah melalui liburan yang panjang.'),
+            Paragraph(
+              text: AppLocalizations.of(context)!.detailArticleFourth,
+              // text:'Prevent! Jakarta - Libur Lebaran yang cukup panjang menjadi waktu yang tepat bagi banyak orang untuk kembali ke kampung halaman dan berkumpul bersama keluarga. Bukan itu saja, ini menjadi momen kamu bisa beristirahat tanpa melakukan pekerjaan sehari-hari. Dengan begitu, energi akan kembali terkumpul saat libur Lebaran usai.'
+            ),
+            Paragraph(
+              text: AppLocalizations.of(context)!.detailArticleFifth,
+              // text:
+              //     'Namun, ada sebagian orang yang malah merasakan cemas, khawatir, dan tidak bersemangat untuk kembali melakukan rutinitas sehari-hari. Bahkan, kamu merasa sedih saat tiba di rumah ketika akan memulai pekerjaan dan kegiatan sehari-hari setelah libur Lebaran. Hati-hati, bisa jadi kamu ternyata mengalami holiday blues, lho!',
+            ),
+            Paragraph(
+              text: AppLocalizations.of(context)!.detailArticleSixth,
+              // text:
+              //     'Inilah Tanda Holiday Blues yang Perlu Kamu Waspadai\nBerlibur adalah salah satu cara yang baik untuk menjaga kesehatan mental. Kegiatan ini membantu kamu menurunkan tingkat stres, gangguan cemas, hingga depresi. Namun, waspada terhadap holiday blues atau post holiday syndrome yang bisa dialami oleh siapa saja setelah liburan panjang.',
+            ),
+            Paragraph(
+              text: AppLocalizations.of(context)!.detailArticleSeventh,
+              // text:
+              //     'Umumnya, kebahagiaan pengidap post holiday syndrome tidak akan bertahan lama. Setelah menjalani liburan, banyak orang yang kembali merasakan sedih atau perasaan tidak senang. Penyebab post holiday blues bisa terjadi akibat kelelahan baik secara fisik maupun psikis setelah melalui liburan yang panjang.',
+            ),
           ],
         ),
       ),

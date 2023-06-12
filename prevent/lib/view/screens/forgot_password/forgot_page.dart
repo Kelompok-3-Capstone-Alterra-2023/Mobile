@@ -4,6 +4,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/forgot_password/reset_page.dart';
 import 'package:prevent/view/screens/login/login_screen.dart';
 
+import '../../../util/common.dart';
+
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
 
@@ -37,7 +39,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(left: 43, right: 43, bottom: 11),
             child: Text(
-              'Lupa Password?',
+              AppLocalizations.of(context)!.forgotPassFirst,
+              // 'Lupa Password?',
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
@@ -48,8 +51,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           Container(
             alignment: Alignment.centerLeft,
             margin: const EdgeInsets.only(left: 43, right: 43, bottom: 30),
-            child: const Text(
-              'Jagan khawatir, Silahkan masukkan alamat email yang kamu gunakan di akunmu ya!',
+            child: Text(
+              AppLocalizations.of(context)!.forgotPassSecond,
+              // 'Jangan khawatir, Silahkan masukkan alamat email yang kamu gunakan di akunmu ya!',
               style: TextStyle(fontSize: 12),
             ),
           ),
@@ -67,7 +71,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   ),
                 ),
                 label: Text(
-                  'Email',
+                  AppLocalizations.of(context)!.forgotPassThird,
+                  // 'Email',
                   style: GoogleFonts.poppins(
                       fontWeight: reguler, color: blackColor),
                 ),
@@ -91,8 +96,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const ResetPassScreen())),
-              child: const Text(
-                'Lanjut',
+              child: Text(
+                AppLocalizations.of(context)!.forgotPassFourth,
+                // 'Lanjut',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

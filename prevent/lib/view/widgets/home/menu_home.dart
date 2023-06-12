@@ -7,6 +7,7 @@ import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class MenuHome extends StatelessWidget {
@@ -58,7 +59,8 @@ class MenuHome extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            'Kesehatan Mental Prioritas Global',
+                            AppLocalizations.of(context)!.titleHome,
+                            // 'Kesehatan Mental Prioritas Global',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                                 fontWeight: bold,
@@ -66,7 +68,8 @@ class MenuHome extends StatelessWidget {
                                 color: successThird),
                           ),
                           Text(
-                            'Prevent! merupakan salah satu platform konsultasi psikolog terbaik yang bisa bantu hadapi permsalahanmu!',
+                            AppLocalizations.of(context)!.subTitleHome,
+                            // 'Prevent! merupakan salah satu platform konsultasi psikolog terbaik yang bisa bantu hadapi permsalahanmu!',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                                 fontWeight: reguler,
@@ -74,28 +77,29 @@ class MenuHome extends StatelessWidget {
                                 color: blackColor),
                           ),
                           TextButton(
-                              style: TextButton.styleFrom(
-                                  minimumSize: const Size(170, 40),
-                                  shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  backgroundColor: colorStyleFifth),
-                              onPressed: () {
-                                // TODO: Memilih Konsultasi
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => ConsultationScreen(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                'Konsultasi',
-                                style: GoogleFonts.poppins(
-                                    fontWeight: bold,
-                                    fontSize: 15,
-                                    color: whiteColor),
-                              ))
+                            style: TextButton.styleFrom(
+                                minimumSize: const Size(170, 40),
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                backgroundColor: colorStyleFifth),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ConsultationScreen(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.consultation,
+                              // 'Konsultasi',
+                              style: GoogleFonts.poppins(
+                                  fontWeight: bold,
+                                  fontSize: 15,
+                                  color: whiteColor),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -110,7 +114,8 @@ class MenuHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Artikel Terbaru',
+                    AppLocalizations.of(context)!.latestArticles,
+                    // 'Artikel Terbaru',
                     style: GoogleFonts.poppins(fontSize: 13, fontWeight: bold),
                   ),
                   TextButton(
@@ -121,7 +126,8 @@ class MenuHome extends StatelessWidget {
                               builder: (_) => ViewAllArticleScreen()));
                     },
                     child: Text(
-                      'Lihat Semua',
+                      AppLocalizations.of(context)!.viewAll,
+                      // 'Lihat Semua',
                       style: GoogleFonts.poppins(
                           fontSize: 10, fontWeight: bold, color: blackColor),
                     ),
@@ -148,7 +154,8 @@ class MenuHome extends StatelessWidget {
                           backgroundColor: colorStyleFifth),
                       onPressed: () {},
                       child: Text(
-                        'Semua',
+                        AppLocalizations.of(context)!.allCategoryArticle,
+                        // 'Semua',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: whiteColor),
                       )),
@@ -166,7 +173,8 @@ class MenuHome extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Kesehatan Mental',
+                        AppLocalizations.of(context)!.mentalHealthCategoryArticle,
+                        // 'Kesehatan Mental',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -184,7 +192,8 @@ class MenuHome extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Stress',
+                        AppLocalizations.of(context)!.stressCategoryArticle,
+                        // 'Stress',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -202,7 +211,8 @@ class MenuHome extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Depresi',
+                        AppLocalizations.of(context)!.depressionCategoryArticle,
+                        // 'Depresi',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -220,7 +230,8 @@ class MenuHome extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: Text(
-                        'Ganguan Kepribadian',
+                        AppLocalizations.of(context)!.personalityDisordersCategoryArticle,
+                        // 'Ganguan Kepribadian',
                         style: GoogleFonts.poppins(
                             fontSize: 10, color: colorStyleFifth),
                       )),
@@ -261,7 +272,9 @@ class MenuHome extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
+                                        AppLocalizations.of(context)!
+                                            .titleArticle,
+                                        // 'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
                                         style: GoogleFonts.poppins(
                                             fontSize: 10, fontWeight: medium),
                                       ),
@@ -279,7 +292,9 @@ class MenuHome extends StatelessWidget {
                                                 const BorderRadius.all(
                                                     Radius.circular(3))),
                                         child: Text(
-                                          'Kesehatan Mental',
+                                          AppLocalizations.of(context)!
+                                              .subTitleArticle,
+                                          // 'Kesehatan Mental',
                                           style: GoogleFonts.poppins(
                                               fontSize: 10,
                                               fontWeight: medium,

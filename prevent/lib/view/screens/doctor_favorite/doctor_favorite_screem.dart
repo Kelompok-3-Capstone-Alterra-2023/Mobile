@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
+import '../../../util/common.dart';
+
 class DoctorFavoriteScreen extends StatelessWidget {
   const DoctorFavoriteScreen({super.key});
 
@@ -24,7 +26,8 @@ class DoctorFavoriteScreen extends StatelessWidget {
             )),
         elevation: 0,
         title: Text(
-          'Doctor Favorite',
+          AppLocalizations.of(context)!.doctorFavoriteFirst,
+          // 'Doctor Favorite',
           style: GoogleFonts.inter(
               color: blackColor, fontWeight: semiBold, fontSize: 16),
         ),
@@ -69,14 +72,16 @@ class DoctorFavoriteScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Psikologi Klinis Dewasa',
+                      AppLocalizations.of(context)!.doctorFavoriteSecond,
+                      // 'Psikologi Klinis Dewasa',
                       style: GoogleFonts.inter(
                         fontWeight: reguler,
                         fontSize: 12,
                       ),
                     ),
                     Text(
-                      'Gangguan kecemasan',
+                      AppLocalizations.of(context)!.doctorFavoriteThird,
+                      // 'Gangguan kecemasan',
                       style: GoogleFonts.inter(
                         fontWeight: reguler,
                         fontSize: 12,
@@ -92,7 +97,8 @@ class DoctorFavoriteScreen extends StatelessWidget {
                         width: 4,
                       ),
                       Text(
-                        '12 Tahun',
+                        AppLocalizations.of(context)!.doctorFavoriteFourth,
+                        // '12 Tahun',
                         style: GoogleFonts.poppins(
                             fontSize: 11, fontWeight: medium),
                       )
@@ -103,19 +109,21 @@ class DoctorFavoriteScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: FozButton(
-                          onPressed: () {
-                            // TODO: Navigasi konsultasi
-                          },
-                          height: 35,
-                          width: 81,
-                          buttonColor: colorStyleFifth,
-                          child: Text(
-                            'Konsultasi',
-                            style: GoogleFonts.inter(
-                                fontWeight: semiBold,
-                                fontSize: 12,
-                                color: whiteColor),
-                          )),
+                        onPressed: () {
+                          // TODO: Navigasi konsultasi
+                        },
+                        height: 35,
+                        width: 100,
+                        buttonColor: colorStyleFifth,
+                        child: Text(
+                          AppLocalizations.of(context)!.doctorFavoriteFifth,
+                          // 'Konsultasi',
+                          style: GoogleFonts.inter(
+                              fontWeight: semiBold,
+                              fontSize: 12,
+                              color: whiteColor),
+                        ),
+                      ),
                     )
                   ],
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class LanguageSelectSettings extends StatelessWidget {
@@ -21,7 +22,8 @@ class LanguageSelectSettings extends StatelessWidget {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Pilihan Bahasa',
+          AppLocalizations.of(context)!.selectLanguages,
+          // 'Pilihan Bahasa',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -39,7 +41,8 @@ class LanguageSelectSettings extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(Icons.language),
                     title: Text(
-                      'Bahasa Indonesia',
+                      AppLocalizations.of(context)!.indonesiaLanguage,
+                      // 'Bahasa Indonesia',
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: semiBold,
@@ -63,7 +66,8 @@ class LanguageSelectSettings extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(Icons.language),
                     title: Text(
-                      'Bahasa Inggris',
+                      AppLocalizations.of(context)!.englishLanguage,
+                      // 'Bahasa Inggris',
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: semiBold,

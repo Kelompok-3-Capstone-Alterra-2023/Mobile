@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/radix_icons.dart';
@@ -29,7 +30,8 @@ class WarningDeleteAccount extends StatelessWidget {
         ),
         backgroundColor: whiteColor,
         title: Text(
-          'Hapus akun',
+          AppLocalizations.of(context)!.deleteAccount,
+          // 'Hapus akun',
           style: GoogleFonts.inter(
             color: blackColor,
             fontWeight: semiBold,
@@ -42,7 +44,8 @@ class WarningDeleteAccount extends StatelessWidget {
           children: [
             Image.asset('assets/images/warning_delete_account_image.png'),
             Text(
-              'Sebelum kamu menghapus akun, mohon pahami hal-hal berikut:',
+              AppLocalizations.of(context)!.titleWarningDeleteAccount,
+              // 'Sebelum kamu menghapus akun, mohon pahami hal-hal berikut:',
               style: GoogleFonts.inter(fontSize: 15, fontWeight: bold),
             ),
             const SizedBox(
@@ -116,7 +119,8 @@ class WarningDeleteAccount extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  'Centang untuk menyetujui syarat dan ketentuan.',
+                  AppLocalizations.of(context)!.termsandConditions,
+                  // 'Centang untuk menyetujui syarat dan ketentuan.',
                   style: GoogleFonts.inter(fontSize: 12, fontWeight: bold),
                 ),
               ],
@@ -131,7 +135,8 @@ class WarningDeleteAccount extends StatelessWidget {
                   width: double.infinity,
                   height: 56,
                   child: AnimatedButton(
-                    text: "Hapus",
+                    // text: "Hapus",
+                    text: AppLocalizations.of(context)!.btnDelete,
                     color: dangerSecond,
                     borderRadius: BorderRadius.circular(10),
                     pressEvent: () {
@@ -142,8 +147,9 @@ class WarningDeleteAccount extends StatelessWidget {
                         showCloseIcon: true,
                         alignment: Alignment.centerLeft,
                         title: 'Keluar dari Akun Prevent?',
-                        desc:
-                            'Jika kamu ingin menggunakan layanan prevent kembali, kamu perlu masuk ke akunmu lagi.',
+                        // desc:
+                        //     'Jika kamu ingin menggunakan layanan prevent kembali, kamu perlu masuk ke akunmu lagi.',
+                        desc: AppLocalizations.of(context)!.subTitleWarning,
                         // Action to perform on cancel and ok buttons
                         btnCancel: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -160,7 +166,8 @@ class WarningDeleteAccount extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            'Batal',
+                            AppLocalizations.of(context)!.btnCancelled,
+                            // 'Batal',
                             style: TextStyle(color: blackColor),
                           ),
                         ),
@@ -190,9 +197,12 @@ class WarningDeleteAccount extends StatelessWidget {
                               // );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
+                                SnackBar(
                                   content: Text(
-                                      'Harap centang untuk menyetujui syarat dan ketentuan.'),
+                                    AppLocalizations.of(context)!
+                                        .scaffoldWrning,
+                                    // 'Harap centang untuk menyetujui syarat dan ketentuan.',
+                                  ),
                                   backgroundColor: Colors.red,
                                 ),
                               );
@@ -200,7 +210,8 @@ class WarningDeleteAccount extends StatelessWidget {
                             }
                           },
                           child: Text(
-                            'Keluar',
+                            AppLocalizations.of(context)!.logOut,
+                            // 'Keluar',
                             style: TextStyle(color: whiteColor),
                           ),
                         ),

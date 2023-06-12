@@ -9,6 +9,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
+import '../../../util/common.dart';
+
 class DetailDoctorScreen extends StatelessWidget {
   const DetailDoctorScreen({super.key});
 
@@ -86,7 +88,8 @@ class DetailDoctorScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'online',
+                              AppLocalizations.of(context)!.detailDoctorFirst,
+                              // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
                                   fontSize: 15,
@@ -126,12 +129,14 @@ class DetailDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'Psikolog Klinis',
+                      AppLocalizations.of(context)!.detailDoctorSecond,
+                      // 'Psikolog Klinis',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      AppLocalizations.of(context)!.detailDoctorThird,
+                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -153,7 +158,8 @@ class DetailDoctorScreen extends StatelessWidget {
                               width: 4,
                             ),
                             Text(
-                              '4 Tahun',
+                              AppLocalizations.of(context)!.detailDoctorFourth,
+                              // '4 Tahun',
                               style: GoogleFonts.poppins(
                                   fontSize: 8, fontWeight: medium),
                             )
@@ -176,21 +182,30 @@ class DetailDoctorScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Alumnus',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 10,
-                                    fontWeight: semiBold,
-                                  )),
-                              Text('Universitas Pajajaran, 2019',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
-                              Text('Universitas Airlangga, 2016',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  ))
+                              Text(
+                                AppLocalizations.of(context)!.detailDoctorFifth,
+                                // 'Alumnus',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.detailDoctorSixth,
+                                // 'Universitas Padjadjaran, 2019',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.detailDoctorSeventh,
+                                // 'Universitas Airlangga, 2016',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              )
                             ],
                           )
                         ],
@@ -208,17 +223,22 @@ class DetailDoctorScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Praktik di',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 10,
-                                    fontWeight: semiBold,
-                                  )),
                               Text(
-                                  'Praktik Soerojo Hospital Magelang, Jawa Tengah',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
+                                AppLocalizations.of(context)!.detailDoctorEighth,
+                                // 'Praktik di',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 10,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.detailDoctorNinth,
+                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -237,11 +257,13 @@ class DetailDoctorScreen extends StatelessWidget {
                                     fontSize: 10,
                                     fontWeight: semiBold,
                                   )),
-                              Text('14248822203190653321',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 9,
-                                    fontWeight: reguler,
-                                  )),
+                              Text(
+                                '14248822203190653321',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 9,
+                                  fontWeight: reguler,
+                                ),
+                              ),
                             ],
                           )
                         ],
@@ -265,7 +287,8 @@ class DetailDoctorScreen extends StatelessWidget {
                       height: 220,
                       child: Column(children: [
                         Text(
-                          'Kapan Kamu Ingin Konsultasi?',
+                          AppLocalizations.of(context)!.detailDoctorTenth,
+                          // 'Kapan Kamu Ingin Konsultasi?',
                           style: GoogleFonts.poppins(
                               fontSize: 20, fontWeight: semiBold),
                         ),
@@ -284,17 +307,24 @@ class DetailDoctorScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Konsultasi Sekarang',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: semiBold,
-                                        )),
                                     Text(
-                                        'Konsultasi akan dimulai sekarang juga',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12,
-                                          fontWeight: reguler,
-                                        )),
+                                      AppLocalizations.of(context)!
+                                          .detailDoctorEleventh,
+                                      // 'Konsultasi Sekarang',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontWeight: semiBold,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .detailDoctorTwelfth,
+                                      // 'Konsultasi akan dimulai sekarang juga',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -324,16 +354,24 @@ class DetailDoctorScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Konsultasi Nanti',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: semiBold,
-                                        )),
-                                    Text('Atur Tanggal & Waktu konsultasimu',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12,
-                                          fontWeight: reguler,
-                                        )),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .detailDoctorThirteenth,
+                                      // 'Konsultasi Nanti',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 16,
+                                        fontWeight: semiBold,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .detailDoctorFourteenth,
+                                      // 'Atur Tanggal & Waktu konsultasimu',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -349,7 +387,8 @@ class DetailDoctorScreen extends StatelessWidget {
                 ),
                 buttonColor: colorStyleFifth,
                 child: Text(
-                  'Chat',
+                  AppLocalizations.of(context)!.detailDoctorFifteenth,
+                  // 'Chat',
                   style: GoogleFonts.poppins(
                       fontSize: 16, fontWeight: bold, color: whiteColor),
                 ),

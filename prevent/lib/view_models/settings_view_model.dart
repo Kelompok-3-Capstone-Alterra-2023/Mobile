@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// import '../util/common.dart';
+
 class SettingsViewModel extends ChangeNotifier {
   List<String> list = [
     'Saya ingin menghapus profil',
@@ -11,6 +13,7 @@ class SettingsViewModel extends ChangeNotifier {
 
   int? groupValue;
   String title = 'Pilih alasan yang sesuai';
+  // String titlee =   AppLocalizations.of(context)!.dropDownFirst;
 
   String termsAndConditionsFirst =
       'Jadwal konsultasi yang masih aktif menjadi tidak tersedia dan tidak dapat dikembalikan.';

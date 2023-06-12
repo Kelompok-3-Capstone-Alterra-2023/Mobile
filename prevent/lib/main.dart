@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/util/common.dart';
 import 'package:prevent/view/screens/consultation/consultation_call_screen.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/screens/settings/delete_account.dart';
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Prevent',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

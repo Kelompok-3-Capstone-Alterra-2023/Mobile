@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class DetailConsultationHistoryScreen extends StatefulWidget {
@@ -20,7 +21,8 @@ class _DetailConsultationHistoryScreenState
       appBar: AppBar(
         iconTheme: IconThemeData(color: blackColor),
         title: Text(
-          'Riwayat Konsultasi',
+          AppLocalizations.of(context)!.detailConsulHistoryFirst,
+          // 'Riwayat Konsultasi',
           style: TextStyle(color: blackColor),
         ),
         backgroundColor: whiteColor,
@@ -37,7 +39,8 @@ class _DetailConsultationHistoryScreenState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Detail Konsultasi',
+                      AppLocalizations.of(context)!.detailConsulHistorySecond,
+                      // 'Detail Konsultasi',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -68,7 +71,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Nama Dokter',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistoryThird,
+                                      // 'Nama Dokter',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -92,7 +97,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Bidang',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistoryFourth,
+                                      // 'Bidang',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -100,7 +107,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      ': Psikolog',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistoryFifth,
+                                      // ': Psikolog',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -115,7 +124,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Metode',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistorySixth,
+                                      // 'Metode',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -123,7 +134,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      ': Telepon',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistorySeventh,
+                                      // ': Telepon',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -138,7 +151,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 30,
                                     child: Text(
-                                      'Durasi',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistoryEighth,
+                                      // 'Durasi',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -146,7 +161,9 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      ': 1 Jam',
+                                      AppLocalizations.of(context)!
+                                          .detailConsulHistoryNinth,
+                                      // ': 1 Jam',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -162,7 +179,8 @@ class _DetailConsultationHistoryScreenState
                       height: 19,
                     ),
                     Text(
-                      'Diagnosa',
+                      AppLocalizations.of(context)!.detailConsulHistoryTenth,
+                      // 'Diagnosa',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -179,7 +197,8 @@ class _DetailConsultationHistoryScreenState
                         ),
                         child: SingleChildScrollView(
                           child: Text(
-                            'Saudari mengalami bipolar yang mana ditandai perubahan suasana hati akibat ketidak seimbangan zat kimia pada otak yang menyebabkan sulit membantu membawa pesan ke jaringan otak. Berikut resep yang harus dikonsumsi antikonvulsan, antipsikotik dan SSRI',
+                            AppLocalizations.of(context)!.detailConsulHistoryEleventh,
+                            // 'Saudari mengalami bipolar yang mana ditandai perubahan suasana hati akibat ketidak seimbangan zat kimia pada otak yang menyebabkan sulit membantu membawa pesan ke jaringan otak. Berikut resep yang harus dikonsumsi antikonvulsan, antipsikotik dan SSRI',
                             textAlign: TextAlign.justify,
                             style: GoogleFonts.poppins(
                                 fontSize: 14, fontWeight: reguler),
@@ -191,7 +210,8 @@ class _DetailConsultationHistoryScreenState
                       height: 30,
                     ),
                     Text(
-                      'Detail Pembayaran',
+                      AppLocalizations.of(context)!.detailConsulHistoryTwelfth,
+                      // 'Detail Pembayaran',
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: semiBold),
                     ),
@@ -202,7 +222,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Biaya Konsultasi',
+                          AppLocalizations.of(context)!.detailConsulHistoryThirteenth,
+                          // 'Biaya Konsultasi',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -221,7 +242,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Biaya Obat',
+                          AppLocalizations.of(context)!.detailConsulHistoryFourteenth,
+                          // 'Biaya Obat',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -247,7 +269,8 @@ class _DetailConsultationHistoryScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Total',
+                          AppLocalizations.of(context)!.detailConsulHistoryFifteenth,
+                          // 'Total',
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -276,7 +299,8 @@ class _DetailConsultationHistoryScreenState
                           borderRadius: BorderRadius.all(Radius.circular(10)))),
                   onPressed: () {},
                   child: Text(
-                    'Unduh Bukti',
+                    AppLocalizations.of(context)!.detailConsulHistorySixteenth,
+                    // 'Unduh Bukti',
                     style: GoogleFonts.poppins(fontWeight: bold, fontSize: 16),
                   ),
                 ),
