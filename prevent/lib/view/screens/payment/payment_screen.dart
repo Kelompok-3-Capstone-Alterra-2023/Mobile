@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
   PaymentScreen({Key? key}) : super(key: key);
@@ -184,7 +185,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ConfirmPayment()));
+                },
                 child: Text(
                   'Bayar',
                   style: GoogleFonts.poppins(fontWeight: FontWeight.bold),

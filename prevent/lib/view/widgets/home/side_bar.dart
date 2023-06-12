@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/settings/settings_screen.dart';
 
+import '../../screens/consultation_history/consultation_history_screen.dart';
+import '../../screens/doctor_favorite/doctor_favorite_screem.dart';
+
 class SideBar extends StatelessWidget {
   const SideBar({
     super.key,
@@ -50,6 +53,10 @@ class SideBar extends StatelessWidget {
               ),
               onTap: () {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => DoctorFavoriteScreen()),
+                );
               },
             ),
             ListTile(
@@ -66,6 +73,11 @@ class SideBar extends StatelessWidget {
               ),
               onTap: () {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ConsultationHistoryScreen()),
+                );
               },
             ),
             ListTile(
@@ -82,8 +94,10 @@ class SideBar extends StatelessWidget {
               ),
               onTap: () {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => SettingsScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => SettingsScreen()),
+                );
               },
             ),
             ListTile(

@@ -7,6 +7,7 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/consultation/view_doctor_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 
 import '../../widgets/home/side_bar.dart';
@@ -27,6 +28,9 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
         title: Image.asset('assets/images/logo_app.png'),
         centerTitle: true,
         backgroundColor: colorStyleFifth,
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back)),
         actions: [
           IconButton(
             onPressed: () {
@@ -40,7 +44,6 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
           ),
         ],
       ),
-      drawer: const SideBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 14, right: 8, left: 8),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -62,7 +65,12 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
           ButtonConsultation(
             text: 'Konseling Via Panggilan',
             iconData: Mdi.telephone_in_talk,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const ViewAllCallDoctorScreen()));
+            },
           ),
           const SizedBox(
             height: 5,
