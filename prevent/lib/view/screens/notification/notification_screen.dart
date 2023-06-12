@@ -3,8 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/notification/notificationConsul_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
+
+import 'notificationPayment_screen.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -35,92 +38,111 @@ class NotificationScreen extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const SideBar(),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView.separated(
-                itemCount: 10,
-                separatorBuilder: (context, index) => Divider(
-                  thickness: 2,
-                  color: greyColor,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      height: 130,
-                      width: MediaQuery.of(context).size.width,
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 60,
-                              height: 90,
-                              child: Image.asset(
-                                'assets/images/notif_picture.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Sesi Konsultasi',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: bold,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 12,
-                                          fontWeight: reguler,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Iconify(
-                                          Zondicons.time,
-                                          size: 12,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text(
-                                          '24-04-28 10:36',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 10,
-                                            fontWeight: reguler,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const NotificationKonsulScreen())),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage:
+                        AssetImage('assets/images/Konsultasi_notif.png'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Konsultasi Psikolog',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: bold,
+                          ),
                         ),
-                      ),
+                        Text(
+                          'kak! Jadwal konsultasi dimulai pada 17 Juni ...',
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, fontWeight: reguler),
+                        )
+                      ],
                     ),
-                  );
-                },
+                  ),
+                  const Spacer(),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const NotificationKonsulScreen()));
+                      },
+                      icon: const Icon(Icons.arrow_forward_ios))
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+          Divider(
+            thickness: 2,
+            color: greyColor,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const NotificationPaymentScreen())),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage:
+                        AssetImage('assets/images/Pembayaran_notif.png'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Pembayaran',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: bold,
+                          ),
+                        ),
+                        Text(
+                          'Pembayaran untuk transaksi ATWY1289 dengan ...',
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, fontWeight: reguler),
+                        )
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const NotificationPaymentScreen()));
+                      },
+                      icon: const Icon(Icons.arrow_forward_ios))
+                ],
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 2,
+            color: greyColor,
+          ),
+        ],
       ),
     );
   }
