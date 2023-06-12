@@ -11,7 +11,6 @@ import 'package:prevent/view/screens/consultation/view_doctor_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 
 import '../../../util/common.dart';
-import '../../widgets/home/side_bar.dart';
 import '../view_all_doctor/custom_search.dart';
 
 class ConsultationScreen extends StatefulWidget {

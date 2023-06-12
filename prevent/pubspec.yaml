@@ -44,7 +44,7 @@ dependencies:
   # Iconify Icon
   iconify_flutter: ^0.0.5
   # Intl
-  intl: ^0.17.0
+  intl: ^0.18.0
   # Splash Screen
   flutter_native_splash: ^2.2.19
   # OnBoarding Screen

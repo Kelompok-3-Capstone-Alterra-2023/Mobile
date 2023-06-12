@@ -3,14 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/notification/notificationConsul_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
-
-
-import '../../../util/common.dart';
-import 'notificationPayment_screen.dart';
-
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -21,8 +15,7 @@ class NotificationScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          AppLocalizations.of(context)!.notificationFirst,
-          // 'Notifikasi',
+          'Notifikasi',
           style: GoogleFonts.inter(
               fontWeight: bold, fontSize: 15, color: blackColor),
         ),
@@ -78,8 +71,7 @@ class NotificationScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      AppLocalizations.of(context)!.notificationSecond,
-                                      // 'Sesi Konsultasi',
+                                      'Sesi Konsultasi',
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,
                                         fontWeight: bold,
@@ -87,9 +79,7 @@ class NotificationScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        AppLocalizations.of(context)!
-                                            .notificationThird,
-                                        // 'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat.',
+                                        'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
                                         style: GoogleFonts.poppins(
                                           fontSize: 12,
                                           fontWeight: reguler,
@@ -123,84 +113,14 @@ class NotificationScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(
-                          'kak! Jadwal konsultasi dimulai pada 17 Juni ...',
-                          style: GoogleFonts.poppins(
-                              fontSize: 12, fontWeight: reguler),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) =>
-                                    const NotificationKonsulScreen()));
-                      },
-                      icon: const Icon(Icons.arrow_forward_ios))
-                ],
+                  );
+                },
               ),
             ),
-          ),
-          Divider(
-            thickness: 2,
-            color: greyColor,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: InkWell(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const NotificationPaymentScreen())),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/images/Pembayaran_notif.png'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Pembayaran',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: bold,
-                          ),
-                        ),
-                        Text(
-                          'Pembayaran untuk transaksi ATWY1289 dengan ...',
-                          style: GoogleFonts.poppins(
-                              fontSize: 12, fontWeight: reguler),
-                        )
-                      ],
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) =>
-                                    const NotificationPaymentScreen()));
-                      },
-                      icon: const Icon(Icons.arrow_forward_ios))
-                ],
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 2,
-            color: greyColor,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

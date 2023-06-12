@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../util/common.dart';
 import '../../../../view_models/settings_view_model.dart';
 import 'expanded_section.dart';
 import 'my_scrollbar.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 const double _kScrollbarThickness = 12.0;
 
 class MyScrollbar extends StatefulWidget {
@@ -38,6 +37,7 @@ class _MyScrollbarState extends State<MyScrollbar> {
     super.didChangeDependencies();
     _scrollbarPainter = _buildMaterialScrollbarPainter();
   }
+
   @override
   void dispose() {
     _scrollbarPainter?.dispose();
@@ -46,16 +46,15 @@ class _MyScrollbarState extends State<MyScrollbar> {
 
   ScrollbarPainter _buildMaterialScrollbarPainter() {
     return ScrollbarPainter(
-      
       color: Colors.orange,
       textDirection: Directionality.of(context),
       thickness: _kScrollbarThickness,
       radius: Radius.circular(20),
       fadeoutOpacityAnimation: const AlwaysStoppedAnimation<double>(1.0),
-      padding: EdgeInsets.only(top:15,right:15,bottom: 5,left: 5),
-      
+      padding: EdgeInsets.only(top: 15, right: 15, bottom: 5, left: 5),
     );
   }
+
   bool _updateScrollPainter(ScrollMetrics position) {
     _scrollbarPainter?.update(
       position,
