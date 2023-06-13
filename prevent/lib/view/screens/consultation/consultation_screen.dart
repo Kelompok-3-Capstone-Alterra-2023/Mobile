@@ -7,7 +7,8 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/consultation/view_doctor_screen.dart';
+import 'package:prevent/view/screens/consultation/view_all_call_doctor_screen.dart';
+import 'package:prevent/view/screens/consultation/view_all_chat_doctor_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 
 import '../../../util/common.dart';
@@ -61,7 +62,12 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
               text: AppLocalizations.of(context)!.consultationSecond,
               // text: 'Konseling Via Chat',
               iconData: Ph.chat_circle_dots_bold,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const ViewAllChatDoctorScreen()));
+              },
             ),
             const SizedBox(
               height: 15,

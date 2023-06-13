@@ -14,6 +14,7 @@ Color colorStyleEighth = const Color(0XFF2F5146);
 Color colorNavBar = const Color(0XFF6FB54E);
 Color colorUnselectedNavBar = const Color(0XFF8A8A8A);
 Color labelColor = const Color(0xFFE2F0DC);
+Color shadowText = const Color(0xFFACACAC);
 
 // Color Danger
 Color dangerFirst = const Color(0XFFEFC0BF);
