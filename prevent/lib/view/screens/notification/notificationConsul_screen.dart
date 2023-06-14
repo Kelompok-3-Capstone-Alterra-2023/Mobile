@@ -47,70 +47,68 @@ class NotificationKonsulScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ListView.separated(
+              child: ListView.builder(
                 itemCount: 10,
-                separatorBuilder: (context, index) => Divider(
-                  thickness: 2,
-                  color: greyColor,
-                ),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {},
                     child: SizedBox(
-                      height: 130,
+                      // height: 130,
                       width: MediaQuery.of(context).size.width,
                       child: SizedBox(
                         child: Row(
                           children: [
                             SizedBox(
                               width: 60,
-                              height: 90,
+                              // height: 90,
                               child: Image.asset(
                                 'assets/images/notif_picture.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Sesi Konsultasi',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan \nPsikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 \nvia chat. ',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: reguler,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Iconify(
-                                        Zondicons.time,
-                                        size: 12,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sesi Konsultasi',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: bold,
                                       ),
-                                      const SizedBox(
-                                        width: 4,
+                                    ),
+                                    Text(
+                                      'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
                                       ),
-                                      Text(
-                                        '24-04-28 10:36',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 10,
-                                          fontWeight: reguler,
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Iconify(
+                                          Zondicons.time,
+                                          size: 12,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        const SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text(
+                                          '24-04-28 10:36',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            fontWeight: reguler,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
