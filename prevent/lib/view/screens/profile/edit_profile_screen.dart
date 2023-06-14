@@ -1,10 +1,11 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/clarity.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/home/home_screen.dart';
-import 'package:prevent/view/screens/profile/profile_screen.dart';
+import 'package:prevent/view/screens/profile/edit_form_widget.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 import '../../../util/common.dart';
@@ -295,17 +296,60 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       style: GoogleFonts.poppins(
                           fontSize: 16, fontWeight: bold, color: whiteColor),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (formKey.currentState!.validate() &&
                           selectedGender.value != '') {
                         errorGender.value = '';
-                        Navigator.pop(context);
+                        await showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                              insetPadding:
+                                  const EdgeInsets.symmetric(horizontal: 80),
+                              content: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              width: 5, color: successThird)),
+                                      child: Icon(
+                                        Icons.done,
+                                        color: successThird,
+                                        size: 74,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 25),
+                                    Text(
+                                      'Profil berhasil disimpan',
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: bold, fontSize: 15),
+                                    ),
+                                    const SizedBox(height: 75),
+                                    Text(
+                                      'Ketuk dimana saja untuk menutup halaman ini',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: bold,
+                                          fontSize: 10,
+                                          color: greyColor),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        );
+                        if (mounted) {
+                          Navigator.pop(context);
+                        }
                       } else if (selectedGender.value != '') {
                         errorGender.value = '';
                       } else {
                         errorGender.value = 'Error';
                       }
-                      print(errorGender.value);
                     },
                   ),
                 )
@@ -314,49 +358,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           )
         ],
       ),
-    );
-  }
-}
-
-class FormEdit extends StatelessWidget {
-  const FormEdit({
-    super.key,
-    required this.nameController,
-    required this.label,
-    this.validator,
-    this.inputType,
-  });
-
-  final TextEditingController nameController;
-  final String label;
-  final String? Function(String?)? validator;
-  final TextInputType? inputType;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: semiBold),
-        ),
-        const SizedBox(height: 5),
-        TextFormField(
-            keyboardType: inputType,
-            style: GoogleFonts.poppins(fontSize: 15, fontWeight: reguler),
-            controller: nameController,
-            decoration: InputDecoration(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
-                filled: true,
-                fillColor: colorStyleSecond,
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(10))),
-            validator: validator),
-        const SizedBox(height: 10),
-      ],
     );
   }
 }
