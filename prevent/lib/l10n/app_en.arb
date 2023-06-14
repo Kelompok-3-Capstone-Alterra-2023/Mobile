@@ -51,7 +51,7 @@
   "subTitleArticle": "Mental Health",
 
   "consultationHistory": "Consultation History",
-  "sliderRunningHistory": "Running History",
+  "sliderRunningHistory": "Running Consultation",
   "telephoneMethod": "Telephone Method",
   "messageMethod": "Message Method",
 
@@ -228,6 +228,8 @@
   "profileSeventh": "Address",
   "profileEighth": "Gender",
   "profileNinth": "Woman",
+  "profileTenth": "Date of Birth",
+  "profileSimpan": "Save",
 
   "selectScheduleFirst": "Select Schedule",
   "selectScheduleSecond": "psychologist",

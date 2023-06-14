@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/zondicons.dart';
+import 'package:iconify_flutter/icons/ph.dart';
+import 'package:iconify_flutter/icons/ri.dart';
+import 'package:prevent/view/screens/article/detail_article_screen.dart';
 import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
@@ -15,9 +17,38 @@ class MenuHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> catagory = [
+      'Semua',
+      'Kesehatan Mental',
+      'Stress',
+      'Depresi',
+      'Gangguan Kepribadian',
+      'Mental Ill',
+      'Miskin',
+      'Kaya',
+    ];
+    final ValueNotifier<int?> selectedCatagory = ValueNotifier(0);
+
     return Scaffold(
       drawer: const SideBar(),
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              padding: const EdgeInsets.only(left: 10),
+              icon: Iconify(
+                Ph.list,
+                size: 36,
+                color: whiteColor,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        elevation: 0,
         title: Image.asset('assets/images/logo_app.png'),
         centerTitle: true,
         backgroundColor: colorStyleFifth,
@@ -27,295 +58,221 @@ class MenuHome extends StatelessWidget {
               showSearch(context: context, delegate: CustomSearch());
             },
             icon: Iconify(
-              Zondicons.search,
+              Ri.search_line,
               size: 24,
               color: whiteColor,
             ),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Image.asset(
-                      'assets/images/homepage_one.png',
-                    ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Image.asset(
+                    'assets/images/homepage_one.png',
+                    fit: BoxFit.contain,
                   ),
-                  const SizedBox(
-                    width: 14,
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.titleHome,
-                            // 'Kesehatan Mental Prioritas Global',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontWeight: bold,
-                                fontSize: 12.5,
-                                color: successThird),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.subTitleHome,
-                            // 'Prevent! merupakan salah satu platform konsultasi psikolog terbaik yang bisa bantu hadapi permsalahanmu!',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                fontWeight: reguler,
-                                fontSize: 10,
-                                color: blackColor),
-                          ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                minimumSize: const Size(170, 40),
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                backgroundColor: colorStyleFifth),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => ConsultationScreen(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.consultation,
-                              // 'Konsultasi',
-                              style: GoogleFonts.poppins(
-                                  fontWeight: bold,
-                                  fontSize: 15,
-                                  color: whiteColor),
-                            ),
-                          ),
-                        ],
+                ),
+                const SizedBox(
+                  width: 14,
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.titleHome,
+                        // 'Kesehatan Mental Prioritas Global',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            fontWeight: bold,
+                            fontSize: 12.5,
+                            color: successThird),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.latestArticles,
-                    // 'Artikel Terbaru',
-                    style: GoogleFonts.poppins(fontSize: 13, fontWeight: bold),
+                      const SizedBox(height: 18),
+                      Text(
+                        AppLocalizations.of(context)!.subTitleHome,
+                        // 'Prevent! merupakan salah satu platform konsultasi psikolog terbaik yang bisa bantu hadapi permsalahanmu!',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                            fontWeight: reguler,
+                            fontSize: 10,
+                            color: blackColor),
+                      ),
+                      const SizedBox(height: 18),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                            minimumSize: const Size(170, 40),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            backgroundColor: colorStyleFifth),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ConsultationScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.consultation,
+                          // 'Konsultasi',
+                          style: GoogleFonts.poppins(
+                              fontWeight: bold,
+                              fontSize: 15,
+                              color: whiteColor),
+                        ),
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () {
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.latestArticles,
+                  // 'Artikel Terbaru',
+                  style: GoogleFonts.poppins(fontSize: 13, fontWeight: bold),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const ViewAllArticleScreen()));
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.viewAll,
+                    // 'Lihat Semua',
+                    style: GoogleFonts.poppins(
+                        fontSize: 10, fontWeight: bold, color: blackColor),
+                  ),
+                ),
+                // ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            // TODO: Fitur Sorting
+            child: Wrap(spacing: 8, direction: Axis.horizontal, children: [
+              const SizedBox(width: 2),
+              ...List<Widget>.generate(
+                catagory.length,
+                (int index) {
+                  return ListenableBuilder(
+                    listenable: selectedCatagory,
+                    builder: (context, child) {
+                      return ChoiceChip(
+                        side: BorderSide(color: colorStyleFifth, width: 1.2),
+                        selectedColor: colorStyleFifth,
+                        backgroundColor: Colors.transparent,
+                        labelStyle: GoogleFonts.poppins(
+                          fontWeight: medium,
+                          fontSize: 10,
+                          color: selectedCatagory.value == index
+                              ? whiteColor
+                              : colorStyleFifth,
+                        ),
+                        label: Text(catagory[index]),
+                        selected: selectedCatagory.value == index,
+                        onSelected: (bool selected) {
+                          if (selectedCatagory.value != index) {
+                            selectedCatagory.value = selected ? index : null;
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+              ).toList(),
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 18),
+                  child: InkWell(
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => ViewAllArticleScreen()));
+                              builder: (context) =>
+                                  const DetailArticleScreen()));
                     },
-                    child: Text(
-                      AppLocalizations.of(context)!.viewAll,
-                      // 'Lihat Semua',
-                      style: GoogleFonts.poppins(
-                          fontSize: 10, fontWeight: bold, color: blackColor),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              // TODO: Fitur Sorting
-              child: Wrap(
-                spacing: 8,
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(50, 25),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 5),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          backgroundColor: colorStyleFifth),
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.allCategoryArticle,
-                        // 'Semua',
-                        style: GoogleFonts.poppins(
-                            fontSize: 10, color: whiteColor),
-                      )),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        minimumSize: const Size(50, 25),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 5),
-                        side: BorderSide(color: colorStyleFifth),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.mentalHealthCategoryArticle,
-                        // 'Kesehatan Mental',
-                        style: GoogleFonts.poppins(
-                            fontSize: 10, color: colorStyleFifth),
-                      )),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        minimumSize: const Size(50, 25),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 5),
-                        side: BorderSide(color: colorStyleFifth),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.stressCategoryArticle,
-                        // 'Stress',
-                        style: GoogleFonts.poppins(
-                            fontSize: 10, color: colorStyleFifth),
-                      )),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        minimumSize: const Size(50, 25),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 5),
-                        side: BorderSide(color: colorStyleFifth),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.depressionCategoryArticle,
-                        // 'Depresi',
-                        style: GoogleFonts.poppins(
-                            fontSize: 10, color: colorStyleFifth),
-                      )),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        minimumSize: const Size(50, 25),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 5),
-                        side: BorderSide(color: colorStyleFifth),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        AppLocalizations.of(context)!.personalityDisordersCategoryArticle,
-                        // 'Ganguan Kepribadian',
-                        style: GoogleFonts.poppins(
-                            fontSize: 10, color: colorStyleFifth),
-                      )),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: ListView.builder(
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 18),
-                    child: InkWell(
-                      onTap: () {
-                        // TODO: Detail Artikel
-                      },
-                      child: SingleChildScrollView(
-                        child: Card(
-                          elevation: 5,
-                          child: Container(
+                    child: Card(
+                      elevation: 5,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: whiteColor,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(10))),
+                            child: Image.asset(
+                                'assets/images/dummy_artikel.png',
+                                fit: BoxFit.fitWidth),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 14),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.asset('assets/images/dummy_artikel.png'),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 14),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .titleArticle,
-                                        // 'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 10, fontWeight: medium),
-                                      ),
-                                      const SizedBox(
-                                        height: 11,
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(4),
-                                        decoration: BoxDecoration(
-                                            color: colorStyleThird
-                                                .withOpacity(0.40),
-                                            border: Border.all(
-                                                color: colorStyleThird),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(3))),
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .subTitleArticle,
-                                          // 'Kesehatan Mental',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 10,
-                                              fontWeight: medium,
-                                              color: colorStyleFifth),
-                                        ),
-                                      )
-                                    ],
+                                Text(
+                                  AppLocalizations.of(context)!.titleArticle,
+                                  // 'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 10, fontWeight: medium),
+                                ),
+                                const SizedBox(
+                                  height: 11,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: colorStyleThird.withOpacity(0.40),
+                                      border:
+                                          Border.all(color: colorStyleThird),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(3))),
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .subTitleArticle,
+                                    // 'Kesehatan Mental',
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 10,
+                                        fontWeight: medium,
+                                        color: colorStyleFifth),
                                   ),
                                 )
                               ],
                             ),
-                          ),
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation_history/detail_consultation_history.dart';
@@ -23,6 +24,21 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              padding: const EdgeInsets.only(left: 10),
+              icon: const Iconify(
+                Ph.list,
+                size: 36,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         title: Text(
           AppLocalizations.of(context)!.consultationHistory,
           // 'Riwayat Konsultasi',

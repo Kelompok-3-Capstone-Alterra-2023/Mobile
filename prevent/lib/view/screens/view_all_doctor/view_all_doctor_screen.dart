@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/zondicons.dart'; // for Non Colorful Icons
+import 'package:iconify_flutter/icons/ri.dart';
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
-
 import '../../../util/common.dart';
 import '../../widgets/home/side_bar.dart';
 import 'custom_search.dart';
@@ -29,7 +28,7 @@ class ViewAllDoctorScreen extends StatelessWidget {
               showSearch(context: context, delegate: CustomSearch());
             },
             icon: Iconify(
-              Zondicons.search,
+              Ri.search_line,
               size: 24,
               color: whiteColor,
             ),
@@ -64,7 +63,6 @@ class ViewAllDoctorScreen extends StatelessWidget {
                   return InkWell(
                     onTap: () {},
                     child: SizedBox(
-                      height: 190,
                       width: double.infinity,
                       child: Card(
                         child: Row(
@@ -119,84 +117,86 @@ class ViewAllDoctorScreen extends StatelessWidget {
                             ),
 
                             // Kanan
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Fauzan Hakim M.Psi, Psikolog',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: bold,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Fauzan Hakim M.Psi, Psikolog',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: bold,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!
-                                        .consultationSeventh,
-                                    // 'Psikolog Klinis',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: medium,
+                                    const SizedBox(
+                                      height: 4,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!
-                                        .consultationEighth,
-                                    // 'Trauma, Stress, Depresi',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 10,
-                                      fontWeight: medium,
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .consultationSeventh,
+                                      // 'Psikolog Klinis',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: medium,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Container(
-                                    width: 90,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: greyColorSecond,
+                                    const SizedBox(
+                                      height: 4,
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.work,
-                                          color: Colors.black,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text(
-                                          AppLocalizations.of(context)!
-                                              .consultationNinth,
-                                          // '4 Tahun',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 10,
-                                              fontWeight: semiBold),
-                                        ),
-                                      ],
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .consultationEighth,
+                                      // 'Trauma, Stress, Depresi',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 10,
+                                        fontWeight: medium,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    'RP. 200.000',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 14, fontWeight: bold),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      width: 90,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: greyColorSecond,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.work,
+                                            color: Colors.black,
+                                          ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .consultationNinth,
+                                            // '4 Tahun',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 10,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      'RP. 200.000',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14, fontWeight: bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
