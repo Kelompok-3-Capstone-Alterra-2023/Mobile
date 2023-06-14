@@ -4,7 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart'; // for Non Colorful Icons
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/consultation/call_detail_doctor.dart';
+import 'package:prevent/view/screens/consultation/detail_call_doctor_screen.dart';
 
 import '../../../util/common.dart';
 import '../view_all_doctor/custom_search.dart';
@@ -90,7 +90,8 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                                         width: 8,
                                       ),
                                       Text(
-                                        AppLocalizations.of(context)!.viewDoctorFirst,
+                                        AppLocalizations.of(context)!
+                                            .viewDoctorFirst,
                                         // 'Tersedia',
                                         style: GoogleFonts.poppins(
                                             fontSize: 12, fontWeight: semiBold),
@@ -129,7 +130,8 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                                       height: 4,
                                     ),
                                     Text(
-                                    AppLocalizations.of(context)!.viewDoctorSecond,
+                                      AppLocalizations.of(context)!
+                                          .viewDoctorSecond,
                                       // 'Psikolog Klinis',
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,
@@ -140,7 +142,8 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                                       height: 4,
                                     ),
                                     Text(
-                                    AppLocalizations.of(context)!.viewDoctorThird,
+                                      AppLocalizations.of(context)!
+                                          .viewDoctorThird,
                                       // 'Trauma, Stress, Depresi',
                                       style: GoogleFonts.poppins(
                                         fontSize: 10,
@@ -169,7 +172,8 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                                             width: 4,
                                           ),
                                           Text(
-                                          AppLocalizations.of(context)!.viewDoctorFourth,
+                                            AppLocalizations.of(context)!
+                                                .viewDoctorFourth,
                                             // '4 Tahun',
                                             style: GoogleFonts.poppins(
                                                 fontSize: 10,
