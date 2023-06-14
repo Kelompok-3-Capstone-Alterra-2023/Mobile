@@ -63,6 +63,8 @@ dependencies:
   calendar_date_picker2: ^0.5.2
   # Button AwesomeDialog
   awesome_dialog: ^3.1.0
+  # Chat bubble
+  chat_bubbles: ^1.4.1
 
 dependency_overrides:
   qr_flutter:
