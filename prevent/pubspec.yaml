@@ -69,6 +69,8 @@ dependencies:
   path_provider: ^2.0.15
   # HTTP Connection API
   dio: ^5.2.1+1
+  # Chat bubble
+  chat_bubbles: ^1.4.1
 
 dependency_overrides:
   qr_flutter:

@@ -70,47 +70,49 @@ class NotificationPaymentScreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Pembayaran',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Opss! Transaksi pembayaran gagal. Silahkan pesan \nkembali.',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: reguler,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Iconify(
-                                        Zondicons.time,
-                                        size: 12,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Pembayaran',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: bold,
                                       ),
-                                      const SizedBox(
-                                        width: 4,
+                                    ),
+                                    Text(
+                                      'Opss! Transaksi pembayaran gagal. Silahkan pesan \nkembali.',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: reguler,
                                       ),
-                                      Text(
-                                        '24-04-28 10:36',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 10,
-                                          fontWeight: reguler,
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Iconify(
+                                          Zondicons.time,
+                                          size: 12,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        const SizedBox(
+                                          width: 4,
+                                        ),
+                                        Text(
+                                          '24-04-28 10:36',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            fontWeight: reguler,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/profile/edit_profile_screen.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
 import '../../../util/common.dart';
@@ -58,7 +59,13 @@ class ProfileScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const EditProfileScreen(),
+                          ));
+                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -245,6 +252,29 @@ class ProfileScreen extends StatelessWidget {
                               child: Text(
                                 AppLocalizations.of(context)!.profileNinth,
                                 // 'Perempuan',
+                                style: GoogleFonts.inter(fontSize: 16),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              AppLocalizations.of(context)!.profileTenth,
+                              // 'Tanggal Lahir',
+                              style: GoogleFonts.inter(
+                                  fontSize: 16, fontWeight: semiBold),
+                            ),
+                          ),
+                          const Text(
+                            ':\t',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: Text(
+                                '05 April 2004',
                                 style: GoogleFonts.inter(fontSize: 16),
                               ))
                         ],
