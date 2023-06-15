@@ -23,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final List<DateTime?> _dialogCalendarPickerValue = [
     DateTime.now(),
   ];
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterViewModel>(context);
@@ -53,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 30,
               ),
               Form(
-                key: provider.formKey,
+                key: formKey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -96,6 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       controller: provider.emailController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -244,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      obscureText: provider.obscureText,
+                      obscureText: provider.obscurePassword,
                       controller: provider.passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -280,15 +282,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         suffixIcon: IconButton(
                           icon: Iconify(
-                            provider.obscureText
+                            provider.obscurePassword
                                 ? Eva.eye_off_outline
                                 : Eva.eye_outline,
-                            color: provider.obscureText
+                            color: provider.obscurePassword
                                 ? greyColor
                                 : colorStyleFifth,
                           ),
                           onPressed: () {
-                            provider.toggleObscureText();
+                            provider.toggleObscurePassword();
                           },
                         ),
                         focusColor: colorStyleFifth,
@@ -300,12 +302,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      obscureText: provider.obscureText,
+                      obscureText: provider.obscureConfirmPassword,
                       controller: provider.confirmPasswordController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppLocalizations.of(context)!.inputConfirmPass;
                           // return 'Konfirmasi Password tidak boleh kosong!';
+                        }
+                        if (value != provider.passwordController.text) {
+                          return 'Passwords doesn\'t match';
                         } else {
                           return null;
                         }
@@ -336,15 +341,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         suffixIcon: IconButton(
                           icon: Iconify(
-                            provider.obscureText
+                            provider.obscureConfirmPassword
                                 ? Eva.eye_off_outline
                                 : Eva.eye_outline,
-                            color: provider.obscureText
+                            color: provider.obscureConfirmPassword
                                 ? greyColor
                                 : colorStyleFifth,
                           ),
                           onPressed: () {
-                            provider.toggleObscureText();
+                            provider.toggleObscureConfirmPassword();
                           },
                         ),
                         focusColor: blackColor,
@@ -364,29 +369,64 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
-                        onPressed: () {
-                          final form = provider.formKey;
-                          if (form.currentState!.validate()) {
-                            // Navigator.pushAndRemoveUntil(context,
-                            //     MaterialPageRoute(
-                            //   builder: (context) {
-                            //     return const MyHomePage(title: 'My Homepage');
-                            //   },
-                            // ), (route) => false);
-
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const VerificationCodeScreen()));
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            final email = provider.emailController.text;
+                            final username = provider.usernameController.text;
+                            final password = provider.passwordController.text;
+                            try {
+                              await provider.registerUser(
+                                  email, username, password);
+                              if (context.mounted) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            VerificationCodeScreen(
+                                              email: email,
+                                              username: username,
+                                              password: password,
+                                            )));
+                              }
+                            } catch (e) {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title:
+                                      const Text('Account Already Registered'),
+                                  content: const Text('Please Login'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginScreen()));
+                                        provider.emailController.clear();
+                                        provider.usernameController.clear();
+                                        provider.passwordController.clear();
+                                        provider.confirmPasswordController
+                                            .clear();
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
                           }
                         },
-                        child: Text(
-                          AppLocalizations.of(context)!.signUp,
-                          // 'Sign Up',
-                          style: GoogleFonts.poppins(
-                              fontWeight: bold, fontSize: 16),
-                        ),
+                        child: provider.isLoading
+                            ? CircularProgressIndicator(
+                                color: whiteColor,
+                              )
+                            : Text(
+                                AppLocalizations.of(context)!.signUp,
+                                // 'Sign Up',
+                                style: GoogleFonts.poppins(
+                                    fontWeight: bold, fontSize: 16),
+                              ),
                       ),
                     ),
                     const SizedBox(
