@@ -3,11 +3,42 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/login/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../util/common.dart';
+import '../home/home_screen.dart';
 
-class OnBoarding extends StatelessWidget {
+class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
+
+  @override
+  State<OnBoarding> createState() => _OnBoardingState();
+}
+
+class _OnBoardingState extends State<OnBoarding> {
+  @override
+  void initState() {
+    checkLogin();
+    super.initState();
+  }
+
+  void checkLogin() async {
+    SharedPreferences logindata = await SharedPreferences.getInstance();
+    final token = logindata.getString('token');
+
+    if (token != null && context.mounted) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ));
+    }
+  }
+
+  void setOnboardingCompleted() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setBool('onboarding_completed', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,6 +187,8 @@ class OnBoarding extends StatelessWidget {
         ),
       ],
       onDone: () {
+        setOnboardingCompleted();
+        checkLogin();
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const LoginScreen()));
       },
