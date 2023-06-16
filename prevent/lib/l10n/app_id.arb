@@ -228,6 +228,8 @@
   "profileSeventh": "Alamat",
   "profileEighth": "Jenis Kelamin",
   "profileNinth": "Perempuan",
+  "profileTenth": "Tanggal Lahir  ",
+  "profileSimpan": "Simpan",
 
   "selectScheduleFirst": "Pilih Jadwal",
   "selectScheduleSecond": "Psikolog",

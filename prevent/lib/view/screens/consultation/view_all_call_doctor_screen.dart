@@ -4,7 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart'; // for Non Colorful Icons
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/consultation/call_detail_doctor.dart';
+import 'package:prevent/view/screens/consultation/detail_call_doctor_screen.dart';
 
 import '../../../util/common.dart';
 import '../view_all_doctor/custom_search.dart';
@@ -56,7 +56,7 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                               builder: (_) => const DetailCallDoctorScreen()));
                     },
                     child: SizedBox(
-                      height: 190,
+                      // height: 190,
                       width: double.infinity,
                       child: Card(
                         child: Row(
@@ -90,7 +90,8 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                                         width: 8,
                                       ),
                                       Text(
-                                        AppLocalizations.of(context)!.viewDoctorFirst,
+                                        AppLocalizations.of(context)!
+                                            .viewDoctorFirst,
                                         // 'Tersedia',
                                         style: GoogleFonts.poppins(
                                             fontSize: 12, fontWeight: semiBold),
@@ -110,81 +111,87 @@ class ViewAllCallDoctorScreen extends StatelessWidget {
                             ),
 
                             // Kanan
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Fauzan Hakim M.Psi, Psikolog',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: bold,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Fauzan Hakim M.Psi, Psikolog',
+                                      maxLines: 2,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: bold,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!.viewDoctorSecond,
-                                    // 'Psikolog Klinis',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: medium,
+                                    const SizedBox(
+                                      height: 4,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!.viewDoctorThird,
-                                    // 'Trauma, Stress, Depresi',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 10,
-                                      fontWeight: medium,
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .viewDoctorSecond,
+                                      // 'Psikolog Klinis',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 12,
+                                        fontWeight: medium,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Container(
-                                    width: 90,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: greyColorSecond,
+                                    const SizedBox(
+                                      height: 4,
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.work,
-                                          color: Colors.black,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                        Text(
-                                          AppLocalizations.of(context)!.viewDoctorFourth,
-                                          // '4 Tahun',
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 10,
-                                              fontWeight: semiBold),
-                                        ),
-                                      ],
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .viewDoctorThird,
+                                      // 'Trauma, Stress, Depresi',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 10,
+                                        fontWeight: medium,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    'RP. 200.000',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 14, fontWeight: bold),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      width: 90,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: greyColorSecond,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.work,
+                                            color: Colors.black,
+                                          ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .viewDoctorFourth,
+                                            // '4 Tahun',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 10,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      'RP. 200.000',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 14, fontWeight: bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

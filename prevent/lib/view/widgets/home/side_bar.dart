@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/settings/settings_screen.dart';
+import 'package:prevent/view_models/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
 import '../../screens/consultation_history/consultation_history_screen.dart';
@@ -58,7 +60,8 @@ class SideBar extends StatelessWidget {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => DoctorFavoriteScreen()),
+                  MaterialPageRoute(
+                      builder: (_) => const DoctorFavoriteScreen()),
                 );
               },
             ),
@@ -77,11 +80,7 @@ class SideBar extends StatelessWidget {
               ),
               onTap: () {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => ConsultationHistoryScreen()),
-                );
+                context.read<HomeViewModel>().selectedIndex = 1;
               },
             ),
             ListTile(
@@ -101,7 +100,7 @@ class SideBar extends StatelessWidget {
                 // Tindakan yang akan dijalankan saat menu 1 diklik
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => SettingsScreen()),
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
                 );
               },
             ),
