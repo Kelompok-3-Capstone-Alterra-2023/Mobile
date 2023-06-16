@@ -234,24 +234,25 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                 );
                               }
                             } catch (e) {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: const Text('Verification Error'),
-                                  content: const Text(
-                                      'Invalid OTP. Please try again.'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text(
-                                        'OK',
-                                        style:
-                                            TextStyle(color: colorStyleFifth),
+                              if (context.mounted) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Verification Error'),
+                                    content: const Text('Code OTP Wrong'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                          'OK',
+                                          style:
+                                              TextStyle(color: colorStyleFifth),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
+                                    ],
+                                  ),
+                                );
+                              }
                             }
                           }
                           pinController.clear();
@@ -270,7 +271,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                             ),
                           ),
                         ),
-                        child: provider.isLoading
+                        child: provider.isLoadingOtp
                             ? CircularProgressIndicator(
                                 color: whiteColor,
                               )

@@ -41,6 +41,9 @@ class RegisterViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  bool _isLoadingOtp = false;
+  bool get isLoadingOtp => _isLoadingOtp;
+
   bool _isRegisterSuccess = false;
   bool _isOTPVerificationSuccess = false;
 
@@ -56,7 +59,7 @@ class RegisterViewModel extends ChangeNotifier {
       _isRegisterSuccess =
           await apiService.registerUser(email, username, password);
 
-      _isLoading = true;
+      _isLoading = false;
       notifyListeners();
     } catch (e) {
       _isLoading = false;
@@ -67,11 +70,20 @@ class RegisterViewModel extends ChangeNotifier {
 
   Future<void> checkOtp(
       String email, String username, String password, String otp) async {
-    _isOTPVerificationSuccess =
-        await apiService.checkOtp(email, username, password, otp);
-
-    _isLoading = true;
+    _isLoadingOtp = true;
     notifyListeners();
+
+    try {
+      _isOTPVerificationSuccess =
+          await apiService.checkOtp(email, username, password, otp);
+
+      _isLoadingOtp = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoadingOtp = false;
+      notifyListeners();
+      rethrow;
+    }
   }
 
   // Future<void> checkOtp(

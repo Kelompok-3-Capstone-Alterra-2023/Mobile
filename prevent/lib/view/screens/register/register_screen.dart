@@ -394,7 +394,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 builder: (context) => AlertDialog(
                                   title:
                                       const Text('Account Already Registered'),
-                                  content: const Text('Please Login'),
+                                  content: const Text(
+                                      'Please check email to verification code'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -402,7 +403,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const LoginScreen()));
+                                                    VerificationCodeScreen(
+                                                        email: email,
+                                                        username: username,
+                                                        password: password)));
                                         provider.emailController.clear();
                                         provider.usernameController.clear();
                                         provider.passwordController.clear();
