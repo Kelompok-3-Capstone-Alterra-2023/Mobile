@@ -1,38 +1,40 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/clarity.dart';
 import 'package:intl/intl.dart';
+import 'package:prevent/models/profile_model.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/profile/edit_form_widget.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
+import 'package:prevent/view_models/profile_view_model.dart';
+import 'package:provider/provider.dart';
 import '../../../util/common.dart';
 
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
-
-  @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
-}
-
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController(text: 'Ananda Putri');
-  final usernameController = TextEditingController(text: 'Anandap');
-  final phoneController = TextEditingController(text: '0895317776543');
-  final emailController = TextEditingController(text: 'Ini Email User');
-  final addressController =
-      TextEditingController(text: 'anandaptri12@gmail.com');
-  final bornDateController = TextEditingController();
-  final ValueNotifier<String> selectedGender = ValueNotifier('');
-  late final ValueNotifier<List<DateTime?>> _dialogCalendarPickerValue =
-      ValueNotifier([]);
-  final ValueNotifier<String> errorGender = ValueNotifier('');
+class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({super.key, required this.userProfile});
+  final UserProfile userProfile;
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final fullnameController =
+        TextEditingController(text: userProfile.fullname);
+    final usernameController =
+        TextEditingController(text: userProfile.username);
+    final phoneController = TextEditingController(text: userProfile.telpon);
+    final emailController = TextEditingController(text: userProfile.email);
+    final addressController = TextEditingController(text: userProfile.alamat);
+    final bornDateController = TextEditingController(
+      text: DateFormat('DD/MM/yyyy')
+          .format(DateTime.parse(userProfile.birthdate)),
+    );
+    final ValueNotifier<String> selectedGender =
+        ValueNotifier(userProfile.gender);
+    final ValueNotifier<List<DateTime?>> dialogCalendarPickerValue =
+        ValueNotifier([DateTime.parse(userProfile.birthdate)]);
+    final ValueNotifier<String> errorGender = ValueNotifier('');
     return Scaffold(
       backgroundColor: whiteColor,
       drawer: const SideBar(),
@@ -94,7 +96,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 FormEdit(
-                  nameController: nameController,
+                  nameController: fullnameController,
                   label: AppLocalizations.of(context)!.profileThird,
                   validator: (p0) {
                     if (p0!.isEmpty) {
@@ -158,7 +160,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Radio(
                               fillColor:
                                   MaterialStatePropertyAll(colorStyleFifth),
-                              value: 'Perempuan',
+                              value: 'P',
                               groupValue: value,
                               onChanged: (value) {
                                 selectedGender.value = value.toString();
@@ -172,7 +174,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Radio(
                               fillColor:
                                   MaterialStatePropertyAll(colorStyleFifth),
-                              value: 'Laki - laki',
+                              value: 'L',
                               groupValue: value,
                               onChanged: (value) {
                                 selectedGender.value = value.toString();
@@ -203,7 +205,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 const SizedBox(height: 5),
                 ValueListenableBuilder(
-                    valueListenable: _dialogCalendarPickerValue,
+                    valueListenable: dialogCalendarPickerValue,
                     builder: (context, value, _) {
                       return TextFormField(
                         onTap: () async {
@@ -249,12 +251,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 centerAlignModePicker: true),
                             dialogSize: const Size(325, 400),
                             borderRadius: BorderRadius.circular(15),
-                            value: _dialogCalendarPickerValue.value,
+                            value: dialogCalendarPickerValue.value,
                             dialogBackgroundColor: whiteColor,
                           );
                           if (values != null) {
-                            _dialogCalendarPickerValue.value = values;
-                            bornDateController.text = _dialogCalendarPickerValue
+                            dialogCalendarPickerValue.value = values;
+                            bornDateController.text = dialogCalendarPickerValue
                                 .value
                                 .map((e) => DateFormat('dd/MM/yyyy').format(e!))
                                 .join(',');
@@ -300,6 +302,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       if (formKey.currentState!.validate() &&
                           selectedGender.value != '') {
                         errorGender.value = '';
+                        try {
+                          context.read<ProfileViewModel>().updateProfile(
+                              UserProfile(
+                                  email: emailController.text,
+                                  username: usernameController.text,
+                                  fullname: fullnameController.text,
+                                  telpon: phoneController.text,
+                                  alamat: addressController.text,
+                                  gender: selectedGender.value,
+                                  birthdate: DateFormat('DD/MM/yyyy')
+                                      .parse(bornDateController.text)
+                                      .toString()));
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text('Update Failed'),
+                              content: const Text('Please try Again'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                         await showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -342,7 +371,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               )),
                         );
-                        if (mounted) {
+                        if (context.mounted) {
                           Navigator.pop(context);
                         }
                       } else if (selectedGender.value != '') {
