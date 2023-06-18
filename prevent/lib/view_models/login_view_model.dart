@@ -5,6 +5,10 @@ import '../services/user_api.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final UserApiService apiService = UserApiService();
+  bool _isLogin = false;
+
+  bool get isLogin => _isLogin;
+
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -35,5 +39,19 @@ class LoginViewModel extends ChangeNotifier {
       notifyListeners();
       rethrow;
     }
+  }
+
+  void login() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLogin', true);
+    _isLogin = true;
+    notifyListeners();
+  }
+
+  void logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLogin', false);
+    _isLogin = false;
+    notifyListeners();
   }
 }

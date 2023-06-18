@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/settings/user_account_settings_screen.dart';
+import 'package:prevent/view_models/login_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../util/common.dart';
 import '../login/login_screen.dart';
 import 'language_select_settings.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
@@ -21,6 +27,8 @@ class SettingsScreen extends StatelessWidget {
           builder: (context) => const LoginScreen(),
         ));
   }
+
+  final login = LoginViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +133,7 @@ class SettingsScreen extends StatelessWidget {
             TextButton(
               onPressed: () {
                 logout(context);
+                login.logout();
               },
               child: Text(
                 AppLocalizations.of(context)!.logOut,

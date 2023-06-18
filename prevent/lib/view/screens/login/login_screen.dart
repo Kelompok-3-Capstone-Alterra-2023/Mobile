@@ -230,6 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 }
                               }
+                              value.login();
                             },
                             child: value.isLoading
                                 ? CircularProgressIndicator(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/util/common.dart';
+import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
@@ -14,12 +15,18 @@ void main() {
     SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
   );
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final login = LoginViewModel();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -48,7 +55,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const OnBoarding(),
+        home: login.isLogin ? const OnBoarding() : const HomeScreen(),
       ),
     );
   }
