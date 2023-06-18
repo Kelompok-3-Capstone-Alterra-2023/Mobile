@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prevent/util/common.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:prevent/view_models/settings_view_model.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SearchArticleViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileViewModel(),
         ),
       ],
       child: MaterialApp(

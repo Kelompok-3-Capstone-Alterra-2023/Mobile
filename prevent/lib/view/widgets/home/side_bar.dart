@@ -7,7 +7,6 @@ import 'package:prevent/view_models/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
-import '../../screens/consultation_history/consultation_history_screen.dart';
 import '../../screens/doctor_favorite/doctor_favorite_screem.dart';
 
 class SideBar extends StatelessWidget {

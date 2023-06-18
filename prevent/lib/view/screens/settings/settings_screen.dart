@@ -15,11 +15,13 @@ class SettingsScreen extends StatelessWidget {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
 
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ));
+    if (context.mounted) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        builder: (context) {
+          return const LoginScreen();
+        },
+      ), (route) => false);
+    }
   }
 
   @override
