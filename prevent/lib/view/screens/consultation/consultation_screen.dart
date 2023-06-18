@@ -10,6 +10,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation/view_all_call_doctor_screen.dart';
 import 'package:prevent/view/screens/consultation/view_all_chat_doctor_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
+import 'package:prevent/view_models/doctor_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
 import '../view_all_doctor/custom_search.dart';
@@ -22,6 +24,22 @@ class ConsultationScreen extends StatefulWidget {
 }
 
 class _ConsultationScreenState extends State<ConsultationScreen> {
+  DoctorViewModel viewModel = DoctorViewModel();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
+
+  // Future<void> fetchData() async {
+  //   try {
+  //     await viewModel.fetchDoctors();
+  //   } catch (error) {
+  //     rethrow;
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,139 +133,146 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
               ),
             ),
             Expanded(
-              child: GridView.builder(
-                // padding: EdgeInsets.all(4),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Jumlah kolom dalam GridView
-                  childAspectRatio:
-                      0.65, // Perbandingan aspek antara lebar dan tinggi item
-                  mainAxisSpacing: 6,
-                  crossAxisSpacing: 8,
-                ),
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return GridTile(
-                    child: Card(
-                      shadowColor: greyColor,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            child: Image.asset(
-                              'assets/images/doctor1.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 28,
-                            child: Container(
-                              color: const Color(0xffd8d8d8),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8, right: 8),
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                          height: 29,
-                                          width: 29,
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: offlineColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(8)),
-                                              child: Iconify(
-                                                Ph.chat_circle_dots_bold,
-                                                color: whiteColor,
-                                              ))),
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .consultationSixth,
-                                        // 'Tersedia',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 12, fontWeight: semiBold),
-                                      ),
-                                      CircleAvatar(
-                                        backgroundColor: onlineColor,
-                                        radius: 7,
-                                      )
-                                    ]),
+              child: Consumer<DoctorViewModel>(
+                builder: (context, value, child) {
+                  return GridView.builder(
+                    // padding: EdgeInsets.all(4),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // Jumlah kolom dalam GridView
+                      childAspectRatio:
+                          0.65, // Perbandingan aspek antara lebar dan tinggi item
+                      mainAxisSpacing: 6,
+                      crossAxisSpacing: 8,
+                    ),
+                    itemCount: value.doctors.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GridTile(
+                        child: Card(
+                          shadowColor: greyColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                child: Image.asset(
+                                  'assets/images/doctor1.png',
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(7),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Riska Aulia M.Psi, Psikolog',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 10, fontWeight: semiBold),
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .consultationSeventh,
-                                  // 'Psikolog Klinis',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 9, fontWeight: reguler),
-                                ),
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .consultationEighth,
-                                  // 'Trauma, Stress, Depresi',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 8, fontWeight: reguler),
-                                ),
-                                const SizedBox(
-                                  height: 3,
-                                ),
-                                SizedBox(
-                                  height: 14,
-                                  width: 59,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xffd8d8d8),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
+                              SizedBox(
+                                height: 28,
+                                child: Container(
+                                  color: const Color(0xffd8d8d8),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
                                     child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Icon(
-                                            Icons.work,
-                                            size: 10,
-                                          ),
-                                          const SizedBox(
-                                            width: 4,
-                                          ),
+                                          SizedBox(
+                                              height: 29,
+                                              width: 29,
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: offlineColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8)),
+                                                  child: Iconify(
+                                                    Ph.chat_circle_dots_bold,
+                                                    color: whiteColor,
+                                                  ))),
                                           Text(
                                             AppLocalizations.of(context)!
-                                                .consultationNinth,
-                                            // '4 Tahun',
+                                                .consultationSixth,
+                                            // 'Tersedia',
                                             style: GoogleFonts.poppins(
-                                                fontSize: 8,
-                                                fontWeight: reguler),
+                                                fontSize: 12,
+                                                fontWeight: semiBold),
+                                          ),
+                                          CircleAvatar(
+                                            backgroundColor: onlineColor,
+                                            radius: 7,
                                           )
                                         ]),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(7),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Riska Aulia M.Psi, Psikolog',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 10, fontWeight: semiBold),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .consultationSeventh,
+                                      // 'Psikolog Klinis',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 9, fontWeight: reguler),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .consultationEighth,
+                                      // 'Trauma, Stress, Depresi',
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 8, fontWeight: reguler),
+                                    ),
+                                    const SizedBox(
+                                      height: 3,
+                                    ),
+                                    SizedBox(
+                                      height: 14,
+                                      width: 59,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xffd8d8d8),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.work,
+                                                size: 10,
+                                              ),
+                                              const SizedBox(
+                                                width: 4,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .consultationNinth,
+                                                // '4 Tahun',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 8,
+                                                    fontWeight: reguler),
+                                              )
+                                            ]),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      NumberFormat.simpleCurrency(name: 'IDR')
+                                          .format(200000),
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 12, fontWeight: semiBold),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(200000),
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 12, fontWeight: semiBold),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

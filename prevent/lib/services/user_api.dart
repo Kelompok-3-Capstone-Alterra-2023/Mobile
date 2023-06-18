@@ -27,11 +27,16 @@ class UserApiService {
   }
 
   Future<bool> registerUser(
-      String email, String username, String password) async {
+      String email, String username, String password, String birthdate) async {
     try {
       final response = await dio.post(
         'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
-        data: {'email': email, 'username': username, 'password': password},
+        data: {
+          'email': email,
+          'username': username,
+          'password': password,
+          'birthdate': birthdate
+        },
       );
 
       if (response.statusCode == 200) {
@@ -46,8 +51,8 @@ class UserApiService {
     }
   }
 
-  Future<bool> checkOtp(
-      String email, String username, String password, String otp) async {
+  Future<bool> checkOtp(String email, String username, String password,
+      String birthdate, String otp) async {
     try {
       final response = await dio.post(
         'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
@@ -55,6 +60,7 @@ class UserApiService {
           'email': email,
           'username': username,
           'password': password,
+          'birthdate': birthdate,
           'otp': otp
         },
       );

@@ -5,7 +5,6 @@ import 'package:iconify_flutter/icons/ri.dart';
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
 import '../../../util/common.dart';
-import '../../widgets/home/side_bar.dart';
 import 'custom_search.dart';
 
 class ViewAllDoctorScreen extends StatelessWidget {
@@ -35,7 +34,6 @@ class ViewAllDoctorScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const SideBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: Column(

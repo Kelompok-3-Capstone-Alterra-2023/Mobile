@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/view/screens/payment/payment_chat_screen.dart';
-import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
 import '../../../util/common.dart';
