@@ -1,5 +1,4 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -122,6 +121,8 @@ class EditProfileScreen extends StatelessWidget {
                   validator: (p0) {
                     if (p0!.isEmpty) {
                       return 'Nomor Handphone tidak boleh kosong';
+                    } else if (!p0.contains(RegExp(r'^\d+$'))) {
+                      return 'Nomor Handphone hanya dapat di idi angka';
                     }
                     return null;
                   },
@@ -133,6 +134,10 @@ class EditProfileScreen extends StatelessWidget {
                   validator: (p0) {
                     if (p0!.isEmpty) {
                       return 'Email tidak boleh kosong';
+                    } else if (!context
+                        .read<ProfileViewModel>()
+                        .isEmailValid(p0)) {
+                      return 'Email tidak valid';
                     }
                     return null;
                   },

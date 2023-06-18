@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/util/common.dart';
-import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/profile_view_model.dart';
