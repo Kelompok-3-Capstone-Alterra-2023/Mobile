@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/confirm_payment/confirm_chat_payment_screen.dart';
-import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 
 class PaymentChatScreen extends StatefulWidget {
   PaymentChatScreen({Key? key}) : super(key: key);

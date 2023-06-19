@@ -1,8 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconify_flutter/iconify_flutter.dart';
-import 'package:iconify_flutter/icons/clarity.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/profile/edit_form_widget.dart';
