@@ -23,7 +23,7 @@ class DoctorApiService {
   Future<List<Doctor>> fetchDoctors() async {
     try {
       final response = await dio.get(
-        'https://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/doctors',
+        'https://capstone-project.duckdns.org:8080/user/doctors',
       );
 
       final Map<String, dynamic> data = response.data;
@@ -37,20 +37,4 @@ class DoctorApiService {
       throw Exception('Failed to fetch doctors: $error');
     }
   }
-
-  // Future<List<Doctor>> fetchDoctors() async {
-  //   try {
-  //     final response = await dio.get(
-  //         'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/doctors');
-  //     final responseData = response.data as Map<String, dynamic>;
-
-  //     final doctorsData = responseData['doctors'] as List<dynamic>;
-
-  //     final doctors = doctorsData.map((data) => Doctor.fromJson(data)).toList();
-
-  //     return doctors;
-  //   } catch (e) {
-  //     throw 'Error fetching doctors: $e';
-  //   }
-  // }
 }

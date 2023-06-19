@@ -6,7 +6,7 @@ class UserApiService {
   Future<String> loginUser(String email, String password) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/login',
+        'https://capstone-project.duckdns.org:8080/user/login',
         data: {
           'email': email,
           'password': password,
@@ -30,7 +30,7 @@ class UserApiService {
       String email, String username, String password, String birthdate) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
+        'https://capstone-project.duckdns.org:8080/user/register',
         data: {
           'email': email,
           'username': username,
@@ -55,7 +55,7 @@ class UserApiService {
       String birthdate, String otp) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
+        'https://capstone-project.duckdns.org:8080/user/register',
         data: {
           'email': email,
           'username': username,

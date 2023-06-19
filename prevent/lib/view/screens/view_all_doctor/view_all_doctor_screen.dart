@@ -90,6 +90,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                               practiceAddress: doctor.practiceAddress,
                               strNumber: doctor.strNumber,
                               statusOnline: doctor.statusOnline,
+                              workExperience: doctor.workExperience,
                             );
                           },
                         )),
@@ -178,9 +179,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                                           height: 4,
                                         ),
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .consultationSeventh,
-                                          // 'Psikolog Klinis',
+                                          doctor.specialist,
                                           style: GoogleFonts.poppins(
                                             fontSize: 12,
                                             fontWeight: medium,
@@ -190,9 +189,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                                           height: 4,
                                         ),
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .consultationEighth,
-                                          // 'Trauma, Stress, Depresi',
+                                          doctor.description,
                                           style: GoogleFonts.poppins(
                                             fontSize: 10,
                                             fontWeight: medium,
@@ -221,9 +218,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                                                 width: 4,
                                               ),
                                               Text(
-                                                AppLocalizations.of(context)!
-                                                    .consultationNinth,
-                                                // '4 Tahun',
+                                                '${doctor.workExperience} years',
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 10,
                                                     fontWeight: semiBold),

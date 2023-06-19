@@ -21,18 +21,21 @@ class DetailDoctorScreen extends StatelessWidget {
   final String practiceAddress;
   final String strNumber;
   final bool statusOnline;
+  final int workExperience;
 
-  const DetailDoctorScreen(
-      {super.key,
-      required this.fullname,
-      required this.specialist,
-      required this.description,
-      required this.price,
-      required this.alumnus,
-      required this.alumnus2,
-      required this.practiceAddress,
-      required this.strNumber,
-      required this.statusOnline});
+  const DetailDoctorScreen({
+    super.key,
+    required this.fullname,
+    required this.specialist,
+    required this.description,
+    required this.price,
+    required this.alumnus,
+    required this.alumnus2,
+    required this.practiceAddress,
+    required this.strNumber,
+    required this.statusOnline,
+    required this.workExperience,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -176,8 +179,7 @@ class DetailDoctorScreen extends StatelessWidget {
                               width: 4,
                             ),
                             Text(
-                              AppLocalizations.of(context)!.detailDoctorFourth,
-                              // '4 Tahun',
+                              '$workExperience years',
                               style: GoogleFonts.poppins(
                                   fontSize: 8, fontWeight: medium),
                             )
@@ -209,14 +211,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                alumnus2,
+                                alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                alumnus,
+                                alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
