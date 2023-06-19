@@ -7,7 +7,6 @@ import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:prevent/view_models/settings_view_model.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
-import 'package:prevent/view_models/search_article_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
@@ -37,9 +36,6 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SearchArticleViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => ProfileViewModel(),

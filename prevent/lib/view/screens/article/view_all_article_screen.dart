@@ -116,25 +116,26 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                   ).toList(),
                 ]),
               ),
-              InkWell(
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const DetailArticleScreen(id: ,)));
-                },
-                child: Padding(
+              Consumer<ArticlesViewModel>(builder: (context, provider, child) {
+                return Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
-                  child: Consumer<ArticlesViewModel>(
-                      builder: (context, provider, child) {
-                    return ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: provider.articles.length,
-                      itemBuilder: (context, index) {
-                        final data = provider.articles[index];
-                        return Card(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: provider.articles.length,
+                    itemBuilder: (context, index) {
+                      final data = provider.articles[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailArticleScreen(
+                                        id: data.id,
+                                      )));
+                        },
+                        child: Card(
                           elevation: 3,
                           child: Container(
                             height: 100,
@@ -191,15 +192,15 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                               ],
                             ),
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(height: 3);
-                      },
-                    );
-                  }),
-                ),
-              ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 3);
+                    },
+                  ),
+                );
+              }),
             ],
           ),
         ],

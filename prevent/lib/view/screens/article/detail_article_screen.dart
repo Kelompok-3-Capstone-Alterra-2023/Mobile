@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prevent/models/detail_article_model.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../../util/common.dart';
 
 class DetailArticleScreen extends StatelessWidget {
@@ -125,27 +123,24 @@ class DetailArticleScreen extends StatelessWidget {
                               ),
                             ),
                       const SizedBox(height: 26),
-                      Text(snapshot.data!.content),
-                      // Paragraph(
-                      //   text: AppLocalizations.of(context)!.detailArticleFourth,
-                      //   // text:'Prevent! Jakarta - Libur Lebaran yang cukup panjang menjadi waktu yang tepat bagi banyak orang untuk kembali ke kampung halaman dan berkumpul bersama keluarga. Bukan itu saja, ini menjadi momen kamu bisa beristirahat tanpa melakukan pekerjaan sehari-hari. Dengan begitu, energi akan kembali terkumpul saat libur Lebaran usai.'
-                      // ),
-                      // Paragraph(
-                      //   text: AppLocalizations.of(context)!.detailArticleFifth,
-                      //   // text:
-                      //   //     'Namun, ada sebagian orang yang malah merasakan cemas, khawatir, dan tidak bersemangat untuk kembali melakukan rutinitas sehari-hari. Bahkan, kamu merasa sedih saat tiba di rumah ketika akan memulai pekerjaan dan kegiatan sehari-hari setelah libur Lebaran. Hati-hati, bisa jadi kamu ternyata mengalami holiday blues, lho!',
-                      // ),
-                      // Paragraph(
-                      //   text: AppLocalizations.of(context)!.detailArticleSixth,
-                      //   // text:
-                      //   //     'Inilah Tanda Holiday Blues yang Perlu Kamu Waspadai\nBerlibur adalah salah satu cara yang baik untuk menjaga kesehatan mental. Kegiatan ini membantu kamu menurunkan tingkat stres, gangguan cemas, hingga depresi. Namun, waspada terhadap holiday blues atau post holiday syndrome yang bisa dialami oleh siapa saja setelah liburan panjang.',
-                      // ),
-                      // Paragraph(
-                      //   text:
-                      //       AppLocalizations.of(context)!.detailArticleSeventh,
-                      //   // text:
-                      //   //     'Umumnya, kebahagiaan pengidap post holiday syndrome tidak akan bertahan lama. Setelah menjalani liburan, banyak orang yang kembali merasakan sedih atau perasaan tidak senang. Penyebab post holiday blues bisa terjadi akibat kelelahan baik secara fisik maupun psikis setelah melalui liburan yang panjang.',
-                      // ),
+                      // Text(snapshot.data!.content),
+                      // LayoutBuilder(
+                      //   builder:
+                      //       (BuildContext context, BoxConstraints constraints) {
+                      //     return WebView(
+                      //       initialUrl: 'about:blank',
+                      //       onWebViewCreated:
+                      //           (WebViewController webViewController) {
+                      //         // Load HTML content when WebView is created
+                      //         webViewController.loadUrl(Uri.dataFromString(
+                      //           snapshot.data!.content,
+                      //           mimeType: 'text/html',
+                      //           encoding: Encoding.getByName('utf-8'),
+                      //         ).toString());
+                      //       },
+                      //     );
+                      //   },
+                      // )
                     ],
                   ),
                 );
@@ -155,24 +150,5 @@ class DetailArticleScreen extends StatelessWidget {
             }),
       );
     });
-  }
-}
-
-class Paragraph extends StatelessWidget {
-  final String text;
-  final TextStyle style;
-
-  const Paragraph(
-      {super.key, required this.text, this.style = const TextStyle()});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      child: Text(
-        text,
-        style: style,
-      ),
-    );
   }
 }

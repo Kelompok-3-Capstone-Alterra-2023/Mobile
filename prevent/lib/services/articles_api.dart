@@ -3,8 +3,7 @@ import 'package:prevent/models/articles_model.dart';
 import 'package:prevent/models/detail_article_model.dart';
 
 class ArticlesApiService {
-  final url =
-      'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/articles';
+  final url = 'https://capstone-project.duckdns.org:8080/articles';
   final dio = Dio();
 
   Future<ArticlesModel> getArticles() async {
@@ -17,9 +16,9 @@ class ArticlesApiService {
     }
   }
 
-  Future<ArticlesModel> getArticlesByCategory(String param) async {
+  Future<ArticlesModel> getArticlesByCategory(String category) async {
     try {
-      final response = await dio.get('$url?category=$param');
+      final response = await dio.get('$url?category=$category');
       ArticlesModel model = ArticlesModel.fromJson(response.data);
       return model;
     } catch (e) {
@@ -27,9 +26,9 @@ class ArticlesApiService {
     }
   }
 
-  Future<ArticlesModel> getSearchArticle() async {
+  Future<ArticlesModel> getSearchArticle(String keyword) async {
     try {
-      final response = await dio.get('$url/search?keyword=');
+      final response = await dio.get('$url/search?keyword=$keyword');
       ArticlesModel model = ArticlesModel.fromJson(response.data);
       return model;
     } catch (e) {

@@ -71,6 +71,7 @@ dependencies:
   dio: ^5.2.1+1
   # Chat bubble
   chat_bubbles: ^1.4.1
+ 
 
 dependency_overrides:
   qr_flutter:
