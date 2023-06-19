@@ -9,24 +9,13 @@ class DoctorViewModel extends ChangeNotifier {
   List<Doctor> _doctors = [];
   List<Doctor> get doctors => _doctors;
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
   Future<void> fetchDoctors() async {
-    _isLoading = true;
-    notifyListeners();
-
     try {
-      // Panggil API untuk mengambil data dokter
-      final response = await apiService.fetchDoctors();
-
-      // Jika berhasil, perbarui _doctors
-      _doctors = response;
-    } catch (error) {
-      rethrow;
-    } finally {
-      _isLoading = false;
+      _doctors = await apiService.fetchDoctors();
+      debugPrint(_doctors[0].email);
       notifyListeners();
+    } catch (error) {
+      debugPrint('Failed to fetch doctors: $error');
     }
   }
 }

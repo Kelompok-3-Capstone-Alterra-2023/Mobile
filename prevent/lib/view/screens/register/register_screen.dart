@@ -250,6 +250,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             ),
                                           ),
                                         ),
+                                        lastDate: DateTime.now(),
                                         okButtonTextStyle:
                                             TextStyle(color: colorStyleFifth),
                                         selectedDayHighlightColor:

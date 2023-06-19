@@ -23,20 +23,18 @@ class DoctorApiService {
   Future<List<Doctor>> fetchDoctors() async {
     try {
       final response = await dio.get(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/doctors',
+        'https://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/doctors',
       );
 
-      // return Doctor.fromJson(response.data);
+      final Map<String, dynamic> data = response.data;
+      final List<dynamic> doctorData = data['doctors'];
 
-      if (response.statusCode == 200) {
-        final List<dynamic> data = response.data;
-        final doctors = data.map((item) => Doctor.fromJson(item)).toList();
-        return doctors;
-      } else {
-        throw Exception('Failed to fetch doctors');
-      }
-    } on DioException {
-      rethrow;
+      final List<Doctor> doctors =
+          doctorData.map((json) => Doctor.fromJson(json)).toList();
+
+      return doctors;
+    } catch (error) {
+      throw Exception('Failed to fetch doctors: $error');
     }
   }
 

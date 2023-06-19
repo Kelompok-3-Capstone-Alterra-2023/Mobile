@@ -12,7 +12,27 @@ import 'package:prevent/view/widgets/foz_button.dart';
 import '../../../util/common.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
-  const DetailDoctorScreen({super.key});
+  final String fullname;
+  final String specialist;
+  final String description;
+  final int price;
+  final String alumnus;
+  final String alumnus2;
+  final String practiceAddress;
+  final String strNumber;
+  final bool statusOnline;
+
+  const DetailDoctorScreen(
+      {super.key,
+      required this.fullname,
+      required this.specialist,
+      required this.description,
+      required this.price,
+      required this.alumnus,
+      required this.alumnus2,
+      required this.practiceAddress,
+      required this.strNumber,
+      required this.statusOnline});
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +103,13 @@ class DetailDoctorScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 7, right: 4),
                               child: CircleAvatar(
-                                backgroundColor: onlineColor,
+                                backgroundColor:
+                                    statusOnline ? onlineColor : offlineColor,
                                 radius: 7,
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!.detailDoctorFirst,
-                              // 'online',
+                              statusOnline ? 'Online' : 'Offline',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
                                   fontSize: 15,
@@ -114,7 +134,7 @@ class DetailDoctorScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Fauzan Hakim M.Psi, Psikolog',
+                            fullname,
                             style: GoogleFonts.poppins(
                                 fontSize: 16, fontWeight: semiBold),
                           ),
@@ -129,14 +149,12 @@ class DetailDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      AppLocalizations.of(context)!.detailDoctorSecond,
-                      // 'Psikolog Klinis',
+                      specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.detailDoctorThird,
-                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      description,
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -166,7 +184,7 @@ class DetailDoctorScreen extends StatelessWidget {
                           ]),
                     ),
                     Text(
-                      NumberFormat.simpleCurrency(name: 'IDR').format(200000),
+                      NumberFormat.simpleCurrency(name: 'IDR').format(price),
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: semiBold),
                     ),
@@ -191,16 +209,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorSixth,
-                                // 'Universitas Padjadjaran, 2019',
+                                alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorSeventh,
-                                // 'Universitas Airlangga, 2016',
+                                alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -224,7 +240,8 @@ class DetailDoctorScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorEighth,
+                                AppLocalizations.of(context)!
+                                    .detailDoctorEighth,
                                 // 'Praktik di',
                                 style: GoogleFonts.poppins(
                                   fontSize: 10,
@@ -232,8 +249,7 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorNinth,
-                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                practiceAddress,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -258,7 +274,7 @@ class DetailDoctorScreen extends StatelessWidget {
                                     fontWeight: semiBold,
                                   )),
                               Text(
-                                '14248822203190653321',
+                                strNumber,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
