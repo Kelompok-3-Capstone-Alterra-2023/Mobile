@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserApiService {
   final Dio dio = Dio();
@@ -71,6 +72,38 @@ class UserApiService {
         return false;
       } else {
         // OTP verification failed
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  UserApiService() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          final String? token = pref.getString('token');
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+    );
+  }
+
+  Future<bool> deleteUser() async {
+    try {
+      final response =
+          await dio.delete('https://capstone-project.duckdns.org:8080/user/');
+
+      if (response.statusCode == 200) {
+        // Delete Success
+        return true;
+      } else {
+        // Delete failed
         return false;
       }
     } catch (e) {
