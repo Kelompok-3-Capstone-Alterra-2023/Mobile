@@ -22,6 +22,12 @@ class ArticlesViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> getArticlesByCategory(String category) async {
+    final response = await service.getArticlesByCategory(category);
+    articles = response.data;
+    notifyListeners();
+  }
+
   Future<Datas> getDetailArticle(int id) async {
     final response = await service.getDetailArticle(id);
     return response.data;

@@ -105,8 +105,16 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                             selected: selectedCategory.value == index,
                             onSelected: (bool selected) {
                               if (selectedCategory.value != index) {
-                                selectedCategory.value =
-                                    selected ? index : null;
+                                selectedCategory.value = selected ? index : 0;
+                                if (selectedCategory.value != 0) {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticlesByCategory(category[index]);
+                                } else {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticles();
+                                }
                               }
                             },
                           );

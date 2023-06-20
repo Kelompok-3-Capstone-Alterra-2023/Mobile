@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:prevent/models/articles_model.dart';
 import 'package:prevent/models/detail_article_model.dart';
+import 'package:prevent/util/common.dart';
 
 class ArticlesApiService {
-  final url = 'https://capstone-project.duckdns.org:8080/articles';
+  final url = Urls.baseUrl + Urls.ariticles;
   final dio = Dio();
 
   Future<ArticlesModel> getArticles() async {
@@ -18,7 +19,8 @@ class ArticlesApiService {
 
   Future<ArticlesModel> getArticlesByCategory(String category) async {
     try {
-      final response = await dio.get('$url?category=$category');
+      final response =
+          await dio.get(url, queryParameters: {'category': category});
       ArticlesModel model = ArticlesModel.fromJson(response.data);
       return model;
     } catch (e) {

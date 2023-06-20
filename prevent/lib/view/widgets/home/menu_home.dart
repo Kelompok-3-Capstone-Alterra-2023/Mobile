@@ -168,7 +168,6 @@ class MenuHome extends StatelessWidget {
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                // TODO: Fitur Sorting
                 child: Wrap(spacing: 8, direction: Axis.horizontal, children: [
                   const SizedBox(width: 2),
                   ...List<Widget>.generate(
@@ -194,7 +193,15 @@ class MenuHome extends StatelessWidget {
                             onSelected: (bool selected) {
                               if (selectedCategory.value != index) {
                                 selectedCategory.value = selected ? index : 0;
-                                print(category[index]);
+                                if (selectedCategory.value != 0) {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticlesByCategory(category[index]);
+                                } else {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticles();
+                                }
                               }
                             },
                           );

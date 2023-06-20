@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:prevent/util/common.dart';
 
 class UserApiService {
   final Dio dio = Dio();
@@ -6,7 +7,7 @@ class UserApiService {
   Future<String> loginUser(String email, String password) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/login',
+        '${Urls.baseUrl}${Urls.users}/login',
         data: {
           'email': email,
           'password': password,
@@ -30,7 +31,7 @@ class UserApiService {
       String email, String username, String password) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
+        '${Urls.baseUrl}${Urls.users}/register',
         data: {'email': email, 'username': username, 'password': password},
       );
 
@@ -50,7 +51,7 @@ class UserApiService {
       String email, String username, String password, String otp) async {
     try {
       final response = await dio.post(
-        'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/register',
+        '${Urls.baseUrl}${Urls.users}/register',
         data: {
           'email': email,
           'username': username,
