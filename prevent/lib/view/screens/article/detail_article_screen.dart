@@ -106,11 +106,30 @@ class DetailArticleScreen extends StatelessWidget {
                           ? Container(
                               height: 180,
                               width: double.infinity,
-                              color: blackColor,
+                              color: shadowText,
                               child: Image.network(
                                 // 'assets/images/image_article.png',
                                 snapshot.data!.thumbnail,
                                 fit: BoxFit.cover,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent? loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  }
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                    ),
+                                  );
+                                },
                               ),
                             )
                           : Container(

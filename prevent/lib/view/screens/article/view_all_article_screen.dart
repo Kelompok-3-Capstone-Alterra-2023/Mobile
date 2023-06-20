@@ -80,7 +80,6 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                // TODO: Fitur Sorting
                 child: Wrap(spacing: 8, direction: Axis.horizontal, children: [
                   const SizedBox(width: 2),
                   ...List<Widget>.generate(
@@ -107,13 +106,9 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                               if (selectedCategory.value != index) {
                                 selectedCategory.value = selected ? index : 0;
                                 if (selectedCategory.value != 0) {
-                                  context
-                                      .read<ArticlesViewModel>()
-                                      .getArticlesByCategory(category[index]);
+                                  context.read<ArticlesViewModel>().getArticlesByCategory(category[index]);
                                 } else {
-                                  context
-                                      .read<ArticlesViewModel>()
-                                      .getArticles();
+                                  context.read<ArticlesViewModel>().getArticles();
                                 }
                               }
                             },
@@ -151,7 +146,29 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                             color: whiteColor,
                             child: Row(
                               children: [
-                                Image.asset('assets/images/stress.png'),
+                                Image.network(
+                                  data.thumbnail,
+                                  fit: BoxFit.cover,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    }
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },
+                                ),
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Column(
@@ -172,25 +189,19 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Text(
-                                            // AppLocalizations.of(context)!
-                                            //     .viewAllArticleFourth,
                                             data.category,
-                                            // 'Stress',
-                                            style: TextStyle(fontSize: 8),
+                                            style: const TextStyle(fontSize: 8),
                                           ),
                                         ),
                                       ),
                                       const SizedBox(height: 14),
                                       Flexible(
                                         child: Padding(
-                                          padding: EdgeInsets.only(right: 32),
+                                          padding: const EdgeInsets.only(right: 32),
                                           child: Text(
-                                            // AppLocalizations.of(context)!
-                                            //     .detailArticleFirst,
                                             data.title,
-                                            // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
                                             overflow: TextOverflow.fade,
-                                            style: TextStyle(fontSize: 12),
+                                            style: const TextStyle(fontSize: 12),
                                           ),
                                         ),
                                       ),

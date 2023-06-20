@@ -194,13 +194,9 @@ class MenuHome extends StatelessWidget {
                               if (selectedCategory.value != index) {
                                 selectedCategory.value = selected ? index : 0;
                                 if (selectedCategory.value != 0) {
-                                  context
-                                      .read<ArticlesViewModel>()
-                                      .getArticlesByCategory(category[index]);
+                                  context.read<ArticlesViewModel>().getArticlesByCategory(category[index]);
                                 } else {
-                                  context
-                                      .read<ArticlesViewModel>()
-                                      .getArticles();
+                                  context.read<ArticlesViewModel>().getArticles();
                                 }
                               }
                             },
@@ -239,23 +235,37 @@ class MenuHome extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // data.thumbnail.isNotEmpty
-                                //     ? SizedBox(
-                                //         width: double.infinity,
-                                //         child: Image.network(data.thumbnail,
-                                //             fit: BoxFit.fitWidth),
-                                //       )
-                                //     : SizedBox(
-                                //         width: double.infinity,
-                                //         child: Image.asset(
-                                //             'assets/images/dummy_artikel.png',
-                                //             fit: BoxFit.fitWidth),
-                                //       ),
                                 SizedBox(
                                   width: double.infinity,
-                                  child: Image.asset(
-                                      'assets/images/dummy_artikel.png',
-                                      fit: BoxFit.fitWidth),
+                                  height: 157,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                    child: Image.network(
+                                      data.thumbnail,
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -265,10 +275,9 @@ class MenuHome extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        // AppLocalizations.of(context)!
-                                        //     .titleArticle,
                                         data.title,
-                                        // 'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                         style: GoogleFonts.poppins(
                                             fontSize: 10, fontWeight: medium),
                                       ),
