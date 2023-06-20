@@ -13,7 +13,6 @@ import 'package:prevent/view/screens/detail_doctor/detail_doctor_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/view_all_doctor_screen.dart';
 import 'package:prevent/view_models/doctor_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../../util/common.dart';
 import '../view_all_doctor/custom_search.dart';
 
@@ -140,7 +139,9 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       final doctor = value.doctors[index];
                       if (value.doctors.isEmpty) {
-                        return const CircularProgressIndicator();
+                        return CircularProgressIndicator(
+                          color: colorStyleFifth,
+                        );
                       } else {
                         return InkWell(
                           onTap: () =>
@@ -197,8 +198,11 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                                         color: whiteColor,
                                                       ))),
                                               Text(
-                                                AppLocalizations.of(context)!
-                                                    .consultationSixth,
+                                                doctor.statusOnline
+                                                    ? AppLocalizations.of(
+                                                            context)!
+                                                        .consultationSixth
+                                                    : 'Not Available',
                                                 // 'Tersedia',
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 12,
