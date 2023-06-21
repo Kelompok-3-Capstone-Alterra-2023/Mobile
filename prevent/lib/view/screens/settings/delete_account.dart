@@ -84,7 +84,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => const WarningDeleteAccount()));
-                        print(provider.groupValue);
+                        debugPrint(provider.groupValue.toString());
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

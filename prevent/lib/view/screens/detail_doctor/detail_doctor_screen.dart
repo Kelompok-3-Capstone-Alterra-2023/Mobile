@@ -7,12 +7,39 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:prevent/view/screens/select_schedule/select_schedule_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
 import '../../../util/common.dart';
+import '../payment/payment_chat_screen.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
-  const DetailDoctorScreen({super.key});
+  final String fullname;
+  final String specialist;
+  final String description;
+  final int price;
+  final String alumnus;
+  final String alumnus2;
+  final String practiceAddress;
+  final String strNumber;
+  final bool statusOnline;
+  final int workExperience;
+  final String propic;
+
+  const DetailDoctorScreen({
+    super.key,
+    required this.fullname,
+    required this.specialist,
+    required this.description,
+    required this.price,
+    required this.alumnus,
+    required this.alumnus2,
+    required this.practiceAddress,
+    required this.strNumber,
+    required this.statusOnline,
+    required this.workExperience,
+    required this.propic,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +76,17 @@ class DetailDoctorScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox.expand(
-                      child: Image.asset(
-                        'assets/images/doctor_wide.png',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                        child: propic.isEmpty
+                            ? Image.asset(
+                                'assets/images/doctor_wide.png',
+                                fit: BoxFit.fill,
+                              )
+                            : Image.network(
+                                propic,
+                                height: 150,
+                                fit: BoxFit.fill,
+                                width: MediaQuery.of(context).size.width,
+                              )),
                     Positioned(
                       right: 0,
                       child: Container(
@@ -83,13 +116,13 @@ class DetailDoctorScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 7, right: 4),
                               child: CircleAvatar(
-                                backgroundColor: onlineColor,
+                                backgroundColor:
+                                    statusOnline ? onlineColor : offlineColor,
                                 radius: 7,
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!.detailDoctorFirst,
-                              // 'online',
+                              statusOnline ? 'Online' : 'Offline',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
                                   fontSize: 15,
@@ -114,7 +147,7 @@ class DetailDoctorScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Fauzan Hakim M.Psi, Psikolog',
+                            fullname,
                             style: GoogleFonts.poppins(
                                 fontSize: 16, fontWeight: semiBold),
                           ),
@@ -129,14 +162,12 @@ class DetailDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      AppLocalizations.of(context)!.detailDoctorSecond,
-                      // 'Psikolog Klinis',
+                      specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.detailDoctorThird,
-                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      description,
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -158,15 +189,14 @@ class DetailDoctorScreen extends StatelessWidget {
                               width: 4,
                             ),
                             Text(
-                              AppLocalizations.of(context)!.detailDoctorFourth,
-                              // '4 Tahun',
+                              '$workExperience years',
                               style: GoogleFonts.poppins(
                                   fontSize: 8, fontWeight: medium),
                             )
                           ]),
                     ),
                     Text(
-                      NumberFormat.simpleCurrency(name: 'IDR').format(200000),
+                      NumberFormat.simpleCurrency(name: 'IDR').format(price),
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: semiBold),
                     ),
@@ -191,16 +221,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorSixth,
-                                // 'Universitas Padjadjaran, 2019',
+                                alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorSeventh,
-                                // 'Universitas Airlangga, 2016',
+                                alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -224,7 +252,8 @@ class DetailDoctorScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorEighth,
+                                AppLocalizations.of(context)!
+                                    .detailDoctorEighth,
                                 // 'Praktik di',
                                 style: GoogleFonts.poppins(
                                   fontSize: 10,
@@ -232,8 +261,7 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.detailDoctorNinth,
-                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                practiceAddress,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -258,7 +286,7 @@ class DetailDoctorScreen extends StatelessWidget {
                                     fontWeight: semiBold,
                                   )),
                               Text(
-                                '14248822203190653321',
+                                strNumber,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -329,7 +357,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PaymentChatScreen(),
+                                      ),
+                                    );
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),
@@ -376,7 +411,13 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return const SelectScheduleScreen();
+                                      },
+                                    ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),

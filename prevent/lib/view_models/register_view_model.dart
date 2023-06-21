@@ -3,18 +3,10 @@ import 'package:flutter/material.dart';
 import '../services/user_api.dart';
 
 class RegisterViewModel extends ChangeNotifier {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  TextEditingController tanggalController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-
-  final primaryColor = const Color(0xff7CA153);
-
   bool obscurePassword = true;
   bool obscureConfirmPassword = true;
-  // tanggal
+
+  // date
   List<DateTime?> _date = [
     DateTime.now(),
   ];
@@ -51,13 +43,13 @@ class RegisterViewModel extends ChangeNotifier {
   bool get isOTPVerificationSuccess => _isOTPVerificationSuccess;
 
   Future<void> registerUser(
-      String email, String username, String password) async {
+      String email, String username, String password, String birthdate) async {
     _isLoading = true;
     notifyListeners();
 
     try {
       _isRegisterSuccess =
-          await apiService.registerUser(email, username, password);
+          await apiService.registerUser(email, username, password, birthdate);
 
       _isLoading = false;
       notifyListeners();
@@ -68,14 +60,14 @@ class RegisterViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> checkOtp(
-      String email, String username, String password, String otp) async {
+  Future<void> checkOtp(String email, String username, String password,
+      String birthdate, String otp) async {
     _isLoadingOtp = true;
     notifyListeners();
 
     try {
       _isOTPVerificationSuccess =
-          await apiService.checkOtp(email, username, password, otp);
+          await apiService.checkOtp(email, username, password, birthdate, otp);
 
       _isLoadingOtp = false;
       notifyListeners();
@@ -85,18 +77,4 @@ class RegisterViewModel extends ChangeNotifier {
       rethrow;
     }
   }
-
-  // Future<void> checkOtp(
-  //     String email, String username, String password, String otp) async {
-  //   try {
-  //     verificationOtp = await apiService.checkOtp(email, username, password, otp);
-  //     _isLoading = true;
-  //     notifyListeners();
-  //     return verificationOtp;
-  //   } catch (e) {
-  //     _isLoading = false;
-  //     notifyListeners();
-  //     rethrow;
-  //   }
-  // }
 }

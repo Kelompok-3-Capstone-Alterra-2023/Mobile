@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
@@ -9,9 +10,23 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/radix_icons.dart';
 
 import '../../../view_models/settings_view_model.dart';
+import '../login/login_screen.dart';
 
 class WarningDeleteAccount extends StatelessWidget {
   const WarningDeleteAccount({super.key});
+
+  Future<void> logout(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+
+    if (context.mounted) {
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        builder: (context) {
+          return const LoginScreen();
+        },
+      ), (route) => false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,19 +197,59 @@ class WarningDeleteAccount extends StatelessWidget {
                             ),
                             backgroundColor: dangerSecond,
                           ),
-                          onPressed: () {
-                            print(provider.agreeToTheTermsAndConditions);
+                          onPressed: () async {
+                            debugPrint(provider.agreeToTheTermsAndConditions
+                                .toString());
 
                             if (provider.agreeToTheTermsAndConditions == true) {
-                              print(provider.agreeToTheTermsAndConditions);
-                              // Logic SharedPrefrences LogOut
-
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (_) => LoginScreen(),
-                              //   ),
-                              // );
+                              debugPrint(provider.agreeToTheTermsAndConditions
+                                  .toString());
+                              try {
+                                await provider.deleteUser();
+                                // Logic SharedPrefrences LogOut
+                                if (context.mounted) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Delete Success'),
+                                      content:
+                                          const Text('Delete Account Success'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            logout(context);
+                                          },
+                                          child: Text(
+                                            'OK',
+                                            style: TextStyle(
+                                                color: colorStyleFifth),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                                // logout(context);
+                              } catch (e) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Delete Failed'),
+                                    content: const Text(
+                                        'Delete Account Failed, Please Try Again Later'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                          'OK',
+                                          style:
+                                              TextStyle(color: colorStyleFifth),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
