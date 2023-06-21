@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/article/detail_article_screen.dart';
 import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -87,8 +88,18 @@ class _SearchArticleScreenState extends State<SearchArticleScreen> {
               itemCount: provider.filteredData.length,
               itemBuilder: (context, index) {
                 final item = provider.filteredData[index];
-                return ListTile(
-                  title: Text(item.title),
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailArticleScreen(
+                                  id: item.id,
+                                )));
+                  },
+                  child: ListTile(
+                    title: Text(item.title),
+                  ),
                 );
               },
             );

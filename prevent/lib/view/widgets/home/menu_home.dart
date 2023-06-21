@@ -4,6 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/view/screens/article/detail_article_screen.dart';
+import 'package:prevent/view/screens/article/search_article_screen.dart';
 import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
@@ -57,7 +58,12 @@ class MenuHome extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchArticleScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Ri.search_line,
@@ -194,9 +200,13 @@ class MenuHome extends StatelessWidget {
                               if (selectedCategory.value != index) {
                                 selectedCategory.value = selected ? index : 0;
                                 if (selectedCategory.value != 0) {
-                                  context.read<ArticlesViewModel>().getArticlesByCategory(category[index]);
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticlesByCategory(category[index]);
                                 } else {
-                                  context.read<ArticlesViewModel>().getArticles();
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticles();
                                 }
                               }
                             },

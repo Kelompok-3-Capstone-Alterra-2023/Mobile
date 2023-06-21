@@ -1,3 +1,4 @@
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view_models/articles_view_model.dart';
@@ -141,25 +142,10 @@ class DetailArticleScreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                      const SizedBox(height: 26),
-                      // Text(snapshot.data!.content),
-                      // LayoutBuilder(
-                      //   builder:
-                      //       (BuildContext context, BoxConstraints constraints) {
-                      //     return WebView(
-                      //       initialUrl: 'about:blank',
-                      //       onWebViewCreated:
-                      //           (WebViewController webViewController) {
-                      //         // Load HTML content when WebView is created
-                      //         webViewController.loadUrl(Uri.dataFromString(
-                      //           snapshot.data!.content,
-                      //           mimeType: 'text/html',
-                      //           encoding: Encoding.getByName('utf-8'),
-                      //         ).toString());
-                      //       },
-                      //     );
-                      //   },
-                      // )
+                      const SizedBox(height: 20),
+                      Html(
+                        data: snapshot.data!.content,
+                      )
                     ],
                   ),
                 );
