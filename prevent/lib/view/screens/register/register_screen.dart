@@ -20,10 +20,36 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   final List<DateTime?> _dialogCalendarPickerValue = [
     DateTime.now(),
   ];
-  final formKey = GlobalKey<FormState>();
+
+  bool isEmailValid(String email) {
+    final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+    return emailRegex.hasMatch(email);
+  }
+
+  bool isSameDate(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
+
+  void clearController() {
+    emailController.clear();
+    usernameController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<RegisterViewModel>(context);
@@ -58,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: provider.usernameController,
+                      controller: usernameController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppLocalizations.of(context)!.inputUsername;
@@ -98,11 +124,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: provider.emailController,
+                      controller: emailController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return AppLocalizations.of(context)!.inputUsername;
-                          // return 'Username tidak boleh kosong!';
+                          return AppLocalizations.of(context)!.inputEmail;
+                          // return 'Email tidak boleh kosong!';
+                        } else if (!isEmailValid(value)) {
+                          return 'Email Format must be valid!';
                         } else {
                           return null;
                         }
@@ -137,10 +165,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 20,
                     ),
                     TextFormField(
-                      controller: provider.tanggalController =
-                          TextEditingController(
+                      controller: dateController = TextEditingController(
                         text: provider.date
-                            .map((e) => DateFormat('dd/MM/yyyy').format(e!))
+                            .map((e) => DateFormat('yyyy-MM-dd').format(e!))
                             .join(', '),
                       ),
                       validator: (value) {
@@ -148,6 +175,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return AppLocalizations.of(context)!.inputDateOfBirth;
                           // return 'Tanggal lahir tidak boleh kosong!';
                         } else {
+                          final selectedDate =
+                              DateFormat('yyyy-MM-dd').parse(value);
+                          final currentDate = DateTime.now();
+                          if (isSameDate(selectedDate, currentDate)) {
+                            return 'Date of birth can not be the same as today!';
+                          }
                           return null;
                         }
                       },
@@ -190,8 +223,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           child: Center(
                                             child: Text(
                                               AppLocalizations.of(context)!
-                                                  .clearAll,
-                                              // 'Clear all',
+                                                  .btnCancelled,
+                                              // 'Cancel',
                                               style: GoogleFonts.poppins(
                                                   fontSize: 14,
                                                   fontWeight: semiBold),
@@ -217,6 +250,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             ),
                                           ),
                                         ),
+                                        lastDate: DateTime.now(),
                                         okButtonTextStyle:
                                             TextStyle(color: colorStyleFifth),
                                         selectedDayHighlightColor:
@@ -247,7 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       obscureText: provider.obscurePassword,
-                      controller: provider.passwordController,
+                      controller: passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppLocalizations.of(context)!.inputPass;
@@ -303,13 +337,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFormField(
                       obscureText: provider.obscureConfirmPassword,
-                      controller: provider.confirmPasswordController,
+                      controller: confirmPasswordController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppLocalizations.of(context)!.inputConfirmPass;
                           // return 'Konfirmasi Password tidak boleh kosong!';
                         }
-                        if (value != provider.passwordController.text) {
+                        if (value != passwordController.text) {
                           return 'Passwords doesn\'t match';
                         } else {
                           return null;
@@ -371,12 +405,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     BorderRadius.all(Radius.circular(10)))),
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            final email = provider.emailController.text;
-                            final username = provider.usernameController.text;
-                            final password = provider.passwordController.text;
+                            final email = emailController.text;
+                            final username = usernameController.text;
+                            final password = passwordController.text;
+                            final birthdate = dateController.text;
                             try {
                               await provider.registerUser(
-                                  email, username, password);
+                                  email, username, password, birthdate);
                               if (context.mounted) {
                                 Navigator.push(
                                     context,
@@ -386,16 +421,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               email: email,
                                               username: username,
                                               password: password,
+                                              birthdate: birthdate,
                                             )));
+                                clearController();
                               }
                             } catch (e) {
                               showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                  title:
-                                      const Text('Account Already Registered'),
+                                  title: const Text('Email Already Registered'),
                                   content: const Text(
-                                      'Please check email to verification code'),
+                                      'Please proceed to the login page to continue.'),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -403,17 +439,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    VerificationCodeScreen(
-                                                        email: email,
-                                                        username: username,
-                                                        password: password)));
-                                        provider.emailController.clear();
-                                        provider.usernameController.clear();
-                                        provider.passwordController.clear();
-                                        provider.confirmPasswordController
-                                            .clear();
+                                                    const LoginScreen()));
+                                        clearController();
                                       },
-                                      child: const Text('OK'),
+                                      child: Text(
+                                        'OK',
+                                        style:
+                                            TextStyle(color: colorStyleFifth),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -511,6 +544,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         TextButton(
                           onPressed: () {
+                            clearController();
                             Navigator.pushAndRemoveUntil(context,
                                 MaterialPageRoute(
                               builder: (context) {

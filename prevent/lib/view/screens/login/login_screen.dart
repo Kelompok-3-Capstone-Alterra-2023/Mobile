@@ -226,7 +226,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context),
-                                          child: const Text('OK'),
+                                          child: Text(
+                                            'OK',
+                                            style: TextStyle(
+                                                color: colorStyleFifth),
+                                          ),
                                         ),
                                       ],
                                     ),

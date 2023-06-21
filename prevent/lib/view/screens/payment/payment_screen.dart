@@ -4,7 +4,7 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
-  PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({Key? key}) : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../services/user_api.dart';
+
 // import '../util/common.dart';
 
 class SettingsViewModel extends ChangeNotifier {
+  final UserApiService apiService = UserApiService();
+
   List<String> list = [
     'Saya ingin menghapus profil',
     "Saya tidak akan menggunakan lagi",
@@ -26,6 +30,10 @@ class SettingsViewModel extends ChangeNotifier {
 
   String? selectedCause = "";
 
+  bool _isDeleteSuccess = false;
+
+  bool get isRegisterSuccess => _isDeleteSuccess;
+
   final List<String> causeList = [
     'Saya ingin menghapus profil',
     'Saya tidak akan menggunakan lagi',
@@ -45,5 +53,15 @@ class SettingsViewModel extends ChangeNotifier {
   void firstState() {
     selectedCause = causeList[0];
     notifyListeners();
+  }
+
+  Future<void> deleteUser() async {
+    try {
+      _isDeleteSuccess = await apiService.deleteUser();
+      notifyListeners();
+    } catch (e) {
+      notifyListeners();
+      throw Exception('Failed to delete account: $e');
+    }
   }
 }

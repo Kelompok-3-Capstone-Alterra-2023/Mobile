@@ -9,11 +9,13 @@ class VerificationCodeScreen extends StatefulWidget {
   final String email;
   final String username;
   final String password;
+  final String birthdate;
   const VerificationCodeScreen(
       {super.key,
       required this.email,
       required this.username,
-      required this.password});
+      required this.password,
+      required this.birthdate});
 
   @override
   State<VerificationCodeScreen> createState() => _VerificationCodeScreenState();
@@ -211,12 +213,13 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           final email = widget.email;
                           final username = widget.username;
                           final password = widget.password;
+                          final birthdate = widget.birthdate;
                           final otp = pinController.text.trim();
                           focusNode.unfocus();
                           if (formKey.currentState!.validate()) {
                             try {
                               await provider.checkOtp(
-                                  email, username, password, otp);
+                                  email, username, password, birthdate, otp);
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
