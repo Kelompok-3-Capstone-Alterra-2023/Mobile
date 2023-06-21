@@ -12,7 +12,6 @@ class DoctorViewModel extends ChangeNotifier {
   Future<void> fetchDoctors() async {
     try {
       _doctors = await apiService.fetchDoctors();
-      debugPrint(_doctors[0].email);
       notifyListeners();
     } catch (error) {
       debugPrint('Failed to fetch doctors: $error');

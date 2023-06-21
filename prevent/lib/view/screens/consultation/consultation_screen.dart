@@ -124,192 +124,184 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Consumer<DoctorViewModel>(
-                builder: (context, value, child) {
-                  return GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-
-                    // padding: EdgeInsets.all(4),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // Jumlah kolom dalam GridView
-                      childAspectRatio:
-                          0.64, // Perbandingan aspek antara lebar dan tinggi item
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 8,
-                    ),
-                    itemCount: value.doctors.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final doctor = value.doctors[index];
-                      if (value.doctors.isEmpty) {
-                        return CircularProgressIndicator(
-                          color: colorStyleFifth,
-                        );
-                      } else {
-                        return InkWell(
-                          onTap: () =>
-                              Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return DetailDoctorScreen(
-                                fullname: doctor.fullName,
-                                specialist: doctor.specialist,
-                                description: doctor.description,
-                                price: doctor.price,
-                                alumnus: doctor.alumnus,
-                                alumnus2: doctor.alumnus2,
-                                practiceAddress: doctor.practiceAddress,
-                                strNumber: doctor.strNumber,
-                                statusOnline: doctor.statusOnline,
-                                workExperience: doctor.workExperience,
-                                propic: doctor.propic,
-                              );
-                            },
-                          )),
-                          child: GridTile(
-                            child: Card(
-                              shadowColor: greyColor,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                      child: doctor.propic.isEmpty
-                                          ? Image.asset(
-                                              'assets/images/doctor1.png',
-                                              fit: BoxFit.contain,
+            Consumer<DoctorViewModel>(
+              builder: (context, value, child) {
+                return GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  // padding: EdgeInsets.all(4),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Jumlah kolom dalam GridView
+                    childAspectRatio:
+                        0.64, // Perbandingan aspek antara lebar dan tinggi item
+                    mainAxisSpacing: 6,
+                    crossAxisSpacing: 8,
+                  ),
+                  itemCount: value.doctors.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final doctor = value.doctors[index];
+                    if (value.doctors.isEmpty) {
+                      return CircularProgressIndicator(
+                        color: colorStyleFifth,
+                      );
+                    } else {
+                      return InkWell(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return DetailDoctorScreen(
+                              fullname: doctor.fullName,
+                              specialist: doctor.specialist,
+                              description: doctor.description,
+                              price: doctor.price,
+                              alumnus: doctor.alumnus,
+                              alumnus2: doctor.alumnus2,
+                              practiceAddress: doctor.practiceAddress,
+                              strNumber: doctor.strNumber,
+                              statusOnline: doctor.statusOnline,
+                              workExperience: doctor.workExperience,
+                              propic: doctor.propic,
+                            );
+                          },
+                        )),
+                        child: GridTile(
+                          child: Card(
+                            shadowColor: greyColor,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                    child: doctor.propic.isEmpty
+                                        ? Image.asset(
+                                            'assets/images/doctor1.png',
+                                            fit: BoxFit.contain,
+                                          )
+                                        : Image.network(
+                                            doctor.propic,
+                                            height: 150,
+                                            fit: BoxFit.cover,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                          )),
+                                SizedBox(
+                                  height: 28,
+                                  child: Container(
+                                    color: const Color(0xffd8d8d8),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8, right: 8),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                                height: 29,
+                                                width: 29,
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: offlineColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    child: Iconify(
+                                                      Ph.chat_circle_dots_bold,
+                                                      color: whiteColor,
+                                                    ))),
+                                            Text(
+                                              doctor.statusOnline
+                                                  ? AppLocalizations.of(
+                                                          context)!
+                                                      .consultationSixth
+                                                  : 'Not Available',
+                                              // 'Tersedia',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12,
+                                                  fontWeight: semiBold),
+                                            ),
+                                            CircleAvatar(
+                                              backgroundColor:
+                                                  doctor.statusOnline
+                                                      ? onlineColor
+                                                      : offlineColor,
+                                              radius: 7,
                                             )
-                                          : Image.network(
-                                              doctor.propic,
-                                              height: 150,
-                                              fit: BoxFit.cover,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                            )),
-                                  SizedBox(
-                                    height: 28,
-                                    child: Container(
-                                      color: const Color(0xffd8d8d8),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              SizedBox(
-                                                  height: 29,
-                                                  width: 29,
-                                                  child: Container(
-                                                      decoration: BoxDecoration(
-                                                          color: offlineColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8)),
-                                                      child: Iconify(
-                                                        Ph.chat_circle_dots_bold,
-                                                        color: whiteColor,
-                                                      ))),
-                                              Text(
-                                                doctor.statusOnline
-                                                    ? AppLocalizations.of(
-                                                            context)!
-                                                        .consultationSixth
-                                                    : 'Not Available',
-                                                // 'Tersedia',
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 12,
-                                                    fontWeight: semiBold),
-                                              ),
-                                              CircleAvatar(
-                                                backgroundColor:
-                                                    doctor.statusOnline
-                                                        ? onlineColor
-                                                        : offlineColor,
-                                                radius: 7,
-                                              )
-                                            ]),
+                                          ]),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(7),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        doctor.fullName,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 10, fontWeight: semiBold),
                                       ),
-                                    ),
+                                      Text(
+                                        doctor.specialist,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 9, fontWeight: reguler),
+                                      ),
+                                      Text(
+                                        doctor.description,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 8, fontWeight: reguler),
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
+                                      ),
+                                      SizedBox(
+                                        height: 14,
+                                        width: 59,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xffd8d8d8),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Icon(
+                                                  Icons.work,
+                                                  size: 10,
+                                                ),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                Text(
+                                                  '${doctor.workExperience} years',
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 8,
+                                                      fontWeight: reguler),
+                                                )
+                                              ]),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        NumberFormat.simpleCurrency(name: 'IDR')
+                                            .format(doctor.price),
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 12, fontWeight: semiBold),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(7),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          doctor.fullName,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 10,
-                                              fontWeight: semiBold),
-                                        ),
-                                        Text(
-                                          doctor.specialist,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 9, fontWeight: reguler),
-                                        ),
-                                        Text(
-                                          doctor.description,
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 8, fontWeight: reguler),
-                                        ),
-                                        const SizedBox(
-                                          height: 3,
-                                        ),
-                                        SizedBox(
-                                          height: 14,
-                                          width: 59,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: const Color(0xffd8d8d8),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Icon(
-                                                    Icons.work,
-                                                    size: 10,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 4,
-                                                  ),
-                                                  Text(
-                                                    '${doctor.workExperience} years',
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 8,
-                                                        fontWeight: reguler),
-                                                  )
-                                                ]),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          NumberFormat.simpleCurrency(
-                                                  name: 'IDR')
-                                              .format(doctor.price),
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 12,
-                                              fontWeight: semiBold),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        );
-                      }
-                    },
-                  );
-                },
-              ),
+                        ),
+                      );
+                    }
+                  },
+                );
+              },
             ),
           ],
         ),
