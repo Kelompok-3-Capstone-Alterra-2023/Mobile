@@ -223,8 +223,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           child: Center(
                                             child: Text(
                                               AppLocalizations.of(context)!
-                                                  .clearAll,
-                                              // 'Clear all',
+                                                  .btnCancelled,
+                                              // 'Cancel',
                                               style: GoogleFonts.poppins(
                                                   fontSize: 14,
                                                   fontWeight: semiBold),

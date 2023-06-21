@@ -22,7 +22,7 @@ class Doctor {
   String practiceAddress;
   int price;
   int balance;
-  String photo;
+  String propic;
   String cv;
   String ijazah;
   String str;
@@ -58,7 +58,7 @@ class Doctor {
     required this.practiceAddress,
     required this.price,
     required this.balance,
-    required this.photo,
+    required this.propic,
     required this.cv,
     required this.ijazah,
     required this.str,
@@ -96,7 +96,7 @@ class Doctor {
       practiceAddress: json['practice_address'],
       price: json['price'],
       balance: json['balance'],
-      photo: json['photo'],
+      propic: json['propic'],
       cv: json['cv'],
       ijazah: json['ijazah'],
       str: json['str'],

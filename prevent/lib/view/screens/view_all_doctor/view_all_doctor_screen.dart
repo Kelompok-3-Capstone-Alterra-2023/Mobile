@@ -91,6 +91,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                               strNumber: doctor.strNumber,
                               statusOnline: doctor.statusOnline,
                               workExperience: doctor.workExperience,
+                              propic: doctor.propic,
                             );
                           },
                         )),
@@ -103,13 +104,21 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                                 Column(
                                   children: [
                                     SizedBox(
-                                      width: 125,
-                                      height: 140,
-                                      child: Image.asset(
-                                        'assets/images/doctor_image.png',
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                                        width: 125,
+                                        height: 140,
+                                        child: doctor.propic.isEmpty
+                                            ? Image.asset(
+                                                'assets/images/doctor_image.png',
+                                                fit: BoxFit.fill,
+                                              )
+                                            : Image.network(
+                                                doctor.propic,
+                                                height: 150,
+                                                fit: BoxFit.fill,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                              )),
                                     Container(
                                       width: 125,
                                       height: 42,

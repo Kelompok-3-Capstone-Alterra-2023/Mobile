@@ -54,10 +54,12 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 14, right: 8, left: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.only(right: 8, left: 8),
+        child: ListView(
           children: [
+            const SizedBox(
+              height: 14,
+            ),
             Text(
               AppLocalizations.of(context)!.consultationFirst,
               // 'Pilih Cara Komunikasimu!',
@@ -126,12 +128,15 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
               child: Consumer<DoctorViewModel>(
                 builder: (context, value, child) {
                   return GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+
                     // padding: EdgeInsets.all(4),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Jumlah kolom dalam GridView
                       childAspectRatio:
-                          0.65, // Perbandingan aspek antara lebar dan tinggi item
+                          0.64, // Perbandingan aspek antara lebar dan tinggi item
                       mainAxisSpacing: 6,
                       crossAxisSpacing: 8,
                     ),
@@ -158,6 +163,7 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                 strNumber: doctor.strNumber,
                                 statusOnline: doctor.statusOnline,
                                 workExperience: doctor.workExperience,
+                                propic: doctor.propic,
                               );
                             },
                           )),
@@ -168,11 +174,19 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    child: Image.asset(
-                                      'assets/images/doctor1.png',
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
+                                      child: doctor.propic.isEmpty
+                                          ? Image.asset(
+                                              'assets/images/doctor1.png',
+                                              fit: BoxFit.contain,
+                                            )
+                                          : Image.network(
+                                              doctor.propic,
+                                              height: 150,
+                                              fit: BoxFit.cover,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                            )),
                                   SizedBox(
                                     height: 28,
                                     child: Container(

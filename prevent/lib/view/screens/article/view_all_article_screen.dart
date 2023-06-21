@@ -213,20 +213,20 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                                       AppLocalizations.of(context)!
                                           .viewAllArticleFourth,
                                       // 'Stress',
-                                      style: TextStyle(fontSize: 8),
+                                      style: const TextStyle(fontSize: 8),
                                     ),
                                   ),
                                 ),
                                 const SizedBox(height: 14),
                                 Flexible(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 32),
+                                    padding: const EdgeInsets.only(right: 32),
                                     child: Text(
                                       AppLocalizations.of(context)!
                                           .detailArticleFirst,
                                       // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
                                       overflow: TextOverflow.fade,
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                   ),
                                 ),

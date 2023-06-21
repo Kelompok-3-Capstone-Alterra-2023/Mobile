@@ -7,9 +7,11 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:prevent/view/screens/select_schedule/select_schedule_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
 import '../../../util/common.dart';
+import '../payment/payment_chat_screen.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
   final String fullname;
@@ -22,6 +24,7 @@ class DetailDoctorScreen extends StatelessWidget {
   final String strNumber;
   final bool statusOnline;
   final int workExperience;
+  final String propic;
 
   const DetailDoctorScreen({
     super.key,
@@ -35,6 +38,7 @@ class DetailDoctorScreen extends StatelessWidget {
     required this.strNumber,
     required this.statusOnline,
     required this.workExperience,
+    required this.propic,
   });
 
   @override
@@ -72,11 +76,17 @@ class DetailDoctorScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox.expand(
-                      child: Image.asset(
-                        'assets/images/doctor_wide.png',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                        child: propic.isEmpty
+                            ? Image.asset(
+                                'assets/images/doctor_wide.png',
+                                fit: BoxFit.fill,
+                              )
+                            : Image.network(
+                                propic,
+                                height: 150,
+                                fit: BoxFit.fill,
+                                width: MediaQuery.of(context).size.width,
+                              )),
                     Positioned(
                       right: 0,
                       child: Container(
@@ -211,14 +221,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                alumnus,
+                                alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                alumnus2,
+                                alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -347,7 +357,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PaymentChatScreen(),
+                                      ),
+                                    );
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),
@@ -394,7 +411,13 @@ class DetailDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return const SelectScheduleScreen();
+                                      },
+                                    ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),

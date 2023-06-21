@@ -197,16 +197,59 @@ class WarningDeleteAccount extends StatelessWidget {
                             ),
                             backgroundColor: dangerSecond,
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             debugPrint(provider.agreeToTheTermsAndConditions
                                 .toString());
 
                             if (provider.agreeToTheTermsAndConditions == true) {
                               debugPrint(provider.agreeToTheTermsAndConditions
                                   .toString());
-                              provider.deleteUser();
-                              // Logic SharedPrefrences LogOut
-                              logout(context);
+                              try {
+                                await provider.deleteUser();
+                                // Logic SharedPrefrences LogOut
+                                if (context.mounted) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Delete Success'),
+                                      content:
+                                          const Text('Delete Account Success'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            logout(context);
+                                          },
+                                          child: Text(
+                                            'OK',
+                                            style: TextStyle(
+                                                color: colorStyleFifth),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                                // logout(context);
+                              } catch (e) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Delete Failed'),
+                                    content: const Text(
+                                        'Delete Account Failed, Please Try Again Later'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: Text(
+                                          'OK',
+                                          style:
+                                              TextStyle(color: colorStyleFifth),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
