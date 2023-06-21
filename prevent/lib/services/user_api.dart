@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:prevent/util/common.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserApiService {
@@ -7,7 +8,7 @@ class UserApiService {
   Future<String> loginUser(String email, String password) async {
     try {
       final response = await dio.post(
-        'https://capstone-project.duckdns.org:8080/user/login',
+        '${Urls.baseUrl}${Urls.users}/login',
         data: {
           'email': email,
           'password': password,
@@ -31,7 +32,7 @@ class UserApiService {
       String email, String username, String password, String birthdate) async {
     try {
       final response = await dio.post(
-        'https://capstone-project.duckdns.org:8080/user/register',
+        '${Urls.baseUrl}${Urls.users}/register',
         data: {
           'email': email,
           'username': username,
@@ -56,7 +57,7 @@ class UserApiService {
       String birthdate, String otp) async {
     try {
       final response = await dio.post(
-        'https://capstone-project.duckdns.org:8080/user/register',
+        '${Urls.baseUrl}${Urls.users}/register',
         data: {
           'email': email,
           'username': username,
@@ -97,7 +98,7 @@ class UserApiService {
   Future<bool> deleteUser() async {
     try {
       final response =
-          await dio.delete('https://capstone-project.duckdns.org:8080/user/');
+          await dio.delete('${Urls.baseUrl}${Urls.users}/');
 
       if (response.statusCode == 200) {
         // Delete Success

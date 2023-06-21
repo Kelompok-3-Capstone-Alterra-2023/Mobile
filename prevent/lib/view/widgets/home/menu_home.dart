@@ -4,10 +4,13 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/view/screens/article/detail_article_screen.dart';
+import 'package:prevent/view/screens/article/search_article_screen.dart';
 import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
+import 'package:prevent/view_models/articles_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
@@ -17,7 +20,7 @@ class MenuHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> catagory = [
+    List<String> category = [
       'Semua',
       'Kesehatan Mental',
       'Stress',
@@ -27,7 +30,7 @@ class MenuHome extends StatelessWidget {
       'Miskin',
       'Kaya',
     ];
-    final ValueNotifier<int?> selectedCatagory = ValueNotifier(0);
+    final ValueNotifier<int?> selectedCategory = ValueNotifier(0);
 
     return Scaffold(
       drawer: const SideBar(),
@@ -55,7 +58,12 @@ class MenuHome extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchArticleScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Ri.search_line,
@@ -162,116 +170,165 @@ class MenuHome extends StatelessWidget {
               ],
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            // TODO: Fitur Sorting
-            child: Wrap(spacing: 8, direction: Axis.horizontal, children: [
-              const SizedBox(width: 2),
-              ...List<Widget>.generate(
-                catagory.length,
-                (int index) {
-                  return ListenableBuilder(
-                    listenable: selectedCatagory,
-                    builder: (context, child) {
-                      return ChoiceChip(
-                        side: BorderSide(color: colorStyleFifth, width: 1.2),
-                        selectedColor: colorStyleFifth,
-                        backgroundColor: Colors.transparent,
-                        labelStyle: GoogleFonts.poppins(
-                          fontWeight: medium,
-                          fontSize: 10,
-                          color: selectedCatagory.value == index
-                              ? whiteColor
-                              : colorStyleFifth,
-                        ),
-                        label: Text(catagory[index]),
-                        selected: selectedCatagory.value == index,
-                        onSelected: (bool selected) {
-                          if (selectedCatagory.value != index) {
-                            selectedCatagory.value = selected ? index : null;
-                          }
+          Column(
+            children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Wrap(spacing: 8, direction: Axis.horizontal, children: [
+                  const SizedBox(width: 2),
+                  ...List<Widget>.generate(
+                    category.length,
+                    (int index) {
+                      return ListenableBuilder(
+                        listenable: selectedCategory,
+                        builder: (context, child) {
+                          return ChoiceChip(
+                            side:
+                                BorderSide(color: colorStyleFifth, width: 1.2),
+                            selectedColor: colorStyleFifth,
+                            backgroundColor: Colors.transparent,
+                            labelStyle: GoogleFonts.poppins(
+                              fontWeight: medium,
+                              fontSize: 10,
+                              color: selectedCategory.value == index
+                                  ? whiteColor
+                                  : colorStyleFifth,
+                            ),
+                            label: Text(category[index]),
+                            selected: selectedCategory.value == index,
+                            onSelected: (bool selected) {
+                              if (selectedCategory.value != index) {
+                                selectedCategory.value = selected ? index : 0;
+                                if (selectedCategory.value != 0) {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticlesByCategory(category[index]);
+                                } else {
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticles();
+                                }
+                              }
+                            },
+                          );
                         },
                       );
                     },
-                  );
-                },
-              ).toList(),
-            ]),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 2,
-              itemBuilder: (context, index) {
+                  ).toList(),
+                ]),
+              ),
+              Consumer<ArticlesViewModel>(builder: (context, provider, child) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 18),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const DetailArticleScreen()));
-                    },
-                    child: Card(
-                      elevation: 5,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: double.infinity,
-                            child: Image.asset(
-                                'assets/images/dummy_artikel.png',
-                                fit: BoxFit.fitWidth),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: provider.articles.length,
+                    itemBuilder: (context, index) {
+                      final data = provider.articles[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 18),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailArticleScreen(
+                                          id: data.id,
+                                        )));
+                          },
+                          child: Card(
+                            elevation: 5,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  AppLocalizations.of(context)!.titleArticle,
-                                  // 'Ini Cara Menyembuhkan Trauma pada Anak yang Menjadi Korban Buliyying!',
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 10, fontWeight: medium),
+                                SizedBox(
+                                  width: double.infinity,
+                                  height: 157,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                    child: Image.network(
+                                      data.thumbnail,
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(
-                                  height: 11,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: BoxDecoration(
-                                      color: colorStyleThird.withOpacity(0.40),
-                                      border:
-                                          Border.all(color: colorStyleThird),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(3))),
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .subTitleArticle,
-                                    // 'Kesehatan Mental',
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: medium,
-                                        color: colorStyleFifth),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 14),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data.title,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 10, fontWeight: medium),
+                                      ),
+                                      const SizedBox(
+                                        height: 11,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                            color: colorStyleThird
+                                                .withOpacity(0.40),
+                                            border: Border.all(
+                                                color: colorStyleThird),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(3))),
+                                        child: Text(
+                                          // AppLocalizations.of(context)!
+                                          //     .subTitleArticle,
+                                          data.category,
+                                          // 'Kesehatan Mental',
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 10,
+                                              fontWeight: medium,
+                                              color: colorStyleFifth),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
-              },
-            ),
-          )
+              })
+            ],
+          ),
         ],
       ),
     );

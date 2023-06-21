@@ -1,145 +1,159 @@
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
-
+import 'package:prevent/view_models/articles_view_model.dart';
+import 'package:provider/provider.dart';
 import '../../../util/common.dart';
 
 class DetailArticleScreen extends StatelessWidget {
-  const DetailArticleScreen({super.key});
-
+  const DetailArticleScreen({super.key, required this.id});
+  final int id;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: whiteColor,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: blackColor,
-          ),
-        ),
-        title: Text(
-          AppLocalizations.of(context)!.subTitleArticle,
-          // 'Kesehatan Mental',
-          style: TextStyle(color: blackColor),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
+    final datas = context.read<ArticlesViewModel>().getDetailArticle(id);
+    return Consumer<ArticlesViewModel>(builder: (context, provider, child) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: whiteColor,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(
-              Icons.share,
+              Icons.arrow_back,
               color: blackColor,
             ),
           ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(0.01),
-          child: Container(
-            color: blackColor.withOpacity(0.3),
-            height: 1,
+          title: Text(
+            AppLocalizations.of(context)!.subTitleArticle,
+
+            // 'Kesehatan Mental',
+            style: TextStyle(color: blackColor),
           ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: ListView(
-          children: [
-            const SizedBox(height: 30),
-            Text(
-              AppLocalizations.of(context)!.detailArticleFirst,
-              // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
-              style: const TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: labelColor,
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      AppLocalizations.of(context)!.subTitleArticle,
-                      // 'Kesehatan Mental',
-                      style: TextStyle(fontSize: 8, color: colorNavBar),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  AppLocalizations.of(context)!.detailArticleSecond,
-                  // '30 menit',
-                  style: const TextStyle(fontSize: 8),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              AppLocalizations.of(context)!.detailArticleThird,
-              // 'Ditinjau oleh Dr. Fauzan Hakim M.Psi.Psi 25 April 2023',
-              style: const TextStyle(
-                fontStyle: FontStyle.italic,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.share,
+                color: blackColor,
               ),
-            ),
-            const SizedBox(height: 26),
-            Container(
-              height: 180,
-              width: double.infinity,
-              color: blackColor,
-              child: Image.asset(
-                'assets/images/image_article.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(height: 26),
-            Paragraph(
-              text: AppLocalizations.of(context)!.detailArticleFourth,
-              // text:'Prevent! Jakarta - Libur Lebaran yang cukup panjang menjadi waktu yang tepat bagi banyak orang untuk kembali ke kampung halaman dan berkumpul bersama keluarga. Bukan itu saja, ini menjadi momen kamu bisa beristirahat tanpa melakukan pekerjaan sehari-hari. Dengan begitu, energi akan kembali terkumpul saat libur Lebaran usai.'
-            ),
-            Paragraph(
-              text: AppLocalizations.of(context)!.detailArticleFifth,
-              // text:
-              //     'Namun, ada sebagian orang yang malah merasakan cemas, khawatir, dan tidak bersemangat untuk kembali melakukan rutinitas sehari-hari. Bahkan, kamu merasa sedih saat tiba di rumah ketika akan memulai pekerjaan dan kegiatan sehari-hari setelah libur Lebaran. Hati-hati, bisa jadi kamu ternyata mengalami holiday blues, lho!',
-            ),
-            Paragraph(
-              text: AppLocalizations.of(context)!.detailArticleSixth,
-              // text:
-              //     'Inilah Tanda Holiday Blues yang Perlu Kamu Waspadai\nBerlibur adalah salah satu cara yang baik untuk menjaga kesehatan mental. Kegiatan ini membantu kamu menurunkan tingkat stres, gangguan cemas, hingga depresi. Namun, waspada terhadap holiday blues atau post holiday syndrome yang bisa dialami oleh siapa saja setelah liburan panjang.',
-            ),
-            Paragraph(
-              text: AppLocalizations.of(context)!.detailArticleSeventh,
-              // text:
-              //     'Umumnya, kebahagiaan pengidap post holiday syndrome tidak akan bertahan lama. Setelah menjalani liburan, banyak orang yang kembali merasakan sedih atau perasaan tidak senang. Penyebab post holiday blues bisa terjadi akibat kelelahan baik secara fisik maupun psikis setelah melalui liburan yang panjang.',
             ),
           ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(0.01),
+            child: Container(
+              color: blackColor.withOpacity(0.3),
+              height: 1,
+            ),
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class Paragraph extends StatelessWidget {
-  final String text;
-  final TextStyle style;
-
-  const Paragraph(
-      {super.key, required this.text, this.style = const TextStyle()});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      child: Text(
-        text,
-        style: style,
-      ),
-    );
+        body: FutureBuilder(
+            future: datas,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ListView(
+                    children: [
+                      const SizedBox(height: 30),
+                      Text(
+                        // AppLocalizations.of(context)!.detailArticleFirst,
+                        snapshot.data!.title,
+                        // 'Ini 9 Tanda Holiday Blues Setelah Libur Lebaran Selesai',
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: labelColor,
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                // AppLocalizations.of(context)!.subTitleArticle,
+                                snapshot.data!.category,
+                                // 'Kesehatan Mental',
+                                style:
+                                    TextStyle(fontSize: 8, color: colorNavBar),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            AppLocalizations.of(context)!.detailArticleSecond,
+                            // snapshot.data!.
+                            // '30 menit',
+                            style: const TextStyle(fontSize: 8),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        // AppLocalizations.of(context)!.detailArticleThird,
+                        '${snapshot.data!.doctorName} ${snapshot.data!.date}',
+                        // 'Ditinjau oleh Dr. Fauzan Hakim M.Psi.Psi 25 April 2023',
+                        style: const TextStyle(
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                      const SizedBox(height: 26),
+                      snapshot.data!.thumbnail.isNotEmpty
+                          ? Container(
+                              height: 180,
+                              width: double.infinity,
+                              color: shadowText,
+                              child: Image.network(
+                                // 'assets/images/image_article.png',
+                                snapshot.data!.thumbnail,
+                                fit: BoxFit.cover,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent? loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  }
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          : Container(
+                              height: 180,
+                              width: double.infinity,
+                              color: blackColor,
+                              child: Image.asset(
+                                'assets/images/image_article.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                      const SizedBox(height: 20),
+                      Html(
+                        data: snapshot.data!.content,
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return const SizedBox();
+              }
+            }),
+      );
+    });
   }
 }

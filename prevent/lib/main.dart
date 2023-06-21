@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/util/common.dart';
+import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:prevent/view_models/doctor_view_model.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
@@ -7,7 +8,6 @@ import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:prevent/view_models/settings_view_model.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
-import 'package:prevent/view_models/search_article_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
@@ -39,7 +39,10 @@ class MyApp extends StatelessWidget {
           create: (context) => SettingsViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => SearchArticleViewModel(),
+          create: (context) => ProfileViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ArticlesViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => DoctorViewModel(),

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:prevent/models/profile_model.dart';
+import 'package:prevent/util/common.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileApiService {
@@ -21,7 +22,8 @@ class ProfileApiService {
   Future<UserProfile> getProfile() async {
     try {
       final respone = await dio.get(
-          'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/');
+        '${Urls.baseUrl}${Urls.users}/',
+      );
       return UserProfile.fromJson(respone.data);
     } on DioException {
       rethrow;
@@ -30,8 +32,7 @@ class ProfileApiService {
 
   Future<Object> updateProfile(UserProfile newUserProfile) async {
     try {
-      final repsone = await dio.put(
-          'http://ec2-3-27-124-243.ap-southeast-2.compute.amazonaws.com:8080/user/',
+      final repsone = await dio.put('${Urls.baseUrl}${Urls.users}/',
           data: newUserProfile.toJson());
       return repsone;
     } on DioException {
