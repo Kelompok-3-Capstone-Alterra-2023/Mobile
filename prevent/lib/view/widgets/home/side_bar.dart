@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/help_center/help_center_screen.dart';
 import 'package:prevent/view/screens/settings/settings_screen.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:provider/provider.dart';
@@ -117,7 +118,11 @@ class SideBar extends StatelessWidget {
                     fontWeight: medium),
               ),
               onTap: () {
-                // Tindakan yang akan dijalankan saat menu 1 diklik
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HelpCenterScreen(),
+                    ));
               },
             ),
             const Spacer(),
