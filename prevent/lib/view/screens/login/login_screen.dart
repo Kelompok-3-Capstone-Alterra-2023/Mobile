@@ -6,6 +6,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/eva.dart';
 import 'package:prevent/view/screens/forgot_password/forgot_page.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
+import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -204,7 +205,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 try {
                                   final email = emailController.text;
                                   final password = passwordController.text;
-
+                                  if (context.mounted) {
+                                    context.read<HomeViewModel>().selectedIndex=0;
+                                  }
                                   await value.loginUser(email, password);
                                   Navigator.pushAndRemoveUntil(context,
                                       MaterialPageRoute(
