@@ -5,8 +5,8 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
 import 'package:prevent/util/common.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/notification/notificationConsul_screen.dart';
-import 'package:prevent/view/screens/notification/notificationPayment_screen.dart';
+import 'package:prevent/view/screens/notification/notification_consul_screen.dart';
+import 'package:prevent/view/screens/notification/notification_payment_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
@@ -82,7 +82,7 @@ class NotificationScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'kak! Jadwal konsultasi dimulai pada 17 Juni ...',
+                            'Hi, Kak! Jadwal konsultasi dimulai pada 22 Juni 2023 ...',
                             style: GoogleFonts.poppins(
                                 fontSize: 12, fontWeight: reguler),
                           )
