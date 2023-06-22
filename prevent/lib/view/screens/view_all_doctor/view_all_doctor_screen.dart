@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/ph.dart';
 import 'package:iconify_flutter/icons/ri.dart';
+import 'package:intl/intl.dart';
 // import 'package:colorful_iconify_flutter/icons/emojione.dart'; // for Colorful Icons
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/detail_doctor/detail_doctor_screen.dart';
+import 'package:provider/provider.dart';
 import '../../../util/common.dart';
-import '../../widgets/home/side_bar.dart';
+import '../../../view_models/doctor_view_model.dart';
 import 'custom_search.dart';
 
-class ViewAllDoctorScreen extends StatelessWidget {
+class ViewAllDoctorScreen extends StatefulWidget {
   const ViewAllDoctorScreen({super.key});
+
+  @override
+  State<ViewAllDoctorScreen> createState() => _ViewAllDoctorScreenState();
+}
+
+class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<DoctorViewModel>().fetchDoctors();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +50,6 @@ class ViewAllDoctorScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const SideBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: Column(
@@ -57,152 +71,190 @@ class ViewAllDoctorScreen extends StatelessWidget {
               height: 8,
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        child: Row(
-                          children: [
-                            // Kiri
-                            Column(
+              child: Consumer<DoctorViewModel>(
+                builder: (context, value, child) {
+                  return ListView.builder(
+                    itemCount: value.doctors.length,
+                    itemBuilder: (context, index) {
+                      final doctor = value.doctors[index];
+                      return InkWell(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return DetailDoctorScreen(
+                              fullname: doctor.fullName,
+                              specialist: doctor.specialist,
+                              description: doctor.description,
+                              price: doctor.price,
+                              alumnus: doctor.alumnus,
+                              alumnus2: doctor.alumnus2,
+                              practiceAddress: doctor.practiceAddress,
+                              strNumber: doctor.strNumber,
+                              statusOnline: doctor.statusOnline,
+                              workExperience: doctor.workExperience,
+                              propic: doctor.propic,
+                            );
+                          },
+                        )),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Card(
+                            child: Row(
                               children: [
-                                SizedBox(
-                                  width: 125,
-                                  height: 140,
-                                  child: Image.asset(
-                                    'assets/images/doctor_image.png',
-                                    fit: BoxFit.cover,
-                                  ),
+                                // Kiri
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                        width: 125,
+                                        height: 140,
+                                        child: doctor.propic.isEmpty
+                                            ? Image.asset(
+                                                'assets/images/doctor_image.png',
+                                                fit: BoxFit.fill,
+                                              )
+                                            : Image.network(
+                                                doctor.propic,
+                                                height: 150,
+                                                fit: BoxFit.fill,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                              )),
+                                    Container(
+                                      width: 125,
+                                      height: 42,
+                                      color: greyColorSecond,
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          SizedBox(
+                                              height: 30,
+                                              width: 30,
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: offlineColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8)),
+                                                  child: Iconify(
+                                                    Ph.chat_circle_dots_bold,
+                                                    color: whiteColor,
+                                                  ))),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .consultationSixth,
+                                            // 'Tersedia',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 12,
+                                                fontWeight: semiBold),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          CircleAvatar(
+                                            backgroundColor: doctor.statusOnline
+                                                ? onlineColor
+                                                : offlineColor,
+                                            radius: 7,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Container(
-                                  width: 125,
-                                  height: 42,
-                                  color: greyColorSecond,
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 4,
-                                      ),
-                                      Image.asset(
-                                        'assets/images/ph_chat-circle-dots.png',
-                                        width: 30,
-                                        height: 30,
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!
-                                            .consultationSixth,
-                                        // 'Tersedia',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 12, fontWeight: semiBold),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Image.asset(
-                                        'assets/images/dots_green.png',
-                                        width: 12,
-                                        height: 12,
-                                      )
-                                    ],
+
+                                // Kanan
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          doctor.fullName,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 12,
+                                            fontWeight: bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(
+                                          doctor.specialist,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 12,
+                                            fontWeight: medium,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Text(
+                                          doctor.description,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 10,
+                                            fontWeight: medium,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          width: 90,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            color: greyColorSecond,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.work,
+                                                color: Colors.black,
+                                              ),
+                                              const SizedBox(
+                                                width: 4,
+                                              ),
+                                              Text(
+                                                '${doctor.workExperience} years',
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 10,
+                                                    fontWeight: semiBold),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          NumberFormat.simpleCurrency(
+                                                  name: 'IDR')
+                                              .format(doctor.price),
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 14, fontWeight: bold),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-
-                            // Kanan
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Fauzan Hakim M.Psi, Psikolog',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: bold,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .consultationSeventh,
-                                      // 'Psikolog Klinis',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: medium,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .consultationEighth,
-                                      // 'Trauma, Stress, Depresi',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: medium,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Container(
-                                      width: 90,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        color: greyColorSecond,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
-                                            Icons.work,
-                                            color: Colors.black,
-                                          ),
-                                          const SizedBox(
-                                            width: 4,
-                                          ),
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .consultationNinth,
-                                            // '4 Tahun',
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 10,
-                                                fontWeight: semiBold),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      'RP. 200.000',
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14, fontWeight: bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),

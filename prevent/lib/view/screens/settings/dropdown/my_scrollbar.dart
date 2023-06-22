@@ -11,8 +11,7 @@ class MyScrollbar extends StatefulWidget {
     Key? key,
     this.scrollController,
     required this.builder,
-  })  : assert(builder != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _MyScrollbarState createState() => _MyScrollbarState();

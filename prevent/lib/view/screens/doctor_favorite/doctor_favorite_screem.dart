@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/detail_doctor/detail_doctor_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
 import '../../../util/common.dart';
@@ -127,11 +126,11 @@ class DoctorFavoriteScreen extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: FozButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const DetailDoctorScreen(),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const DetailDoctorScreen(),
+                        //     ));
                       },
                       height: 35,
                       width: 85,

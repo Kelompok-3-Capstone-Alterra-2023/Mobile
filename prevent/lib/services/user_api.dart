@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:prevent/util/common.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserApiService {
   final Dio dio = Dio();
@@ -28,11 +29,16 @@ class UserApiService {
   }
 
   Future<bool> registerUser(
-      String email, String username, String password) async {
+      String email, String username, String password, String birthdate) async {
     try {
       final response = await dio.post(
         '${Urls.baseUrl}${Urls.users}/register',
-        data: {'email': email, 'username': username, 'password': password},
+        data: {
+          'email': email,
+          'username': username,
+          'password': password,
+          'birthdate': birthdate
+        },
       );
 
       if (response.statusCode == 200) {
@@ -47,8 +53,8 @@ class UserApiService {
     }
   }
 
-  Future<bool> checkOtp(
-      String email, String username, String password, String otp) async {
+  Future<bool> checkOtp(String email, String username, String password,
+      String birthdate, String otp) async {
     try {
       final response = await dio.post(
         '${Urls.baseUrl}${Urls.users}/register',
@@ -56,6 +62,7 @@ class UserApiService {
           'email': email,
           'username': username,
           'password': password,
+          'birthdate': birthdate,
           'otp': otp
         },
       );
@@ -66,6 +73,38 @@ class UserApiService {
         return false;
       } else {
         // OTP verification failed
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  UserApiService() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          SharedPreferences pref = await SharedPreferences.getInstance();
+          final String? token = pref.getString('token');
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+    );
+  }
+
+  Future<bool> deleteUser() async {
+    try {
+      final response =
+          await dio.delete('${Urls.baseUrl}${Urls.users}/');
+
+      if (response.statusCode == 200) {
+        // Delete Success
+        return true;
+      } else {
+        // Delete failed
         return false;
       }
     } catch (e) {
