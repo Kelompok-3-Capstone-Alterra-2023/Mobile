@@ -7,7 +7,6 @@ import 'package:prevent/view/screens/article/detail_article_screen.dart';
 import 'package:prevent/view/screens/article/search_article_screen.dart';
 import 'package:prevent/view/screens/article/view_all_article_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_screen.dart';
-import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:provider/provider.dart';
@@ -26,9 +25,6 @@ class MenuHome extends StatelessWidget {
       'Stress',
       'Depresi',
       'Gangguan Kepribadian',
-      'Mental Ill',
-      'Miskin',
-      'Kaya',
     ];
     final ValueNotifier<int?> selectedCategory = ValueNotifier(0);
 

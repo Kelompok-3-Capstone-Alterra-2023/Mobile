@@ -24,9 +24,6 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
     'Stress',
     'Depresi',
     'Gangguan Kepribadian',
-    'Mental Ill',
-    'Miskin',
-    'Kaya',
   ];
   final ValueNotifier<int?> selectedCategory = ValueNotifier(0);
   @override
@@ -106,9 +103,13 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                               if (selectedCategory.value != index) {
                                 selectedCategory.value = selected ? index : 0;
                                 if (selectedCategory.value != 0) {
-                                  context.read<ArticlesViewModel>().getArticlesByCategory(category[index]);
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticlesByCategory(category[index]);
                                 } else {
-                                  context.read<ArticlesViewModel>().getArticles();
+                                  context
+                                      .read<ArticlesViewModel>()
+                                      .getArticles();
                                 }
                               }
                             },
@@ -197,11 +198,14 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                                       const SizedBox(height: 14),
                                       Flexible(
                                         child: Padding(
-                                          padding: const EdgeInsets.only(right: 32),
+                                          padding:
+                                              const EdgeInsets.only(right: 32),
                                           child: Text(
                                             data.title,
-                                            overflow: TextOverflow.fade,
-                                            style: const TextStyle(fontSize: 12),
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            style:
+                                                const TextStyle(fontSize: 12),
                                           ),
                                         ),
                                       ),
