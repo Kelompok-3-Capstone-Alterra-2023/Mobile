@@ -90,7 +90,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!.callDetailDoctorFirst,
+                              AppLocalizations.of(context)!
+                                  .callDetailDoctorFirst,
                               // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
@@ -160,7 +161,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            AppLocalizations.of(context)!.callDetailDoctorFourth,
+                            AppLocalizations.of(context)!
+                                .callDetailDoctorFourth,
                             // '4 Tahun',
                             style: GoogleFonts.poppins(
                                 fontSize: 8, fontWeight: medium),
@@ -186,7 +188,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.callDetailDoctorFifth,
+                                AppLocalizations.of(context)!
+                                    .callDetailDoctorFifth,
                                 // 'Alumnus',
                                 style: GoogleFonts.poppins(
                                   fontSize: 10,
@@ -194,7 +197,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.callDetailDoctorSixth,
+                                AppLocalizations.of(context)!
+                                    .callDetailDoctorSixth,
                                 // 'Universitas Padjadjaran, 2019',
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
@@ -202,7 +206,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.callDetailDoctorSeventh,
+                                AppLocalizations.of(context)!
+                                    .callDetailDoctorSeventh,
                                 // 'Universitas Airlangga, 2016',
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
@@ -227,7 +232,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.callDetailDoctorEighth,
+                                AppLocalizations.of(context)!
+                                    .callDetailDoctorEighth,
                                 // 'Praktik di',
                                 style: GoogleFonts.poppins(
                                   fontSize: 10,
@@ -235,7 +241,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!.callDetailDoctorNinth,
+                                AppLocalizations.of(context)!
+                                    .callDetailDoctorNinth,
                                 // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
@@ -316,7 +323,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                       onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) => PaymentScreen())),
+                                              builder: (_) =>
+                                                  const PaymentScreen())),
                                       child: Text(
                                         AppLocalizations.of(context)!
                                             .callDetailDoctorEleventh,
@@ -375,7 +383,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      AppLocalizations.of(context)!.callDetailDoctorFourteenth,
+                                      AppLocalizations.of(context)!
+                                          .callDetailDoctorFourteenth,
                                       // 'Atur Tanggal & Waktu konsultasimu',
                                       style: GoogleFonts.poppins(
                                         fontSize: 12,

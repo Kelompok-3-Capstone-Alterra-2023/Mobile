@@ -17,7 +17,7 @@ class ConfirmChatPaymentScreen extends StatefulWidget {
 }
 
 class _ConfirmPaymentState extends State<ConfirmChatPaymentScreen> {
-  String text_status = 'Menunggu Pembayaran';
+  String textStatus = 'Menunggu Pembayaran';
   Timer? timer;
 
   @override
@@ -33,7 +33,7 @@ class _ConfirmPaymentState extends State<ConfirmChatPaymentScreen> {
 
     Timer(const Duration(seconds: 5), () {
       setState(() {
-        text_status = 'Berhasil'; // Mengubah teks setelah 5 detik
+        textStatus = 'Berhasil'; // Mengubah teks setelah 5 detik
       });
     });
   }
@@ -123,7 +123,7 @@ class _ConfirmPaymentState extends State<ConfirmChatPaymentScreen> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      text_status,
+                      textStatus,
                       style: GoogleFonts.poppins(
                           color: colorStyleSeventh,
                           fontSize: 12,

@@ -4,7 +4,7 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/confirm_payment/confirm_chat_payment_screen.dart';
 
 class PaymentChatScreen extends StatefulWidget {
-  PaymentChatScreen({Key? key}) : super(key: key);
+  const PaymentChatScreen({Key? key}) : super(key: key);
 
   @override
   State<PaymentChatScreen> createState() => _PaymentChatScreenState();
@@ -206,7 +206,7 @@ class PaymentRadio extends StatefulWidget {
   const PaymentRadio({super.key});
 
   @override
-  _PaymentRadioState createState() => _PaymentRadioState();
+  State<PaymentRadio> createState() => _PaymentRadioState();
 }
 
 class _PaymentRadioState extends State<PaymentRadio> {

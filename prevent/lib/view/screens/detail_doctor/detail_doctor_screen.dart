@@ -361,7 +361,8 @@ class DetailDoctorScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (_) => PaymentChatScreen(),
+                                        builder: (_) =>
+                                            const PaymentChatScreen(),
                                       ),
                                     );
                                   },

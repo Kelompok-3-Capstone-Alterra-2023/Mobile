@@ -324,7 +324,7 @@ class DetailChatDoctorScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  PaymentChatScreen())),
+                                                  const PaymentChatScreen())),
                                       child: Text(
                                         AppLocalizations.of(context)!
                                             .callDetailDoctorEleventh,
