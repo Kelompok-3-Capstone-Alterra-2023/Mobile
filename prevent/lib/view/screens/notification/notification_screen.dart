@@ -7,7 +7,7 @@ import 'package:prevent/util/common.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/notification/notification_consul_screen.dart';
 import 'package:prevent/view/screens/notification/notification_payment_screen.dart';
-import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
+import 'package:prevent/view/screens/notification/search_notification_screen.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -43,7 +43,12 @@ class NotificationScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNotificationScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Ri.search_line,
