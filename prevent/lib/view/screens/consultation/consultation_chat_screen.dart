@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/widgets/chat_bubble_consultation.dart';
-import 'package:prevent/view/widgets/home/menu_home.dart';
+import 'package:prevent/view/screens/home/home_page.dart';
 
 class ConsultationChatScreen extends StatefulWidget {
   const ConsultationChatScreen({super.key});
@@ -41,7 +42,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MenuHome()));
+                                builder: (context) => const HomeScreen()));
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),
@@ -410,7 +411,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MenuHome()));
+                              builder: (context) => const HomePage()));
                     },
                     style: const ButtonStyle(
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
