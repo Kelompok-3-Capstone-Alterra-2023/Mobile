@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:prevent/models/profile_model.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/help_center/help_center_screen.dart';
+import 'package:prevent/view/screens/login/login_screen.dart';
 import 'package:prevent/view/screens/settings/settings_screen.dart';
 import 'package:prevent/view_models/home_view_model.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
@@ -25,20 +29,36 @@ class SideBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            ListTile(
-              title: RichText(
-                  text: TextSpan(
-                      // text: 'Nama Pengguna',
-                      text: AppLocalizations.of(context)!.titleUsername,
-                      style: GoogleFonts.inter(
-                          color: const Color(0xff2F5146),
-                          fontWeight: semiBold,
-                          fontSize: 15),
-                      children: [
-                    TextSpan(
-                        text: '\nEmailUser@email.com',
-                        style: GoogleFonts.inter(fontWeight: reguler))
-                  ])),
+            Consumer<ProfileViewModel>(
+              builder: (context, value, _) {
+                if (context.read<LoginViewModel>().isLogin) {
+                  UserProfile profile = value.userProfile;
+                  return ListTile(
+                    title: RichText(
+                        text: TextSpan(
+                            text: profile.username,
+                            style: GoogleFonts.inter(
+                                color: const Color(0xff2F5146),
+                                fontWeight: semiBold,
+                                fontSize: 15),
+                            children: [
+                          TextSpan(
+                              text: '\n${profile.email}',
+                              style: GoogleFonts.inter(fontWeight: reguler))
+                        ])),
+                  );
+                }
+                return TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ));
+                  },
+                  child: const Text('Sign In'),
+                );
+              },
             ),
             const SizedBox(
               height: 77,
@@ -79,7 +99,7 @@ class SideBar extends StatelessWidget {
                     fontWeight: medium),
               ),
               onTap: () {
-                // Tindakan yang akan dijalankan saat menu 1 diklik
+                Navigator.of(context).pop();
                 context.read<HomeViewModel>().selectedIndex = 1;
               },
             ),

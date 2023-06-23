@@ -18,15 +18,15 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   @override
   void initState() {
-    checkLogin();
+    checkOnBoarding();
     super.initState();
   }
 
-  void checkLogin() async {
+  void checkOnBoarding() async {
     SharedPreferences logindata = await SharedPreferences.getInstance();
-    final token = logindata.getString('token');
+    final bool alrdyOnBoarding = logindata.containsKey('onboarding_completed');
 
-    if (token != null && context.mounted) {
+    if (alrdyOnBoarding && context.mounted) {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -159,8 +159,10 @@ class _OnBoardingState extends State<OnBoarding> {
               height: 50,
               child: TextButton(
                 onPressed: () {
+                  setOnboardingCompleted();
+
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => const LoginScreen()));
+                      MaterialPageRoute(builder: (_) => const HomeScreen()));
                 },
                 style: TextButton.styleFrom(
                   side: BorderSide(
@@ -188,9 +190,9 @@ class _OnBoardingState extends State<OnBoarding> {
       ],
       onDone: () {
         setOnboardingCompleted();
-        checkLogin();
+        checkOnBoarding();
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
       },
       showSkipButton: true,
       showNextButton: true,

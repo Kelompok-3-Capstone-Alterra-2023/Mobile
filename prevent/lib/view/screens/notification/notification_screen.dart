@@ -3,12 +3,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/notification/notification_consul_screen.dart';
 import 'package:prevent/view/screens/notification/notification_payment_screen.dart';
+import 'package:prevent/view/widgets/home/sign_in_alert.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    if (!context.read<LoginViewModel>().isLogin) {
+      return const Center(
+        child: AlertLogin(),
+      );
+    }
     return Column(
       children: [
         Padding(

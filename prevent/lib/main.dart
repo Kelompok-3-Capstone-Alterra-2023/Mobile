@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => DoctorViewModel(),
         ),
-         ChangeNotifierProvider(
+        ChangeNotifierProvider(
           create: (context) => ProfileViewModel(),
         ),
       ],
