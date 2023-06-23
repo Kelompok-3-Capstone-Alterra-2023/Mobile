@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/view/screens/settings/delete_account.dart';
-import 'package:prevent/view/screens/settings/notificationSettings.dart';
+import 'package:prevent/view/screens/settings/notification_settings.dart';
 
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
@@ -43,7 +43,7 @@ class UserAccountSettings extends StatelessWidget {
                 // Navigasi ke Delete Account
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => DeleteAccount()),
+                  MaterialPageRoute(builder: (_) => const DeleteAccount()),
                 );
               },
               child: SizedBox(
@@ -78,7 +78,8 @@ class UserAccountSettings extends StatelessWidget {
                 // Navigasi ke Pengaturan Notifikasi
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => NotificationSettings()),
+                  MaterialPageRoute(
+                      builder: (_) => const NotificationSettings()),
                 );
               },
               child: SizedBox(

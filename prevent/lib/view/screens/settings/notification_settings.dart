@@ -51,7 +51,7 @@ class NotificationSettings extends StatelessWidget {
                   ),
                   trailing: Switch(
                     value: true,
-                    activeColor: Color(0XFF2D6248),
+                    activeColor: const Color(0XFF2D6248),
                     onChanged: (bool value) {
                       // This is called when the user toggles the switch.
                     },

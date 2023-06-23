@@ -10,9 +10,8 @@ class AppTimer extends StatefulWidget {
 
   const AppTimer({super.key, required this.start, this.fontColor, this.size});
 
-
   @override
-  _AppTimerState createState() => _AppTimerState();
+  State<AppTimer> createState() => _AppTimerState();
 }
 
 class _AppTimerState extends State<AppTimer> {
@@ -20,7 +19,6 @@ class _AppTimerState extends State<AppTimer> {
   late int _start;
   late double? _size;
   late Color? _fontColor;
-
 
   @override
   void initState() {

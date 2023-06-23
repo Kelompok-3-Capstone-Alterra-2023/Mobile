@@ -5,10 +5,14 @@ class ExpandedSection extends StatefulWidget {
   final int height;
   final bool expand;
 
-  ExpandedSection({this.expand = false, required this.child, required this.height});
+  const ExpandedSection(
+      {super.key,
+      this.expand = false,
+      required this.child,
+      required this.height});
 
   @override
-  _ExpandedSectionState createState() => _ExpandedSectionState();
+  State<ExpandedSection> createState() => _ExpandedSectionState();
 }
 
 class _ExpandedSectionState extends State<ExpandedSection>
@@ -25,8 +29,8 @@ class _ExpandedSectionState extends State<ExpandedSection>
 
   ///Setting up the animation
   void prepareAnimations() {
-    expandController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    expandController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
     animation = CurvedAnimation(
       parent: expandController,
       curve: Curves.fastOutSlowIn,
@@ -59,13 +63,17 @@ class _ExpandedSectionState extends State<ExpandedSection>
         axisAlignment: 1.0,
         sizeFactor: animation,
         child: Container(
-        
-          padding: EdgeInsets.only(bottom: 5),
+          padding: const EdgeInsets.only(bottom: 5),
           constraints: BoxConstraints(
               //minHeight: 100,
               minWidth: double.infinity,
-              maxHeight: widget.height > 5 ? 195 : widget.height == 1?55:widget.height * 50.0),
-          child: Padding(padding: const EdgeInsets.only(bottom: 5), child: widget.child),
+              maxHeight: widget.height > 5
+                  ? 195
+                  : widget.height == 1
+                      ? 55
+                      : widget.height * 50.0),
+          child: Padding(
+              padding: const EdgeInsets.only(bottom: 5), child: widget.child),
         ));
   }
 }

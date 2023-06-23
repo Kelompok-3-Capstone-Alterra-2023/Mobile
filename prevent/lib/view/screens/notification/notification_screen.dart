@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/notification/notificationConsul_screen.dart';
-import 'package:prevent/view/screens/notification/notificationPayment_screen.dart';
+import 'package:prevent/view/screens/notification/notification_consul_screen.dart';
+import 'package:prevent/view/screens/notification/notification_payment_screen.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});

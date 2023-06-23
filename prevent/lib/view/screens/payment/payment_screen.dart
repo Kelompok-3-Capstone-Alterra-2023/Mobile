@@ -186,8 +186,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => ConfirmPayment()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ConfirmPayment()));
                 },
                 child: Text(
                   'Bayar',
@@ -204,7 +206,7 @@ class PaymentRadio extends StatefulWidget {
   const PaymentRadio({super.key});
 
   @override
-  _PaymentRadioState createState() => _PaymentRadioState();
+  State<PaymentRadio> createState() => _PaymentRadioState();
 }
 
 class _PaymentRadioState extends State<PaymentRadio> {
