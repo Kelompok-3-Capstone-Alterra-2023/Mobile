@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/login/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../util/common.dart';
