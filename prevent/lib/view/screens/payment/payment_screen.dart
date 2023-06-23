@@ -4,7 +4,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({Key? key, required this.typeConsul}) : super(key: key);
+  final String typeConsul;
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -186,8 +187,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => ConfirmPayment()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            ConfirmPayment(typeConsul: widget.typeConsul),
+                      ));
                 },
                 child: Text(
                   'Bayar',
@@ -204,7 +209,7 @@ class PaymentRadio extends StatefulWidget {
   const PaymentRadio({super.key});
 
   @override
-  _PaymentRadioState createState() => _PaymentRadioState();
+  State<PaymentRadio> createState() => _PaymentRadioState();
 }
 
 class _PaymentRadioState extends State<PaymentRadio> {

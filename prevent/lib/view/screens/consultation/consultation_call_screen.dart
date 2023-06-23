@@ -7,15 +7,15 @@ import 'package:prevent/view/widgets/timer.dart';
 import '../../../util/common.dart';
 
 class ConsultationCallScreen extends StatefulWidget {
-  ConsultationCallScreen({Key? key}) : super(key: key);
+  const ConsultationCallScreen({Key? key}) : super(key: key);
 
   @override
   State<ConsultationCallScreen> createState() => _ConsultationCallScreenState();
 }
 
 class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
-  ResepAlert dialog = ResepAlert();
-  DialogCloseSession dialogClose = DialogCloseSession();
+  ResepAlert dialog = const ResepAlert();
+  DialogCloseSession dialogClose = const DialogCloseSession();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
