@@ -54,7 +54,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             child: Text(
               AppLocalizations.of(context)!.forgotPassSecond,
               // 'Jangan khawatir, Silahkan masukkan alamat email yang kamu gunakan di akunmu ya!',
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
             ),
           ),
           Container(
@@ -99,7 +99,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               child: Text(
                 AppLocalizations.of(context)!.forgotPassFourth,
                 // 'Lanjut',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 15),

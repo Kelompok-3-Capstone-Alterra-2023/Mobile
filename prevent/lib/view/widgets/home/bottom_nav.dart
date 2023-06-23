@@ -16,11 +16,6 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeViewModel>(context, listen: true);
-
-    void onItemTapped(int index) {
-      provider.selectedIndex = index;
-    }
-
     return Container(
       height: 74,
       decoration: BoxDecoration(
@@ -36,7 +31,6 @@ class _BottomNavState extends State<BottomNav> {
         currentIndex: provider.selectedIndex,
         selectedFontSize: 10,
         unselectedFontSize: 10,
-
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -80,9 +74,8 @@ class _BottomNavState extends State<BottomNav> {
             label: AppLocalizations.of(context)!.btmNavBarProfil,
           ),
         ],
-        onTap: onItemTapped,
+        onTap: (value) => provider.selectedIndex = value,
         selectedItemColor: colorNavBar,
-        // unselectedItemColor: const Color(0XFF696767),
       ),
     );
   }
