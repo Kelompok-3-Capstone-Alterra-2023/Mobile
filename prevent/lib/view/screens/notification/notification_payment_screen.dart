@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
+import 'package:prevent/view/screens/notification/search_notification_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../view_models/notifification_view_model.dart';
@@ -45,7 +45,12 @@ class _NotificationPaymentScreenState extends State<NotificationPaymentScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNotificationScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Zondicons.search,

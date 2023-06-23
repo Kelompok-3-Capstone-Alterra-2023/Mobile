@@ -9,9 +9,24 @@ import 'package:prevent/view/screens/notification/notification_consul_screen.dar
 import 'package:prevent/view/screens/notification/notification_payment_screen.dart';
 import 'package:prevent/view/screens/notification/search_notification_screen.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
+import 'package:provider/provider.dart';
 
-class NotificationScreen extends StatelessWidget {
+import '../../../view_models/notifification_view_model.dart';
+
+class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
+
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationViewModel>().getNotificationConsul();
+    context.read<NotificationViewModel>().getNotificationPayment();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -66,9 +66,12 @@ class NotificationViewModel extends ChangeNotifier {
     filteredPayments = payments.where((payment) {
       final message = payment.message.toLowerCase();
       final title = payment.title.toLowerCase();
+      final dateTime = payment.dateTime.toLowerCase();
       final searchLower = searchText.toLowerCase();
 
-      return message.contains(searchLower) || title.contains(searchLower);
+      return message.contains(searchLower) ||
+          title.contains(searchLower) ||
+          dateTime.contains(searchLower);
     }).toList();
 
     notifyListeners();
