@@ -20,9 +20,6 @@ class HomePage extends StatelessWidget {
       'Stress',
       'Depresi',
       'Gangguan Kepribadian',
-      'Mental Ill',
-      'Miskin',
-      'Kaya',
     ];
     final ValueNotifier<int?> selectedCategory = ValueNotifier(0);
 
