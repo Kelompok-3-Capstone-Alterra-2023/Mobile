@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prevent/view/widgets/home/menu_home.dart';
+import 'package:prevent/view/screens/home/home_page.dart';
 import '../view/screens/consultation_history/consultation_history_screen.dart';
 import '../view/screens/notification/notification_screen.dart';
 import '../view/screens/profile/profile_screen.dart';
@@ -21,7 +21,7 @@ class HomeViewModel extends ChangeNotifier {
   Widget? boddy() {
     switch (selectedIndex) {
       case 0:
-        return const MenuHome();
+        return const HomePage();
       case 1:
         return const ConsultationHistoryScreen();
       case 2:
