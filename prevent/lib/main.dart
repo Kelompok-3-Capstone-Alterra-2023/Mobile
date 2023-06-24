@@ -4,6 +4,7 @@ import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:prevent/view_models/doctor_view_model.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/notifification_view_model.dart';
 import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:prevent/view_models/settings_view_model.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProfileViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NotificationViewModel(),
         ),
       ],
       child: MaterialApp(

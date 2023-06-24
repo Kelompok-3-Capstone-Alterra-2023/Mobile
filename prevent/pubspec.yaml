@@ -76,7 +76,6 @@ dependencies:
   # WebView Flutter
   webview_flutter: ^4.2.2
   webview_flutter_android: ^3.8.0
- 
 
 dependency_overrides:
   qr_flutter:
@@ -123,6 +122,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/json/
     - assets/images/icon_prevent_rectangle.png
 
   #   - images/a_dot_ham.jpeg

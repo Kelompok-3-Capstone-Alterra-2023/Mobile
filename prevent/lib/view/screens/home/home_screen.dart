@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeViewModel>(context, listen: true);
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     final bool isLogin = context.read<LoginViewModel>().isLogin;
     PreferredSizeWidget? handleAppBar(int currentIndex) {
       switch (currentIndex) {
@@ -188,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: handleAppBar(provider.selectedIndex),
-      key: _scaffoldKey,
+      key: scaffoldKey,
       drawer: const SideBar(),
       body: provider.boddy(),
       bottomNavigationBar: const BottomNav(),

@@ -3,10 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
+import 'package:prevent/view/screens/notification/search_notification_screen.dart';
+import 'package:provider/provider.dart';
 
-class NotificationPaymentScreen extends StatelessWidget {
+import '../../../view_models/notifification_view_model.dart';
+
+class NotificationPaymentScreen extends StatefulWidget {
   const NotificationPaymentScreen({super.key});
+
+  @override
+  State<NotificationPaymentScreen> createState() =>
+      _NotificationPaymentScreenState();
+}
+
+class _NotificationPaymentScreenState extends State<NotificationPaymentScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationViewModel>().getNotificationPayment();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +45,12 @@ class NotificationPaymentScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNotificationScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Zondicons.search,
@@ -47,78 +67,88 @@ class NotificationPaymentScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ListView.separated(
-                itemCount: 10,
-                separatorBuilder: (context, index) => Divider(
-                  thickness: 2,
-                  color: greyColor,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      height: 130,
-                      width: MediaQuery.of(context).size.width,
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 60,
-                              height: 90,
-                              child: Image.asset(
-                                'assets/images/notif_Payment.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Pembayaran',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Opss! Transaksi pembayaran gagal. Silahkan pesan \nkembali.',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: reguler,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Row(
+              child: Consumer<NotificationViewModel>(
+                builder: (context, value, child) {
+                  return ListView.separated(
+                    itemCount: value.payments.length,
+                    separatorBuilder: (context, index) => Divider(
+                      thickness: 1,
+                      color: blackColor,
+                    ),
+                    itemBuilder: (context, index) {
+                      final notification = value.payments[index];
+                      return InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          // height: 95,
+                          width: MediaQuery.of(context).size.width,
+                          child: SizedBox(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 61,
+                                  height: 78,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: blackColor),
+                                  ),
+                                  child: Image.asset(
+                                    notification.image,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        const Iconify(
-                                          Zondicons.time,
-                                          size: 12,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
+                                        Text(
+                                          notification.title,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 12,
+                                            fontWeight: bold,
+                                          ),
                                         ),
                                         Text(
-                                          '24-04-28 10:36',
+                                          notification.message,
                                           style: GoogleFonts.poppins(
-                                            fontSize: 10,
+                                            fontSize: 12,
                                             fontWeight: reguler,
                                           ),
                                         ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Iconify(
+                                              Zondicons.time,
+                                              size: 12,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              notification.dateTime,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 10,
+                                                fontWeight: reguler,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),

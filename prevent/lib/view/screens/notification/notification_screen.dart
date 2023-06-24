@@ -7,8 +7,22 @@ import 'package:prevent/view/widgets/home/sign_in_alert.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:provider/provider.dart';
 
-class NotificationScreen extends StatelessWidget {
+import '../../../view_models/notifification_view_model.dart';
+
+class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
+
+  @override
+  State<NotificationScreen> createState() => _NotificationScreenState();
+}
+
+class _NotificationScreenState extends State<NotificationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationViewModel>().getNotificationConsul();
+    context.read<NotificationViewModel>().getNotificationPayment();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +60,7 @@ class NotificationScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'kak! Jadwal konsultasi dimulai pada 17 Juni ...',
+                          'Hi, Kak! Jadwal konsultasi dimulai pada 22 Juni 2023 ...',
                           style: GoogleFonts.poppins(
                               fontSize: 12, fontWeight: reguler),
                         )
