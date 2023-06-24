@@ -5,7 +5,7 @@ import 'package:prevent/util/theme.dart';
 import '../../util/common.dart';
 
 class ResepAlert extends StatefulWidget {
-  ResepAlert({Key? key}) : super(key: key);
+  const ResepAlert({Key? key}) : super(key: key);
 
   @override
   State<ResepAlert> createState() => _ResepAlertState();

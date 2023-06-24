@@ -31,7 +31,7 @@ class LanguageSelectSettings extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             SizedBox(
@@ -50,7 +50,7 @@ class LanguageSelectSettings extends StatelessWidget {
                     ),
                     trailing: Switch(
                       value: true,
-                      activeColor: Color(0XFF2D6248),
+                      activeColor: const Color(0XFF2D6248),
                       onChanged: (bool value) {
                         // This is called when the user toggles the switch.
                       },
@@ -75,7 +75,7 @@ class LanguageSelectSettings extends StatelessWidget {
                     ),
                     trailing: Switch(
                       value: true,
-                      activeColor: Color(0XFF2D6248),
+                      activeColor: const Color(0XFF2D6248),
                       onChanged: (bool value) {
                         // This is called when the user toggles the switch.
                       },

@@ -134,7 +134,7 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
               child: Text(
                 AppLocalizations.of(context)!.resetFourth,
                 // 'Kirim',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 15),
