@@ -21,6 +21,7 @@ class SelectScheduleScreen extends StatefulWidget {
   final String description;
   final int price;
   final String propic;
+  final String typeConsul;
   const SelectScheduleScreen(
       {super.key,
       required this.fullName,
@@ -28,7 +29,8 @@ class SelectScheduleScreen extends StatefulWidget {
       required this.specialist,
       required this.description,
       required this.price,
-      required this.propic});
+      required this.propic,
+      required this.typeConsul});
 
   @override
   State<SelectScheduleScreen> createState() => _SelectScheduleScreenState();

@@ -370,7 +370,8 @@ class DetailDoctorScreen extends StatelessWidget {
                                             description: description,
                                             price: price,
                                             propic: propic,
-                                            schedule: DateTime.now().toString(),
+                                            schedule:
+                                                '${DateFormat('EEEE, dd MMMM yyyy HH:mm:ss', 'id_ID').format(DateTime.now())} WIB',
                                             typeConsul: 'chat'),
                                       ),
                                     );
@@ -431,6 +432,7 @@ class DetailDoctorScreen extends StatelessWidget {
                                           description: description,
                                           price: price,
                                           propic: propic,
+                                          typeConsul: 'chat',
                                         );
                                       },
                                     ));

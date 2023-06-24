@@ -213,6 +213,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () async {
+                  debugPrint(widget.schedule);
                   try {
                     await provider.scheduleOrder(
                         widget.id,

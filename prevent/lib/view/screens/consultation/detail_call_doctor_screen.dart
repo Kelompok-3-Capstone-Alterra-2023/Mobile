@@ -10,6 +10,7 @@ import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
 import '../../../util/common.dart';
+import '../select_schedule/select_schedule_screen.dart';
 
 class DetailCallDoctorScreen extends StatelessWidget {
   const DetailCallDoctorScreen({
@@ -336,21 +337,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     InkWell(
-                                      onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (_) => PaymentScreen(
-                                              id: id,
-                                              fullName: fullname,
-                                              specialist: specialist,
-                                              description: description,
-                                              price: price,
-                                              propic: propic,
-                                              schedule:
-                                                  DateTime.now().toString(),
-                                              typeConsul: 'chat',
-                                            ),
-                                          )),
+                                      onTap: () {},
                                       child: Text(
                                         AppLocalizations.of(context)!
                                             .callDetailDoctorEleventh,
@@ -374,7 +361,23 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => PaymentScreen(
+                                            id: id,
+                                            fullName: fullname,
+                                            specialist: specialist,
+                                            description: description,
+                                            price: price,
+                                            propic: propic,
+                                            schedule:
+                                                '${DateFormat('EEEE, dd MMMM yyyy HH:mm:ss', 'id_ID').format(DateTime.now())} WIB',
+                                            typeConsul: 'call',
+                                          ),
+                                        ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),
@@ -421,7 +424,21 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return SelectScheduleScreen(
+                                          id: id,
+                                          fullName: fullname,
+                                          specialist: specialist,
+                                          description: description,
+                                          price: price,
+                                          propic: propic,
+                                          typeConsul: 'call',
+                                        );
+                                      },
+                                    ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),
