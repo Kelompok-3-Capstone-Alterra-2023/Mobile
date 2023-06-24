@@ -76,6 +76,8 @@ dependencies:
   # WebView Flutter
   webview_flutter: ^4.2.2
   webview_flutter_android: ^3.8.0
+  # WebSocket Flutter
+  web_socket_channel: ^2.4.0
 
 dependency_overrides:
   qr_flutter:

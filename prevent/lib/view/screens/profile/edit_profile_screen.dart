@@ -26,7 +26,7 @@ class EditProfileScreen extends StatelessWidget {
     final emailController = TextEditingController(text: userProfile.email);
     final addressController = TextEditingController(text: userProfile.alamat);
     final bornDateController = TextEditingController(
-      text: DateFormat('DD/MM/yyyy')
+      text: DateFormat('yyyy/MM/dd')
           .format(DateTime.parse(userProfile.birthdate)),
     );
     final ValueNotifier<String> selectedGender =
@@ -263,7 +263,7 @@ class EditProfileScreen extends StatelessWidget {
                             dialogCalendarPickerValue.value = values;
                             bornDateController.text = dialogCalendarPickerValue
                                 .value
-                                .map((e) => DateFormat('dd/MM/yyyy').format(e!))
+                                .map((e) => DateFormat('yyyy/MM/dd').format(e!))
                                 .join(',');
                           }
                         },
@@ -316,7 +316,7 @@ class EditProfileScreen extends StatelessWidget {
                                   telpon: phoneController.text,
                                   alamat: addressController.text,
                                   gender: selectedGender.value,
-                                  birthdate: DateFormat('DD/MM/yyyy')
+                                  birthdate: DateFormat('yyyy/MM/dd')
                                       .parse(bornDateController.text)
                                       .toString()));
                         } catch (e) {

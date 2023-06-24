@@ -3,6 +3,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/widgets/chat_bubble_consultation.dart';
 import 'package:prevent/view/screens/home/home_page.dart';
+import 'package:prevent/view_models/chat_view_model.dart';
+import 'package:provider/provider.dart';
 
 class ConsultationChatScreen extends StatefulWidget {
   const ConsultationChatScreen({super.key});
@@ -12,17 +14,11 @@ class ConsultationChatScreen extends StatefulWidget {
 }
 
 class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
-  List<dynamic> chatList = [
-    [
-      "Hai, perkenalkan nama saya dokter Alfiansyah apa yang dapat saya bantu hari ini?",
-      true
-    ],
-    [
-      "Saya ingin berkonsultasi terkait perasaan yang saya alami ketika keluarga saya terus memaksakan hal-hal yang tidak saya sukai.",
-      false
-    ],
-    ["Saya sering menyendiri", false],
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<ChatViewModel>().initializeWebSocket();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,72 +70,61 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
           ),
         ),
       ),
-      body: InkWell(
-        onTap: () {
-          // doctorPrescription(context);
-          exitChatDialog(context);
-        },
-        child: Column(
-          children: [
-            const SizedBox(height: 44),
-            const Text(
-              'Konsultasi dengan Dokter',
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+      body: Column(
+        children: [
+          const SizedBox(height: 44),
+          const Text(
+            'Konsultasi dengan Dokter',
+            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 65, right: 65, top: 20),
+            child: Text(
+              'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: shadowText, fontWeight: FontWeight.w400, fontSize: 15),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 65, right: 65, top: 20),
-              child: Text(
-                'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: shadowText,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Consumer<ChatViewModel>(
+                    builder: (context, value, child) {
+                      return ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(
+                            height: 10,
+                          );
+                        },
+                        itemCount: value.messages.length,
+                        itemBuilder: (context, index) {
+                          final chat = value.messages[index];
+                          return ChatBubbleConsultation(
+                              text: "${chat['message']}",
+                              isSender: chat['to'] == 47);
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10)
+                ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                reverse: true,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: 10,
-                        );
-                      },
-                      itemCount: chatList.length,
-                      itemBuilder: (context, index) {
-                        final chat = chatList[index];
-                        return ChatBubbleConsultation(
-                            text: chat[0], isSender: chat[1]);
-                      },
-                    ),
-                    // MessageBar(
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
+        elevation: 0,
         child: Container(
           padding: const EdgeInsets.all(8),
           margin: MediaQuery.of(context).viewInsets,
           height: 70,
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 8,
-                color: Colors.grey,
-              )
-            ],
-            color: Colors.grey[100],
-          ),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Container(
               height: 42,
@@ -159,6 +144,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
             const SizedBox(width: 30),
             Expanded(
               child: TextFormField(
+                controller: context.read<ChatViewModel>().controller,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -174,19 +160,22 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
               ),
             ),
             const SizedBox(width: 25),
-            Container(
-              height: 42,
-              width: 42,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border.fromBorderSide(
-                  BorderSide(color: blackColor),
+            InkWell(
+              onTap: () => context.read<ChatViewModel>().sendMessage(),
+              child: Container(
+                height: 42,
+                width: 42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.fromBorderSide(
+                    BorderSide(color: blackColor),
+                  ),
                 ),
-              ),
-              child: const Icon(
-                Icons.send,
-                color: Colors.black,
-                size: 24,
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
           ]),
