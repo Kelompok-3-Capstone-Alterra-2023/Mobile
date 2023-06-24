@@ -225,7 +225,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     if (context.mounted) {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
-                          return ConfirmPayment(typeConsul: widget.typeConsul);
+                          return ConfirmPayment(
+                              price: widget.price,
+                              typeConsul: widget.typeConsul,
+                              timeTransaction: DateFormat(
+                                      'EEEE, dd MMMM yyyy HH:mm:ss', 'id_ID')
+                                  .format(DateTime.now()));
                         },
                       ));
                     }
