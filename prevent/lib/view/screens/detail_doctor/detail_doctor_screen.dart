@@ -7,12 +7,14 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
-import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/screens/select_schedule/select_schedule_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
+
 import '../../../util/common.dart';
+import '../payment/payment_screen.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
+  final int id;
   final String fullname;
   final String specialist;
   final String description;
@@ -27,6 +29,7 @@ class DetailDoctorScreen extends StatelessWidget {
 
   const DetailDoctorScreen({
     super.key,
+    required this.id,
     required this.fullname,
     required this.specialist,
     required this.description,
@@ -77,8 +80,8 @@ class DetailDoctorScreen extends StatelessWidget {
                     SizedBox.expand(
                         child: propic.isEmpty
                             ? Image.asset(
-                                'assets/images/doctor_wide.png',
-                                fit: BoxFit.fill,
+                                'assets/images/doctor1.png',
+                                fit: BoxFit.cover,
                               )
                             : Image.network(
                                 propic,
@@ -360,9 +363,15 @@ class DetailDoctorScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (_) => const PaymentScreen(
-                                          typeConsul: 'chat',
-                                        ),
+                                        builder: (_) => PaymentScreen(
+                                            id: id,
+                                            fullName: fullname,
+                                            specialist: specialist,
+                                            description: description,
+                                            price: price,
+                                            propic: propic,
+                                            schedule: DateTime.now().toString(),
+                                            typeConsul: 'chat'),
                                       ),
                                     );
                                   },
@@ -415,7 +424,14 @@ class DetailDoctorScreen extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.push(context, MaterialPageRoute(
                                       builder: (context) {
-                                        return const SelectScheduleScreen();
+                                        return SelectScheduleScreen(
+                                          id: id,
+                                          fullName: fullname,
+                                          specialist: specialist,
+                                          description: description,
+                                          price: price,
+                                          propic: propic,
+                                        );
                                       },
                                     ));
                                   },

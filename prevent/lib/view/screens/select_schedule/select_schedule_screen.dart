@@ -7,13 +7,28 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/healthicons.dart';
 import 'package:iconify_flutter/icons/raphael.dart';
 import 'package:intl/intl.dart';
+import 'package:prevent/view/screens/payment/payment_screen.dart';
+import 'package:weekly_date_picker/datetime_apis.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class SelectScheduleScreen extends StatefulWidget {
-  const SelectScheduleScreen({super.key});
+  final int id;
+  final String fullName;
+  final String specialist;
+  final String description;
+  final int price;
+  final String propic;
+  const SelectScheduleScreen(
+      {super.key,
+      required this.fullName,
+      required this.id,
+      required this.specialist,
+      required this.description,
+      required this.price,
+      required this.propic});
 
   @override
   State<SelectScheduleScreen> createState() => _SelectScheduleScreenState();
@@ -24,11 +39,10 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
   String? selectedTime;
 
   Map<String, List<String>> timeOptions = {
-    'time1': ['10.00', '11.15'],
-    'time2': ['11.00', '11.30'],
-    'time3': ['13.00', '13.30', '13.45'],
-    'time4': ['14.00', '14.15', '14.30'],
-    'time5': ['16.00', '16.30'],
+    'time1': ['08:00', '09:00', '10:00', '11:00'],
+    'time2': ['13:00', '14:00'],
+    'time3': ['16:00', '17:00'],
+    'time4': ['19:00'],
   };
 
   @override
@@ -53,10 +67,18 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
               padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
               child: Row(
                 children: [
-                  Image.asset(
-                    'assets/images/doctor_image.png',
-                    height: 112,
-                    width: 107,
+                  SizedBox(
+                    child: widget.propic.isEmpty
+                        ? Image.asset(
+                            'assets/images/doctor_image.png',
+                            height: 112,
+                            width: 107,
+                          )
+                        : Image.network(
+                            widget.propic,
+                            height: 112,
+                            width: 107,
+                          ),
                   ),
                   const SizedBox(
                     width: 9,
@@ -65,24 +87,24 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Fauzan Hakim, M.Psi.',
+                        widget.fullName,
+                        overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: medium),
+                            fontSize: 18, fontWeight: medium),
                       ),
                       Text(
-                        AppLocalizations.of(context)!.selectScheduleSecond,
-                        // 'Psikolog',
+                        widget.specialist,
                         style: GoogleFonts.poppins(
-                            fontSize: 20, fontWeight: medium),
+                            fontSize: 18, fontWeight: medium),
                       ),
                       Text(
-                        AppLocalizations.of(context)!.selectScheduleThird,
-                        // 'Psikolog Klinis',
+                        widget.description,
                         style: GoogleFonts.poppins(
                             fontSize: 12, fontWeight: reguler),
                       ),
                       Text(
-                        NumberFormat.simpleCurrency(name: 'IDR').format(200000),
+                        NumberFormat.simpleCurrency(name: 'IDR')
+                            .format(widget.price),
                         style: GoogleFonts.poppins(
                             fontSize: 16, fontWeight: medium),
                       ),
@@ -130,17 +152,18 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                           digitsColor: blackColor,
                           weekdayTextColor: blackColor,
                           selectedDay: _selectedDay,
-                          changeDay: (value) => setState(
-                            () {
+                          changeDay: (value) => setState(() {
+                            final now = DateTime.now();
+                            if (value.isAfter(now) || value.isSameDateAs(now)) {
                               _selectedDay = value;
-                            },
-                          ),
+                            }
+                          }),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
-                          height: 340,
+                          height: 269,
                           width: MediaQuery.of(context).size.width,
                           child: Container(
                             color: whiteColor,
@@ -200,7 +223,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                           ),
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 25,
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
@@ -252,147 +275,128 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                   const BorderRadius.vertical(top: Radius.circular(10))),
           child: Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 16),
-            child: Column(
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.selectScheduleSixth,
-                  // 'Ketika sudah menjadwalkan konsultasi, Mohon diingat agar...',
-                  style: TextStyle(fontSize: 16, fontWeight: medium),
-                ),
-                const SizedBox(
-                  height: 33,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: colorStyleFifth,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Iconify(
-                        Raphael.clock,
-                        color: whiteColor,
-                      ),
+            child: Column(children: [
+              Text(
+                'Ketika sudah menjadwalkan konsultasi, Mohon diingat agar...',
+                style: TextStyle(fontSize: 16, fontWeight: medium),
+              ),
+              const SizedBox(
+                height: 33,
+              ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: colorStyleFifth,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Iconify(
+                      Raphael.clock,
+                      color: whiteColor,
                     ),
-                    const SizedBox(
-                      width: 19,
+                  ),
+                  const SizedBox(
+                    width: 19,
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      text: 'Mengikuti konsultasi ',
+                      style: TextStyle(fontSize: 11, color: blackColor),
+                      children: [
+                        TextSpan(
+                          text: 'tepat waktu, ',
+                          style: TextStyle(fontWeight: semiBold),
+                        ),
+                        const TextSpan(
+                          text:
+                              'dokter akan menunggu \ndi sesi konsultasi hingga anda hadir selama 10 menit.',
+                        ),
+                      ],
                     ),
-                    Text.rich(
-                      TextSpan(
-                        // text: 'Mengikuti konsultasi',
-                        text:
-                            AppLocalizations.of(context)!.selectScheduleSeventh,
-                        style: TextStyle(fontSize: 11, color: blackColor),
-                        children: [
-                          TextSpan(
-                            // text: 'tepat waktu,',
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleEighth,
-                            style: TextStyle(fontWeight: semiBold),
-                          ),
-                          TextSpan(
-                            // text:
-                            // 'dokter akan menunggu \ndi sesi konsultasi hingga anda hadir selama 10 menit.',
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleNinth,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 26,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: colorStyleFifth,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: SvgPicture.asset(
-                          'assets/icons/solar_call-chat-bold.svg',
-                          color: whiteColor),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 26,
+              ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: colorStyleFifth,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: SvgPicture.asset(
+                        'assets/icons/solar_call-chat-bold.svg',
+                        color: whiteColor),
+                  ),
+                  const SizedBox(
+                    width: 19,
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      text: 'Memberi kabar kepada Dokter jika ingin',
+                      style: TextStyle(fontSize: 11, color: blackColor),
+                      children: [
+                        TextSpan(
+                          text: ' membatalkan \njanji konsultasi',
+                          style: TextStyle(fontWeight: semiBold),
+                        ),
+                        const TextSpan(
+                          text:
+                              ' selambat-lambatnya 30 menit sebelum \njadwal yang ditentukan.',
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 19,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 26,
+              ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: colorStyleFifth,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Iconify(
+                      Healthicons.call_centre,
+                      color: whiteColor,
                     ),
-                    Text.rich(
-                      TextSpan(
-                        // text: 'Memberi kabar kepada Dokter jika ingin',
-                        text: AppLocalizations.of(context)!.selectScheduleTenth,
-                        style: TextStyle(fontSize: 11, color: blackColor),
-                        children: [
-                          TextSpan(
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleEleventh,
-                            // text: ' membatalkan \njanji konsultasi',
-                            style: TextStyle(fontWeight: semiBold),
-                          ),
-                          TextSpan(
-                            // text:
-                            //     ' selambat-lambatnya 30 menit sebelum \njadwal yang ditentukan.',
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleTwelfth,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 26,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: colorStyleFifth,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Iconify(
-                        Healthicons.call_centre,
-                        color: whiteColor,
-                      ),
+                  ),
+                  const SizedBox(
+                    width: 19,
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      text: 'Menginformasikan Customer Service jika',
+                      style: TextStyle(fontSize: 11, color: blackColor),
+                      children: [
+                        TextSpan(
+                          text: ' terdapat',
+                          style: TextStyle(fontWeight: semiBold),
+                        ),
+                        const TextSpan(
+                          text:
+                              ' \nkendala pada pengembalian dana ataupun Dokter yang \ntidak dapat hadir pada sesi konsultasi.',
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 19,
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        // text: 'Menginformasikan Customer Service jika',
-                        text: AppLocalizations.of(context)!
-                            .selectScheduleThirteenth,
-                        style: TextStyle(fontSize: 11, color: blackColor),
-                        children: [
-                          TextSpan(
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleFourteenth,
-                            // text: ' terdapat',
-                            style: TextStyle(fontWeight: semiBold),
-                          ),
-                          TextSpan(
-                            // text:
-                            //     ' \nkendala pada pengembalian dana ataupun Dokter yang \ntidak dapat hadir pada sesi konsultasi.',
-                            text: AppLocalizations.of(context)!
-                                .selectScheduleFifteenth,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                SizedBox(
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 38,
                   child: ElevatedButton(
@@ -401,17 +405,33 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                         shape: const RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10)))),
-                    onPressed: () {},
+                    onPressed: () {
+                      debugPrint(
+                          'tanggal ${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(_selectedDay)} jam $selectedTime');
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          final time =
+                              '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(_selectedDay)} $selectedTime:00 WIB';
+                          return PaymentScreen(
+                            id: widget.id,
+                            fullName: widget.fullName,
+                            specialist: widget.specialist,
+                            description: widget.description,
+                            price: widget.price,
+                            propic: widget.propic,
+                            schedule: time,
+                            typeConsul: 'chat',
+                          );
+                        },
+                      ));
+                    },
                     child: Text(
-                      AppLocalizations.of(context)!.selectScheduleSixteenth,
-                      // 'Oke',
+                      'Oke',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 12),
                     ),
-                  ),
-                )
-              ],
-            ),
+                  ))
+            ]),
           ),
         );
       },

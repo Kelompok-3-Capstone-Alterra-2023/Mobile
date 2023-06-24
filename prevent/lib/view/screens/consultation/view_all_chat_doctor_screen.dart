@@ -58,6 +58,7 @@ class ViewAllChatDoctorScreen extends StatelessWidget {
                         onTap: () => Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return DetailDoctorScreen(
+                              id: doctor.id,
                               fullname: doctor.fullName,
                               specialist: doctor.specialist,
                               description: doctor.description,
@@ -85,8 +86,8 @@ class ViewAllChatDoctorScreen extends StatelessWidget {
                                         height: 140,
                                         child: doctor.propic.isEmpty
                                             ? Image.asset(
-                                                'assets/images/doctor_image.png',
-                                                fit: BoxFit.fill,
+                                                'assets/images/doctor1.png',
+                                                fit: BoxFit.cover,
                                               )
                                             : Image.network(
                                                 doctor.propic,

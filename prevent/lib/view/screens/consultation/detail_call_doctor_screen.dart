@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ic.dart';
 import 'package:iconify_flutter/icons/material_symbols.dart';
-import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
@@ -13,19 +12,22 @@ import 'package:prevent/view/widgets/foz_button.dart';
 import '../../../util/common.dart';
 
 class DetailCallDoctorScreen extends StatelessWidget {
-  const DetailCallDoctorScreen(
-      {super.key,
-      required this.fullname,
-      required this.specialist,
-      required this.description,
-      required this.price,
-      required this.alumnus,
-      required this.alumnus2,
-      required this.practiceAddress,
-      required this.strNumber,
-      required this.statusOnline,
-      required this.workExperience,
-      required this.propic});
+  const DetailCallDoctorScreen({
+    super.key,
+    required this.id,
+    required this.fullname,
+    required this.specialist,
+    required this.description,
+    required this.price,
+    required this.alumnus,
+    required this.alumnus2,
+    required this.practiceAddress,
+    required this.strNumber,
+    required this.statusOnline,
+    required this.workExperience,
+    required this.propic,
+  });
+  final int id;
   final String fullname;
   final String specialist;
   final String description;
@@ -74,11 +76,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox.expand(
-                      child: Image.asset(
-                        'assets/images/doctor_wide.png',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                        child: propic.isEmpty
+                            ? Image.asset(
+                                'assets/images/doctor1.png',
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(propic)),
                     Positioned(
                       right: 0,
                       child: Container(
@@ -89,7 +92,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                               color: offlineColor,
                               borderRadius: BorderRadius.circular(8)),
                           child: Iconify(
-                            Ph.chat_circle_dots_bold,
+                            Mdi.telephone_in_talk,
                             color: whiteColor,
                           )),
                     ),
@@ -108,13 +111,13 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 7, right: 4),
                               child: CircleAvatar(
-                                backgroundColor: onlineColor,
+                                backgroundColor:
+                                    statusOnline ? onlineColor : offlineColor,
                                 radius: 7,
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!
-                                  .callDetailDoctorFirst,
+                              statusOnline ? 'Online' : 'Offline',
                               // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
@@ -140,7 +143,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Fauzan Hakim M.Psi, Psikolog',
+                            fullname,
                             style: GoogleFonts.poppins(
                                 fontSize: 16, fontWeight: semiBold),
                           ),
@@ -155,14 +158,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      AppLocalizations.of(context)!.callDetailDoctorSecond,
-                      // 'Psikolog Klinis',
+                      specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.callDetailDoctorThird,
-                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      description,
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -184,9 +185,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            AppLocalizations.of(context)!
-                                .callDetailDoctorFourth,
-                            // '4 Tahun',
+                            '$workExperience years',
                             style: GoogleFonts.poppins(
                                 fontSize: 8, fontWeight: medium),
                           )
@@ -194,7 +193,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      NumberFormat.simpleCurrency(name: 'IDR').format(200000),
+                      NumberFormat.simpleCurrency(name: 'IDR').format(price),
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: semiBold),
                     ),
@@ -220,18 +219,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorSixth,
-                                // 'Universitas Padjadjaran, 2019',
+                                alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorSeventh,
-                                // 'Universitas Airlangga, 2016',
+                                alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -264,9 +259,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorNinth,
-                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                practiceAddress,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -293,7 +286,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '14248822203190653321',
+                                strNumber,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -346,8 +339,17 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                       onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (_) => const PaymentScreen(
-                                                typeConsul: 'call'),
+                                            builder: (_) => PaymentScreen(
+                                              id: id,
+                                              fullName: fullname,
+                                              specialist: specialist,
+                                              description: description,
+                                              price: price,
+                                              propic: propic,
+                                              schedule:
+                                                  DateTime.now().toString(),
+                                              typeConsul: 'chat',
+                                            ),
                                           )),
                                       child: Text(
                                         AppLocalizations.of(context)!

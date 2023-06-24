@@ -1,11 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
+import 'package:prevent/view_models/schedule_view_model.dart';
+import 'package:provider/provider.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key, required this.typeConsul}) : super(key: key);
+  final int id;
+  final String fullName;
+  final String specialist;
+  final String description;
+  final int price;
+  final String schedule;
+  final String propic;
   final String typeConsul;
+  const PaymentScreen(
+      {Key? key,
+      required this.id,
+      required this.fullName,
+      required this.specialist,
+      required this.description,
+      required this.price,
+      required this.schedule,
+      required this.typeConsul,
+      required this.propic})
+      : super(key: key);
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -14,6 +33,7 @@ class PaymentScreen extends StatefulWidget {
 class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ScheduleOrderViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -49,8 +69,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       width: 80,
                       height: 80,
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset('assets/images/doctor_image.png')),
+                        borderRadius: BorderRadius.circular(10),
+                        child: widget.propic.isEmpty
+                            ? Image.asset('assets/images/doctor_image.png')
+                            : Image.network(widget.propic),
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -59,17 +82,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Fauzan',
+                          widget.fullName,
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Text(
-                          'Psikolog Klinis',
+                          widget.specialist,
                           style: GoogleFonts.poppins(
                               fontSize: 12, fontWeight: reguler),
                         ),
                         Text(
-                          'Trauma, Stress, Depresi',
+                          widget.description,
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: reguler),
                         ),
@@ -101,7 +124,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               fontSize: 10, fontWeight: reguler),
                         ),
                         Text(
-                          'Rp200.000',
+                          NumberFormat.simpleCurrency(name: 'IDR')
+                              .format(widget.price),
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: reguler),
                         ),
@@ -121,7 +145,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Rp200.000',
+                          NumberFormat.simpleCurrency(name: 'IDR')
+                              .format(widget.price),
                           style: GoogleFonts.poppins(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
@@ -165,7 +190,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Text(
-                          'Rp202.000',
+                          NumberFormat.simpleCurrency(name: 'IDR')
+                              .format(widget.price + 2000),
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         )
@@ -186,13 +212,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     ),
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            ConfirmPayment(typeConsul: widget.typeConsul),
-                      ));
+                onPressed: () async {
+                  try {
+                    await provider.scheduleOrder(
+                        widget.id,
+                        widget.schedule.toString(),
+                        2000,
+                        widget.price,
+                        widget.typeConsul);
+                  } catch (e) {
+                    rethrow;
+                  }
                 },
                 child: Text(
                   'Bayar',
@@ -247,7 +277,7 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 style: GoogleFonts.poppins(fontSize: 15),
               ),
               Text(
-                'Rp2.000',
+                NumberFormat.simpleCurrency(name: 'IDR').format(2000),
                 style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
@@ -272,7 +302,7 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 style: GoogleFonts.poppins(fontSize: 15),
               ),
               Text(
-                'Rp2.500',
+                NumberFormat.simpleCurrency(name: 'IDR').format(2500),
                 style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
@@ -297,7 +327,7 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 style: GoogleFonts.poppins(fontSize: 15),
               ),
               Text(
-                'Rp1.500',
+                NumberFormat.simpleCurrency(name: 'IDR').format(1500),
                 style: GoogleFonts.poppins(fontSize: 15),
               )
             ],
@@ -322,7 +352,7 @@ class _PaymentRadioState extends State<PaymentRadio> {
                 style: GoogleFonts.poppins(fontSize: 15),
               ),
               Text(
-                'Rp1.500',
+                NumberFormat.simpleCurrency(name: 'IDR').format(1500),
                 style: GoogleFonts.poppins(fontSize: 15),
               )
             ],

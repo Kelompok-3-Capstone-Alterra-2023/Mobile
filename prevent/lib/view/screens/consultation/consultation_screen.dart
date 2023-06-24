@@ -162,6 +162,7 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                 Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return DetailDoctorScreen(
+                                  id: doctor.id,
                                   fullname: doctor.fullName,
                                   specialist: doctor.specialist,
                                   description: doctor.description,
@@ -223,11 +224,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                                           color: whiteColor,
                                                         ))),
                                                 Text(
-                                                  doctor.statusOnline
-                                                      ? AppLocalizations.of(
-                                                              context)!
-                                                          .consultationSixth
-                                                      : 'Not Available',
+                                                  AppLocalizations.of(context)!
+                                                      .consultationSixth,
                                                   // 'Tersedia',
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 12,
