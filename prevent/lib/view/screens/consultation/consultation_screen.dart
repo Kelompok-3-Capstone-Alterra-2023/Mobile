@@ -191,8 +191,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                               )
                                             : Image.network(
                                                 doctor.propic,
-                                                height: 150,
-                                                fit: BoxFit.cover,
+                                                height: 130,
+                                                fit: BoxFit.fill,
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width,

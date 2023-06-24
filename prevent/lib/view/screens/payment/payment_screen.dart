@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
+import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 import 'package:prevent/view_models/schedule_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -71,7 +72,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: widget.propic.isEmpty
-                            ? Image.asset('assets/images/doctor_image.png')
+                            ? Image.asset('assets/images/doctor1.png')
                             : Image.network(widget.propic),
                       ),
                     ),
@@ -221,6 +222,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         2000,
                         widget.price,
                         widget.typeConsul);
+                    if (context.mounted) {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return ConfirmPayment(typeConsul: widget.typeConsul);
+                        },
+                      ));
+                    }
                   } catch (e) {
                     rethrow;
                   }

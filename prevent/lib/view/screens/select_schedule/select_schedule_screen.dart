@@ -8,7 +8,8 @@ import 'package:iconify_flutter/icons/healthicons.dart';
 import 'package:iconify_flutter/icons/raphael.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/view/screens/payment/payment_screen.dart';
-import 'package:weekly_date_picker/datetime_apis.dart';
+import 'package:prevent/view_models/schedule_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
 import '../../../util/common.dart';
@@ -37,7 +38,6 @@ class SelectScheduleScreen extends StatefulWidget {
 }
 
 class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
-  DateTime _selectedDay = DateTime.now();
   String? selectedTime;
 
   Map<String, List<String>> timeOptions = {
@@ -49,6 +49,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ScheduleOrderViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: blackColor),
@@ -72,7 +73,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                   SizedBox(
                     child: widget.propic.isEmpty
                         ? Image.asset(
-                            'assets/images/doctor_image.png',
+                            'assets/images/doctor1.png',
                             height: 112,
                             width: 107,
                           )
@@ -153,13 +154,8 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                           selectedDigitColor: whiteColor,
                           digitsColor: blackColor,
                           weekdayTextColor: blackColor,
-                          selectedDay: _selectedDay,
-                          changeDay: (value) => setState(() {
-                            final now = DateTime.now();
-                            if (value.isAfter(now) || value.isSameDateAs(now)) {
-                              _selectedDay = value;
-                            }
-                          }),
+                          selectedDay: provider.selectedDay,
+                          changeDay: provider.changeDay,
                         ),
                         const SizedBox(
                           height: 20,
@@ -237,7 +233,15 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)))),
                             onPressed: () {
-                              showBottomSheet(context);
+                              if (selectedTime == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Please choose time first!'),
+                                  ),
+                                );
+                              } else {
+                                showBottomSheet(context);
+                              }
                             },
                             child: Text(
                               AppLocalizations.of(context)!.selectScheduleFifth,
@@ -408,12 +412,15 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10)))),
                     onPressed: () {
+                      final provider = Provider.of<ScheduleOrderViewModel>(
+                          context,
+                          listen: false);
                       debugPrint(
-                          'tanggal ${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(_selectedDay)} jam $selectedTime');
+                          'tanggal ${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(provider.selectedDay)} jam $selectedTime');
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
                           final time =
-                              '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(_selectedDay)} $selectedTime:00 WIB';
+                              '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(provider.selectedDay)} $selectedTime:00 WIB';
                           return PaymentScreen(
                             id: widget.id,
                             fullName: widget.fullName,
