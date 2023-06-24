@@ -3,10 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/zondicons.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
+import 'package:prevent/view/screens/notification/search_notification_screen.dart';
+import 'package:provider/provider.dart';
 
-class NotificationKonsulScreen extends StatelessWidget {
+import '../../../view_models/notifification_view_model.dart';
+
+class NotificationKonsulScreen extends StatefulWidget {
   const NotificationKonsulScreen({super.key});
+
+  @override
+  State<NotificationKonsulScreen> createState() =>
+      _NotificationKonsulScreenState();
+}
+
+class _NotificationKonsulScreenState extends State<NotificationKonsulScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<NotificationViewModel>().getNotificationConsul();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +45,12 @@ class NotificationKonsulScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              showSearch(context: context, delegate: CustomSearch());
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNotificationScreen(),
+                ),
+              );
             },
             icon: Iconify(
               Zondicons.search,
@@ -47,74 +67,88 @@ class NotificationKonsulScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {},
-                    child: SizedBox(
-                      // height: 130,
-                      width: MediaQuery.of(context).size.width,
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 60,
-                              // height: 90,
-                              child: Image.asset(
-                                'assets/images/notif_picture.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Sesi Konsultasi',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Hi, Kak! Jangan lupa sesi konsultasi Psikologi dengan Psikolog Yoga mulai pukul 10.00 - 11.00, 23 Mei 2023 via chat. ',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        fontWeight: reguler,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 4,
-                                    ),
-                                    Row(
+              child: Consumer<NotificationViewModel>(
+                builder: (context, value, child) {
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => Divider(
+                      thickness: 1,
+                      color: blackColor,
+                    ),
+                    itemCount: value.consultations.length,
+                    itemBuilder: (context, index) {
+                      final notification = value.consultations[index];
+                      return InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          // height: 130,
+                          width: MediaQuery.of(context).size.width,
+                          child: SizedBox(
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 60,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(color: blackColor),
+                                  ),
+                                  child: Image.asset(
+                                    notification.image,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        const Iconify(
-                                          Zondicons.time,
-                                          size: 12,
-                                        ),
-                                        const SizedBox(
-                                          width: 4,
+                                        Text(
+                                          notification.title,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 12,
+                                            fontWeight: bold,
+                                          ),
                                         ),
                                         Text(
-                                          '24-04-28 10:36',
+                                          notification.message,
                                           style: GoogleFonts.poppins(
-                                            fontSize: 10,
+                                            fontSize: 12,
                                             fontWeight: reguler,
                                           ),
                                         ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Iconify(
+                                              Zondicons.time,
+                                              size: 12,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              notification.dateTime,
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 10,
+                                                fontWeight: reguler,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),
