@@ -8,6 +8,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/article/search_article_screen.dart';
 import 'package:prevent/view/screens/view_all_doctor/custom_search.dart';
 import 'package:prevent/view/widgets/home/side_bar.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../view_models/home_view_model.dart';
 import '../../widgets/home/bottom_nav.dart';
@@ -21,8 +23,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<ProfileViewModel>().getProfile();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final provider = Provider.of<HomeViewModel>(context, listen: true);
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final bool isLogin = context.read<LoginViewModel>().isLogin;
     PreferredSizeWidget? handleAppBar(int currentIndex) {
       switch (currentIndex) {
         case 0:
@@ -93,15 +103,16 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: whiteColor,
             elevation: 0,
             actions: [
-              IconButton(
-                onPressed: () {
-                  showSearch(context: context, delegate: CustomSearch());
-                },
-                icon: Iconify(
-                  Ri.search_line,
-                  color: blackColor,
-                ),
-              )
+              if (isLogin)
+                IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: CustomSearch());
+                  },
+                  icon: Iconify(
+                    Ri.search_line,
+                    color: blackColor,
+                  ),
+                )
             ],
           );
         case 2:
@@ -131,15 +142,16 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: whiteColor,
             elevation: 0,
             actions: [
-              IconButton(
-                onPressed: () {
-                  showSearch(context: context, delegate: CustomSearch());
-                },
-                icon: Iconify(
-                  Ri.search_line,
-                  color: blackColor,
-                ),
-              )
+              if (isLogin)
+                IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: CustomSearch());
+                  },
+                  icon: Iconify(
+                    Ri.search_line,
+                    color: blackColor,
+                  ),
+                )
             ],
           );
         default:
@@ -176,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: handleAppBar(provider.selectedIndex),
-      key: provider.scaffoldKey,
+      key: scaffoldKey,
       drawer: const SideBar(),
       body: provider.boddy(),
       bottomNavigationBar: const BottomNav(),

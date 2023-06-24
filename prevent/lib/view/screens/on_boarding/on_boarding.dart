@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/login/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../util/common.dart';
@@ -18,15 +17,15 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   @override
   void initState() {
-    checkLogin();
+    checkOnBoarding();
     super.initState();
   }
 
-  void checkLogin() async {
+  void checkOnBoarding() async {
     SharedPreferences logindata = await SharedPreferences.getInstance();
-    final token = logindata.getString('token');
+    final bool alrdyOnBoarding = logindata.containsKey('onboarding_completed');
 
-    if (token != null && context.mounted) {
+    if (alrdyOnBoarding && context.mounted) {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -159,8 +158,10 @@ class _OnBoardingState extends State<OnBoarding> {
               height: 50,
               child: TextButton(
                 onPressed: () {
+                  setOnboardingCompleted();
+
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => const LoginScreen()));
+                      MaterialPageRoute(builder: (_) => const HomeScreen()));
                 },
                 style: TextButton.styleFrom(
                   side: BorderSide(
@@ -188,9 +189,9 @@ class _OnBoardingState extends State<OnBoarding> {
       ],
       onDone: () {
         setOnboardingCompleted();
-        checkLogin();
+        checkOnBoarding();
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
       },
       showSkipButton: true,
       showNextButton: true,

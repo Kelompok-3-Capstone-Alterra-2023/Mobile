@@ -7,11 +7,10 @@ import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
+import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/screens/select_schedule/select_schedule_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
-
 import '../../../util/common.dart';
-import '../payment/payment_chat_screen.dart';
 
 class DetailDoctorScreen extends StatelessWidget {
   final String fullname;
@@ -361,8 +360,9 @@ class DetailDoctorScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (_) =>
-                                            const PaymentChatScreen(),
+                                        builder: (_) => const PaymentScreen(
+                                          typeConsul: 'chat',
+                                        ),
                                       ),
                                     );
                                   },

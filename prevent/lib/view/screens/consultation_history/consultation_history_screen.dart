@@ -4,6 +4,9 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation_history/detail_consultation_history.dart';
+import 'package:prevent/view/widgets/home/sign_in_alert.dart';
+import 'package:prevent/view_models/login_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/common.dart';
 
@@ -18,6 +21,11 @@ class ConsultationHistoryScreen extends StatefulWidget {
 class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
   @override
   Widget build(BuildContext context) {
+    if (!context.read<LoginViewModel>().isLogin) {
+      return const Center(
+        child: AlertLogin(),
+      );
+    }
     return DefaultTabController(
       length: 2,
       child: Column(

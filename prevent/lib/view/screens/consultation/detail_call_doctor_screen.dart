@@ -13,7 +13,30 @@ import 'package:prevent/view/widgets/foz_button.dart';
 import '../../../util/common.dart';
 
 class DetailCallDoctorScreen extends StatelessWidget {
-  const DetailCallDoctorScreen({super.key});
+  const DetailCallDoctorScreen(
+      {super.key,
+      required this.fullname,
+      required this.specialist,
+      required this.description,
+      required this.price,
+      required this.alumnus,
+      required this.alumnus2,
+      required this.practiceAddress,
+      required this.strNumber,
+      required this.statusOnline,
+      required this.workExperience,
+      required this.propic});
+  final String fullname;
+  final String specialist;
+  final String description;
+  final int price;
+  final String alumnus;
+  final String alumnus2;
+  final String practiceAddress;
+  final String strNumber;
+  final bool statusOnline;
+  final int workExperience;
+  final String propic;
 
   @override
   Widget build(BuildContext context) {
@@ -323,8 +346,9 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                       onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const PaymentScreen())),
+                                            builder: (_) => const PaymentScreen(
+                                                typeConsul: 'call'),
+                                          )),
                                       child: Text(
                                         AppLocalizations.of(context)!
                                             .callDetailDoctorEleventh,
@@ -406,8 +430,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                 ),
                 buttonColor: colorStyleFifth,
                 child: Text(
-                  AppLocalizations.of(context)!.callDetailDoctorFifteenth,
-                  // 'Chat',
+                  'Call',
                   style: GoogleFonts.poppins(
                       fontSize: 16, fontWeight: bold, color: whiteColor),
                 ),

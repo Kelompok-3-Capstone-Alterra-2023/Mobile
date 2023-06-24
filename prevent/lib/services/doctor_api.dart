@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'model/doctor_model.dart';
+import '../models/doctor_model.dart';
 
 class DoctorApiService {
   Dio dio = Dio();

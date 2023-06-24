@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prevent/services/doctor_api.dart';
 
-import '../services/model/doctor_model.dart';
+import '../models/doctor_model.dart';
 
 class DoctorViewModel extends ChangeNotifier {
   final DoctorApiService apiService = DoctorApiService();

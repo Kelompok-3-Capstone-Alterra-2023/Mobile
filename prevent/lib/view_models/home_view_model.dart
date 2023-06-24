@@ -5,12 +5,8 @@ import '../view/screens/notification/notification_screen.dart';
 import '../view/screens/profile/profile_screen.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
   int _selectedIndex = 0;
-
   int get selectedIndex => _selectedIndex;
-
   set selectedIndex(int value) {
     if (_selectedIndex != value) {
       _selectedIndex = value;

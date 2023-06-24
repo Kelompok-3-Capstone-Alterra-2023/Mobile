@@ -4,7 +4,8 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+  const PaymentScreen({Key? key, required this.typeConsul}) : super(key: key);
+  final String typeConsul;
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -189,7 +190,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ConfirmPayment()));
+                        builder: (_) =>
+                            ConfirmPayment(typeConsul: widget.typeConsul),
+                      ));
                 },
                 child: Text(
                   'Bayar',

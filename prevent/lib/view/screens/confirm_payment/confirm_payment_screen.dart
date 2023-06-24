@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation/consultation_call_screen.dart';
+import 'package:prevent/view/screens/consultation/consultation_chat_screen.dart';
 import 'package:prevent/view/widgets/timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../util/common.dart';
 
 class ConfirmPayment extends StatefulWidget {
-  const ConfirmPayment({Key? key}) : super(key: key);
-
+  const ConfirmPayment({Key? key, required this.typeConsul}) : super(key: key);
+  final String typeConsul;
   @override
   State<ConfirmPayment> createState() => _ConfirmPaymentState();
 }
@@ -26,8 +27,17 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
 
     timer = Timer(const Duration(seconds: 8), () {
       setState(() {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (_) => const ConsultationCallScreen()));
+        if (widget.typeConsul == 'chat') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => const ConsultationCallScreen()));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => const ConsultationChatScreen()));
+        }
       });
     });
 

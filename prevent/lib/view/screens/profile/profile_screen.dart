@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/profile/edit_profile_screen.dart';
+import 'package:prevent/view/widgets/home/sign_in_alert.dart';
+import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +15,11 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!context.read<LoginViewModel>().isLogin) {
+      return const Center(
+        child: AlertLogin(),
+      );
+    }
     return SingleChildScrollView(
       child: Consumer<ProfileViewModel>(
         builder: (context, value, _) {
