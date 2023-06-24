@@ -2,28 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation/consultation_call_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_chat_screen.dart';
 import 'package:prevent/view/widgets/timer.dart';
-import 'package:prevent/view_models/profile_view_model.dart';
-import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../../models/profile_model.dart';
 import '../../../util/common.dart';
 
 class ConfirmPayment extends StatefulWidget {
+  const ConfirmPayment({Key? key, required this.typeConsul}) : super(key: key);
   final String typeConsul;
-  final int price;
-  final String timeTransaction;
-  const ConfirmPayment(
-      {Key? key,
-      required this.typeConsul,
-      required this.timeTransaction,
-      required this.price})
-      : super(key: key);
   @override
   State<ConfirmPayment> createState() => _ConfirmPaymentState();
 }
@@ -67,8 +56,6 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProfileViewModel>(context);
-    UserProfile profile = provider.userProfile;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -164,7 +151,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      profile.email,
+                      'Anonymous@gmail.com',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -180,7 +167,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      widget.timeTransaction,
+                      AppLocalizations.of(context)!.confirmPaymentSixth,
+                      // '21 Agustus 2023 20:11:17',
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -208,8 +196,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                     ),
                     Text(
                       // AppLocalizations.of(context)!.telephoneMethod,
-                      NumberFormat.simpleCurrency(name: 'IDR')
-                          .format(widget.price + 2000),
+                      'Rp. 202.000',
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),
