@@ -120,7 +120,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Sesi Konsultasi via Chat',
+                          widget.typeConsul == 'chat'
+                              ? 'Sesi Konsultasi via Chat'
+                              : 'Sesi Konsultasi via Call',
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: reguler),
                         ),

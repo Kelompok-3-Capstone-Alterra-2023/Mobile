@@ -429,7 +429,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                             price: widget.price,
                             propic: widget.propic,
                             schedule: time,
-                            typeConsul: 'chat',
+                            typeConsul: widget.typeConsul,
                           );
                         },
                       ));
