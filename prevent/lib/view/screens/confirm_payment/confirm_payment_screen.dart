@@ -31,7 +31,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => const ConsultationChatScreen()));
+                  builder: (_) => const ConsultationChatScreen(idDocotr: 47)));
         } else {
           Navigator.push(
               context,

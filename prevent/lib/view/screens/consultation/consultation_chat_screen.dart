@@ -7,7 +7,8 @@ import 'package:prevent/view_models/chat_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ConsultationChatScreen extends StatefulWidget {
-  const ConsultationChatScreen({super.key});
+  const ConsultationChatScreen({super.key, required this.idDocotr});
+  final int idDocotr;
 
   @override
   State<ConsultationChatScreen> createState() => _ConsultationChatScreenState();
@@ -22,6 +23,8 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ChatViewModel provider =
+        Provider.of<ChatViewModel>(context, listen: false);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(74),
@@ -39,6 +42,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const HomeScreen()));
+                        provider.messages = [];
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),
@@ -107,7 +111,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                           final chat = value.messages[index];
                           return ChatBubbleConsultation(
                               text: "${chat['message']}",
-                              isSender: chat['to'] == 47);
+                              isSender: chat['to'] == widget.idDocotr);
                         },
                       );
                     },
@@ -144,7 +148,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
             const SizedBox(width: 30),
             Expanded(
               child: TextFormField(
-                controller: context.read<ChatViewModel>().controller,
+                controller: provider.controller,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -161,7 +165,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
             ),
             const SizedBox(width: 25),
             InkWell(
-              onTap: () => context.read<ChatViewModel>().sendMessage(),
+              onTap: () => provider.sendMessage(idDoctor: widget.idDocotr),
               child: Container(
                 height: 42,
                 width: 42,
