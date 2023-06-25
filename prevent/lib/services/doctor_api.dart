@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:prevent/models/recipe_medicine.dart';
+import 'package:prevent/util/common.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/doctor_model.dart';
@@ -35,6 +37,17 @@ class DoctorApiService {
       return doctors;
     } catch (error) {
       throw Exception('Failed to fetch doctors: $error');
+    }
+  }
+
+  Future<RecipeModel> getRecipeMedicine({required int idDoctor}) async {
+    try {
+      final response = await dio.get('${Urls.baseUrl}user/recipt/2');
+
+      final RecipeModel recipe = RecipeModel.fromJson(response.data);
+      return recipe;
+    } catch (error) {
+      rethrow;
     }
   }
 }
