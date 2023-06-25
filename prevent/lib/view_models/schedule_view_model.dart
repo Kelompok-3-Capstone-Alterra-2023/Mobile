@@ -17,18 +17,15 @@ class ScheduleOrderViewModel extends ChangeNotifier {
   }
 
   Future<void> scheduleOrder(int doctorId, String schedule, int serviceFee,
-      int price, String method) async {
+      int price, String method, String paymentMethod) async {
     notifyListeners();
 
     try {
       final response = await apiService.postSchedule(
-          doctorId, schedule, serviceFee, price, method);
-      // Lakukan sesuatu dengan response jika perlu
+          doctorId, schedule, serviceFee, price, method, paymentMethod);
       notifyListeners();
       return response;
     } catch (error) {
-      // Lakukan sesuatu dengan error jika perlu
-
       notifyListeners();
       rethrow;
     }

@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../util/common.dart';
+
 class ScheduleApiService {
   Dio dio = Dio();
   ScheduleApiService() {
@@ -20,15 +22,16 @@ class ScheduleApiService {
   }
 
   Future<void> postSchedule(int doctorId, String schedule, int serviceFee,
-      int price, String method) async {
+      int price, String method, String paymentMethod) async {
     try {
       final response = await dio.post(
-        'https://capstone-project.duckdns.org:8080/user/doctor/$doctorId/order',
+        '${Urls.baseUrl}${Urls.users}/doctor/$doctorId/order',
         data: {
           'schedule': schedule,
           'service_fee': serviceFee,
           'price': price,
           'method': method,
+          'payment_method': paymentMethod
         },
       );
 

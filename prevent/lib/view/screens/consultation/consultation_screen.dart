@@ -149,7 +149,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                         mainAxisSpacing: 6,
                         crossAxisSpacing: 8,
                       ),
-                      itemCount: 6,
+                      itemCount:
+                          value.doctors.length < 6 ? value.doctors.length : 6,
                       itemBuilder: (BuildContext context, int index) {
                         final doctor = value.doctors[index];
                         if (value.doctors.isEmpty) {
