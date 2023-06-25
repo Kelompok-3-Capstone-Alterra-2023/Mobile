@@ -75,12 +75,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     SizedBox(
                       width: 80,
                       height: 80,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: widget.doctor.propic.isEmpty
-                            ? Image.asset('assets/images/doctor1.png')
-                            : Image.network(widget.doctor.propic),
-                      ),
+                      child: widget.doctor.propic.isEmpty
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                'assets/images/doctor1.png',
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                widget.doctor.propic,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -230,7 +239,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                                 Text(
                                   NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(2500),
+                                      .format(2000),
                                   style: GoogleFonts.poppins(fontSize: 15),
                                 )
                               ],
@@ -256,7 +265,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                                 Text(
                                   NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(1500),
+                                      .format(2000),
                                   style: GoogleFonts.poppins(fontSize: 15),
                                 )
                               ],
@@ -282,7 +291,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                                 Text(
                                   NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(1500),
+                                      .format(2000),
                                   style: GoogleFonts.poppins(fontSize: 15),
                                 )
                               ],
