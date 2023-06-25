@@ -42,6 +42,16 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
         ),
         elevation: 0,
         backgroundColor: whiteColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                doctorDetail(context);
+              },
+              icon: Icon(
+                Icons.info_outline,
+                color: blackColor,
+              )),
+        ],
       ),
       body: Column(
         children: [
@@ -137,19 +147,11 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
           const SizedBox(
             height: 15,
           ),
-          // Container(
-          //   padding: const EdgeInsets.all(10),
-          //   child: Text(
-          //     // AppLocalizations.of(context)!.telephoneMethod,
-          //     '+62 888 2323 4444',
-          //     style: GoogleFonts.poppins(fontSize: 32, fontWeight: bold),
-          //   ),
-          // ),
           Container(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 65),
             child: Text(
               AppLocalizations.of(context)!.consultationCallSeventh,
-              // 'User dipersilahkan untuk menghubungi dokter melalui nomor tersebut, dimohon kepada user untuk berkonsultasi dengan dokter tepat waktu.',
+              // 'Link pertemuan akan dikirimkan ke email pasien setelah melakukan pembayaran dan dipersilahkan untuk masuk ke link pertemuan yang diberikan oleh dokter.',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: reguler),
             ),
@@ -165,6 +167,93 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
           //     child: const Text('test'))
         ],
       ),
+    );
+  }
+
+  Future<dynamic> doctorDetail(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: SizedBox(
+              height: 367,
+              width: 340,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
+                    child: Container(
+                      height: 36,
+                      width: double.infinity,
+                      color: const Color(0xFFC9EAA4),
+                      child: const Center(
+                          child: Text(
+                        'Detail',
+                        style: TextStyle(fontSize: 12),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(height: 35),
+                  SizedBox(
+                    height: 153,
+                    width: 153,
+                    child: widget.doctor.propic.isEmpty
+                        ? Image.asset(
+                            'assets/images/doctor_image.png',
+                          )
+                        : Image.network(widget.doctor.propic),
+                  ),
+                  const SizedBox(height: 24),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.doctor.fullName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        widget.doctor.specialist,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
+                      ),
+                      Text(
+                        widget.doctor.description,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 8,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    ' Ketuk dimana saja untuk menutup halaman ini.',
+                    style: TextStyle(
+                      color: Color(0xFF8A8A8A),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
