@@ -25,7 +25,7 @@ class DoctorApiService {
   Future<List<Doctor>> fetchDoctors() async {
     try {
       final response = await dio.get(
-        'https://capstone-project.duckdns.org:8080/user/doctors',
+        '${Urls.baseUrl}${Urls.users}/doctors',
       );
 
       final Map<String, dynamic> data = response.data;
@@ -42,7 +42,7 @@ class DoctorApiService {
 
   Future<RecipeModel> getRecipeMedicine({required int idDoctor}) async {
     try {
-      final response = await dio.get('${Urls.baseUrl}user/recipt/2');
+      final response = await dio.get('${Urls.baseUrl}user/recipt/$idDoctor');
 
       final RecipeModel recipe = RecipeModel.fromJson(response.data);
       return recipe;
