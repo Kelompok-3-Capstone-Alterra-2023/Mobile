@@ -8,8 +8,12 @@ import 'package:prevent/view_models/chat_view_model.dart';
 import 'package:prevent/view_models/doctor_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/doctor_model.dart';
+
 class ConsultationChatScreen extends StatefulWidget {
-  const ConsultationChatScreen({super.key, required this.idDoctor});
+  const ConsultationChatScreen(
+      {super.key, required this.idDoctor, required this.doctor});
+  final Doctor doctor;
   final int idDoctor;
 
   @override
@@ -49,7 +53,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                       icon: const Icon(Icons.arrow_back),
                     ),
                     const SizedBox(width: 8),
-                    const Text('Nama dokter'),
+                    Text(widget.doctor.fullName),
                   ],
                 ),
                 InkWell(
@@ -226,32 +230,36 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                     ),
                   ),
                   const SizedBox(height: 35),
-                  Image.asset(
-                    'assets/images/doctor_image.png',
+                  SizedBox(
                     height: 153,
                     width: 153,
+                    child: widget.doctor.propic.isEmpty
+                        ? Image.asset(
+                            'assets/images/doctor_image.png',
+                          )
+                        : Image.network(widget.doctor.propic),
                   ),
                   const SizedBox(height: 24),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Fauzan Hakim M.Psi, Psi',
-                        style: TextStyle(
+                        widget.doctor.fullName,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
                         ),
                       ),
                       Text(
-                        'Psikolog Klinis',
-                        style: TextStyle(
+                        widget.doctor.specialist,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
                       ),
                       Text(
-                        'Trauma, Stress, Depresi',
-                        style: TextStyle(
+                        widget.doctor.description,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 8,
                         ),
