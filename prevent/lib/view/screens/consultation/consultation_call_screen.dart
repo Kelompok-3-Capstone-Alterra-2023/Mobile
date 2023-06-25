@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconify_flutter/iconify_flutter.dart';
+import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/widgets/alert_dialog.dart';
-import 'package:prevent/view/widgets/timer.dart';
 
 import '../../../models/doctor_model.dart';
 import '../../../util/common.dart';
@@ -37,8 +38,7 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
         title: Text(
           AppLocalizations.of(context)!.consultationCallFirst,
           // 'Nama dokter',
-          style: GoogleFonts.poppins(
-              fontWeight: FontWeight.bold, color: blackColor),
+          style: TextStyle(fontSize: 15, fontWeight: bold, color: blackColor),
         ),
         elevation: 0,
         backgroundColor: whiteColor,
@@ -56,11 +56,21 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
                 SizedBox(
                   width: 80,
                   height: 80,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: widget.doctor.propic.isEmpty
-                          ? Image.asset('assets/images/doctor1.png')
-                          : Image.network(widget.doctor.propic)),
+                  child: widget.doctor.propic.isEmpty
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/images/doctor1.png',
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            widget.doctor.propic,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ),
                 const SizedBox(
                   width: 10,
@@ -83,6 +93,21 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
                       style: GoogleFonts.poppins(
                           fontSize: 10, fontWeight: reguler),
                     ),
+                    Row(
+                      children: [
+                        const Iconify(
+                          Mdi.clock,
+                          size: 15,
+                        ),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Text(
+                          widget.timeTransaction,
+                          style: TextStyle(fontSize: 10, fontWeight: reguler),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ],
@@ -92,21 +117,12 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
             thickness: 5,
             color: Color(0xffececec),
           ),
-          Text(
-            widget.timeTransaction,
-            style: GoogleFonts.poppins(fontSize: 20, fontWeight: bold),
-          ),
-          const AppTimer(
-            start: 3600,
-            size: 20,
-            fontColor: Colors.red,
-          ),
           Container(
             padding: const EdgeInsets.all(10),
             child: Text(
               AppLocalizations.of(context)!.consultationCallFifth,
               // 'Konsultasi dengan Dokter',
-              style: GoogleFonts.poppins(fontSize: 10, fontWeight: bold),
+              style: GoogleFonts.poppins(fontSize: 15, fontWeight: bold),
             ),
           ),
           Container(
@@ -118,14 +134,17 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
               style: GoogleFonts.poppins(fontSize: 10, fontWeight: reguler),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              // AppLocalizations.of(context)!.telephoneMethod,
-              '+62 888 2323 4444',
-              style: GoogleFonts.poppins(fontSize: 32, fontWeight: bold),
-            ),
+          const SizedBox(
+            height: 15,
           ),
+          // Container(
+          //   padding: const EdgeInsets.all(10),
+          //   child: Text(
+          //     // AppLocalizations.of(context)!.telephoneMethod,
+          //     '+62 888 2323 4444',
+          //     style: GoogleFonts.poppins(fontSize: 32, fontWeight: bold),
+          //   ),
+          // ),
           Container(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 65),
             child: Text(

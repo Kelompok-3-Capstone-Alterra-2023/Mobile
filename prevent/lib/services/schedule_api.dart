@@ -41,7 +41,7 @@ class ScheduleApiService {
         throw Exception('Failed to post schedule');
       }
     } catch (e) {
-      rethrow;
+      DioException;
     }
   }
 }
