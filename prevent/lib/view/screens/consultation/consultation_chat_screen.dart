@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/models/recipe_medicine.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/home/home_screen.dart';
 import 'package:prevent/view/widgets/chat_bubble_consultation.dart';
 import 'package:prevent/view/screens/home/home_page.dart';
+import 'package:prevent/view_models/chat_view_model.dart';
+import 'package:prevent/view_models/doctor_view_model.dart';
+import 'package:provider/provider.dart';
 
 class ConsultationChatScreen extends StatefulWidget {
-  const ConsultationChatScreen({super.key});
+  const ConsultationChatScreen({super.key, required this.idDoctor});
+  final int idDoctor;
 
   @override
   State<ConsultationChatScreen> createState() => _ConsultationChatScreenState();
 }
 
 class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
-  List<dynamic> chatList = [
-    [
-      "Hai, perkenalkan nama saya dokter Alfiansyah apa yang dapat saya bantu hari ini?",
-      true
-    ],
-    [
-      "Saya ingin berkonsultasi terkait perasaan yang saya alami ketika keluarga saya terus memaksakan hal-hal yang tidak saya sukai.",
-      false
-    ],
-    ["Saya sering menyendiri", false],
-  ];
+  @override
+  void initState() {
+    super.initState();
+    context.read<ChatViewModel>().initializeWebSocket();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final ChatViewModel provider =
+        Provider.of<ChatViewModel>(context, listen: false);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(74),
@@ -43,6 +44,7 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const HomeScreen()));
+                        provider.messages = [];
                       },
                       icon: const Icon(Icons.arrow_back),
                     ),
@@ -74,91 +76,84 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
           ),
         ),
       ),
-      body: InkWell(
-        onTap: () {
-          // doctorPrescription(context);
-          exitChatDialog(context);
-        },
-        child: Column(
-          children: [
-            const SizedBox(height: 44),
-            const Text(
-              'Konsultasi dengan Dokter',
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+      body: Column(
+        children: [
+          const SizedBox(height: 44),
+          const Text(
+            'Konsultasi dengan Dokter',
+            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 65, right: 65, top: 20),
+            child: Text(
+              'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: shadowText, fontWeight: FontWeight.w400, fontSize: 15),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 65, right: 65, top: 20),
-              child: Text(
-                'Mohon diingat bahwa sesi konsultasi dengan dokter bersifat tertutup dan konsultasi anda dengan dokter bersifat pribadi dan hanya bersifat 2 arah, kami mengimbau user untuk berbicara dengan dokter dengan sepenuh hati dan tanpa perlu ditahan. Sehat selalu!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: shadowText,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              reverse: true,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Consumer<ChatViewModel>(
+                    builder: (context, value, child) {
+                      return ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(
+                            height: 10,
+                          );
+                        },
+                        itemCount: value.messages.length,
+                        itemBuilder: (context, index) {
+                          final chat = value.messages[index];
+                          return ChatBubbleConsultation(
+                              text: "${chat['message']}",
+                              isSender: chat['to'] == widget.idDoctor);
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10)
+                ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                reverse: true,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: 10,
-                        );
-                      },
-                      itemCount: chatList.length,
-                      itemBuilder: (context, index) {
-                        final chat = chatList[index];
-                        return ChatBubbleConsultation(
-                            text: chat[0], isSender: chat[1]);
-                      },
-                    ),
-                    // MessageBar(
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
+        elevation: 0,
         child: Container(
           padding: const EdgeInsets.all(8),
           margin: MediaQuery.of(context).viewInsets,
           height: 70,
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 8,
-                color: Colors.grey,
-              )
-            ],
-            color: Colors.grey[100],
-          ),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Container(
-              height: 42,
-              width: 42,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border.fromBorderSide(
-                  BorderSide(color: blackColor),
+            InkWell(
+              onTap: () => doctorPrescription(context, widget.idDoctor),
+              child: Container(
+                height: 42,
+                width: 42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: const Border.fromBorderSide(
+                    BorderSide(color: Colors.black),
+                  ),
                 ),
-              ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.black,
-                size: 24,
+                child: const Icon(
+                  Icons.medication_outlined,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
             const SizedBox(width: 30),
             Expanded(
               child: TextFormField(
+                controller: provider.controller,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -174,19 +169,22 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
               ),
             ),
             const SizedBox(width: 25),
-            Container(
-              height: 42,
-              width: 42,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border.fromBorderSide(
-                  BorderSide(color: blackColor),
+            InkWell(
+              onTap: () => provider.sendMessage(idDoctor: widget.idDoctor),
+              child: Container(
+                height: 42,
+                width: 42,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.fromBorderSide(
+                    BorderSide(color: blackColor),
+                  ),
                 ),
-              ),
-              child: const Icon(
-                Icons.send,
-                color: Colors.black,
-                size: 24,
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
           ]),
@@ -278,90 +276,103 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
     );
   }
 
-  Future<dynamic> doctorPrescription(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: SizedBox(
-              height: 300,
-              width: 400,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0),
-                    ),
-                    child: Container(
-                      height: 36,
-                      width: double.infinity,
-                      color: const Color(0xFFC9EAA4),
-                      child: const Center(
-                        child: Text(
-                          'Resep obat dan aturan dosis pemakaian',
-                          style: TextStyle(fontSize: 12),
+  Future<dynamic> doctorPrescription(BuildContext context, int idDoctor) async {
+    RecipeModel recipeMedicine =
+        await context.read<DoctorViewModel>().getRecipe(idDoctor: idDoctor);
+    if (mounted) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: SizedBox(
+                height: 300,
+                width: 400,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0),
+                      ),
+                      child: Container(
+                        height: 36,
+                        width: double.infinity,
+                        color: const Color(0xFFC9EAA4),
+                        child: const Center(
+                          child: Text(
+                            'Resep obat dan aturan dosis pemakaian',
+                            style: TextStyle(fontSize: 12),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const SizedBox(width: 18),
-                            Image.asset(
-                              'assets/images/Cefadoxil.png',
-                              height: 43,
-                              width: 60,
-                            ),
-                            const SizedBox(width: 35),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Cefadroxil 1x500Mg',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                Text(
-                                  '2x1 konsumsi sehabis makan',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ],
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 35),
-                    child: Text(
-                      'Ketuk dimana saja untuk menutup halaman ini.',
-                      style: TextStyle(
-                        color: Color(0xFF8A8A8A),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                    const SizedBox(height: 30),
+                    Expanded(
+                      child: Consumer<DoctorViewModel>(
+                        builder: (context, value, child) {
+                          // RecipeModel recipeMedicine =  value.getRecipe(idDoctor: idDoctor) as RecipeModel;
+                          if (recipeMedicine.recipt.drugs!.isEmpty) {
+                            return const Text(
+                              'Doktor belum memberikan resep obat, harap konfirmasi kepada doktor terkait resep obat',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF8A8A8A),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            );
+                          }
+                          return ListView.builder(
+                            itemCount: recipeMedicine.recipt.drugs!.length,
+                            itemBuilder: (context, index) {
+                              final String? medicine =
+                                  recipeMedicine.recipt.drugs![index].nama;
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(width: 18),
+                                  Image.asset(
+                                    'assets/images/Cefadoxil.png',
+                                    height: 43,
+                                    width: 60,
+                                  ),
+                                  const SizedBox(width: 35),
+                                  Text(
+                                    medicine!,
+                                    style: const TextStyle(fontSize: 15),
+                                  )
+                                ],
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
-                  ),
-                ],
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 35),
+                      child: Text(
+                        'Ketuk dimana saja untuk menutup halaman ini.',
+                        style: TextStyle(
+                          color: Color(0xFF8A8A8A),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    }
   }
 
   Future<dynamic> exitChatDialog(BuildContext context) {
