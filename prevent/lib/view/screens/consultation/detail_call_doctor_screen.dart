@@ -9,37 +9,16 @@ import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
+import '../../../models/doctor_model.dart';
 import '../../../util/common.dart';
 import '../select_schedule/select_schedule_screen.dart';
 
 class DetailCallDoctorScreen extends StatelessWidget {
+  final Doctor doctor;
   const DetailCallDoctorScreen({
     super.key,
-    required this.id,
-    required this.fullname,
-    required this.specialist,
-    required this.description,
-    required this.price,
-    required this.alumnus,
-    required this.alumnus2,
-    required this.practiceAddress,
-    required this.strNumber,
-    required this.statusOnline,
-    required this.workExperience,
-    required this.propic,
+    required this.doctor,
   });
-  final int id;
-  final String fullname;
-  final String specialist;
-  final String description;
-  final int price;
-  final String alumnus;
-  final String alumnus2;
-  final String practiceAddress;
-  final String strNumber;
-  final bool statusOnline;
-  final int workExperience;
-  final String propic;
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +56,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox.expand(
-                        child: propic.isEmpty
+                        child: doctor.propic.isEmpty
                             ? Image.asset(
                                 'assets/images/doctor1.png',
                                 fit: BoxFit.cover,
                               )
-                            : Image.network(propic)),
+                            : Image.network(doctor.propic)),
                     Positioned(
                       right: 0,
                       child: Container(
@@ -112,13 +91,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 7, right: 4),
                               child: CircleAvatar(
-                                backgroundColor:
-                                    statusOnline ? onlineColor : offlineColor,
+                                backgroundColor: doctor.statusOnline
+                                    ? onlineColor
+                                    : offlineColor,
                                 radius: 7,
                               ),
                             ),
                             Text(
-                              statusOnline ? 'Online' : 'Offline',
+                              doctor.statusOnline ? 'Online' : 'Offline',
                               // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
@@ -144,7 +124,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            fullname,
+                            doctor.fullName,
                             style: GoogleFonts.poppins(
                                 fontSize: 16, fontWeight: semiBold),
                           ),
@@ -159,12 +139,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      specialist,
+                      doctor.specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      description,
+                      doctor.description,
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -186,7 +166,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            '$workExperience years',
+                            '${doctor.workExperience} years',
                             style: GoogleFonts.poppins(
                                 fontSize: 8, fontWeight: medium),
                           )
@@ -194,7 +174,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      NumberFormat.simpleCurrency(name: 'IDR').format(price),
+                      NumberFormat.simpleCurrency(name: 'IDR')
+                          .format(doctor.price),
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: semiBold),
                     ),
@@ -220,14 +201,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                alumnus2,
+                                doctor.alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                alumnus,
+                                doctor.alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -260,7 +241,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                practiceAddress,
+                                doctor.practiceAddress,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -287,7 +268,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                strNumber,
+                                doctor.strNumber,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -366,12 +347,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (_) => PaymentScreen(
-                                            id: id,
-                                            fullName: fullname,
-                                            specialist: specialist,
-                                            description: description,
-                                            price: price,
-                                            propic: propic,
+                                            doctor: doctor,
                                             schedule:
                                                 '${DateFormat('EEEE, dd MMMM yyyy HH:mm:ss', 'id_ID').format(DateTime.now())} WIB',
                                             typeConsul: 'call',
@@ -428,12 +404,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                     Navigator.push(context, MaterialPageRoute(
                                       builder: (context) {
                                         return SelectScheduleScreen(
-                                          id: id,
-                                          fullName: fullname,
-                                          specialist: specialist,
-                                          description: description,
-                                          price: price,
-                                          propic: propic,
+                                          doctor: doctor,
                                           typeConsul: 'call',
                                         );
                                       },

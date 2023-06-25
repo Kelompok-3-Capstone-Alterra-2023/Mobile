@@ -12,26 +12,15 @@ import 'package:prevent/view_models/schedule_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:weekly_date_picker/weekly_date_picker.dart';
 
+import '../../../models/doctor_model.dart';
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class SelectScheduleScreen extends StatefulWidget {
-  final int id;
-  final String fullName;
-  final String specialist;
-  final String description;
-  final int price;
-  final String propic;
+  final Doctor doctor;
   final String typeConsul;
   const SelectScheduleScreen(
-      {super.key,
-      required this.fullName,
-      required this.id,
-      required this.specialist,
-      required this.description,
-      required this.price,
-      required this.propic,
-      required this.typeConsul});
+      {super.key, required this.doctor, required this.typeConsul});
 
   @override
   State<SelectScheduleScreen> createState() => _SelectScheduleScreenState();
@@ -71,14 +60,14 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
               child: Row(
                 children: [
                   SizedBox(
-                    child: widget.propic.isEmpty
+                    child: widget.doctor.propic.isEmpty
                         ? Image.asset(
                             'assets/images/doctor1.png',
                             height: 112,
                             width: 107,
                           )
                         : Image.network(
-                            widget.propic,
+                            widget.doctor.propic,
                             height: 112,
                             width: 107,
                           ),
@@ -90,24 +79,24 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.fullName,
+                        widget.doctor.fullName,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.poppins(
                             fontSize: 18, fontWeight: medium),
                       ),
                       Text(
-                        widget.specialist,
+                        widget.doctor.specialist,
                         style: GoogleFonts.poppins(
                             fontSize: 18, fontWeight: medium),
                       ),
                       Text(
-                        widget.description,
+                        widget.doctor.description,
                         style: GoogleFonts.poppins(
                             fontSize: 12, fontWeight: reguler),
                       ),
                       Text(
                         NumberFormat.simpleCurrency(name: 'IDR')
-                            .format(widget.price),
+                            .format(widget.doctor.price),
                         style: GoogleFonts.poppins(
                             fontSize: 16, fontWeight: medium),
                       ),
@@ -422,12 +411,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                           final time =
                               '${DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(provider.selectedDay)} $selectedTime:00 WIB';
                           return PaymentScreen(
-                            id: widget.id,
-                            fullName: widget.fullName,
-                            specialist: widget.specialist,
-                            description: widget.description,
-                            price: widget.price,
-                            propic: widget.propic,
+                            doctor: widget.doctor,
                             schedule: time,
                             typeConsul: widget.typeConsul,
                           );

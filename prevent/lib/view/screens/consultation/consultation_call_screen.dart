@@ -4,10 +4,15 @@ import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/widgets/alert_dialog.dart';
 import 'package:prevent/view/widgets/timer.dart';
 
+import '../../../models/doctor_model.dart';
 import '../../../util/common.dart';
 
 class ConsultationCallScreen extends StatefulWidget {
-  const ConsultationCallScreen({Key? key}) : super(key: key);
+  const ConsultationCallScreen(
+      {Key? key, required this.doctor, required this.timeTransaction})
+      : super(key: key);
+  final Doctor doctor;
+  final String timeTransaction;
 
   @override
   State<ConsultationCallScreen> createState() => _ConsultationCallScreenState();
@@ -53,7 +58,9 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
                   height: 80,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.asset('assets/images/doctor_image.png')),
+                      child: widget.doctor.propic.isEmpty
+                          ? Image.asset('assets/images/doctor1.png')
+                          : Image.network(widget.doctor.propic)),
                 ),
                 const SizedBox(
                   width: 10,
@@ -62,19 +69,17 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Fauzan',
+                      widget.doctor.fullName,
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.consultationCallSecond,
-                      // 'Psikolog Klinis',
+                      widget.doctor.specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.consultationCallThird,
-                      // 'Trauma, Stress, Depresi',
+                      widget.doctor.description,
                       style: GoogleFonts.poppins(
                           fontSize: 10, fontWeight: reguler),
                     ),
@@ -88,8 +93,7 @@ class _ConsultationCallScreenState extends State<ConsultationCallScreen> {
             color: Color(0xffececec),
           ),
           Text(
-            AppLocalizations.of(context)!.consultationCallFourth,
-            // 'Waktu Konsultasi',
+            widget.timeTransaction,
             style: GoogleFonts.poppins(fontSize: 20, fontWeight: bold),
           ),
           const AppTimer(

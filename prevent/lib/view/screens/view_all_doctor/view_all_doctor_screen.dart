@@ -81,18 +81,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                         onTap: () => Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return DetailDoctorScreen(
-                              id: doctor.id,
-                              fullname: doctor.fullName,
-                              specialist: doctor.specialist,
-                              description: doctor.description,
-                              price: doctor.price,
-                              alumnus: doctor.alumnus,
-                              alumnus2: doctor.alumnus2,
-                              practiceAddress: doctor.practiceAddress,
-                              strNumber: doctor.strNumber,
-                              statusOnline: doctor.statusOnline,
-                              workExperience: doctor.workExperience,
-                              propic: doctor.propic,
+                              doctor: doctor,
                             );
                           },
                         )),

@@ -6,25 +6,17 @@ import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart
 import 'package:prevent/view_models/schedule_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/doctor_model.dart';
+
 class PaymentScreen extends StatefulWidget {
-  final int id;
-  final String fullName;
-  final String specialist;
-  final String description;
-  final int price;
+  final Doctor doctor;
   final String schedule;
-  final String propic;
   final String typeConsul;
   const PaymentScreen({
     Key? key,
-    required this.id,
-    required this.fullName,
-    required this.specialist,
-    required this.description,
-    required this.price,
-    required this.schedule,
     required this.typeConsul,
-    required this.propic,
+    required this.doctor,
+    required this.schedule,
   }) : super(key: key);
 
   @override
@@ -85,9 +77,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       height: 80,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: widget.propic.isEmpty
+                        child: widget.doctor.propic.isEmpty
                             ? Image.asset('assets/images/doctor1.png')
-                            : Image.network(widget.propic),
+                            : Image.network(widget.doctor.propic),
                       ),
                     ),
                     const SizedBox(
@@ -97,17 +89,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.fullName,
+                          widget.doctor.fullName,
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         Text(
-                          widget.specialist,
+                          widget.doctor.specialist,
                           style: GoogleFonts.poppins(
                               fontSize: 12, fontWeight: reguler),
                         ),
                         Text(
-                          widget.description,
+                          widget.doctor.description,
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: reguler),
                         ),
@@ -142,7 +134,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                         Text(
                           NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(widget.price),
+                              .format(widget.doctor.price),
                           style: GoogleFonts.poppins(
                               fontSize: 10, fontWeight: reguler),
                         ),
@@ -163,7 +155,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                         Text(
                           NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(widget.price),
+                              .format(widget.doctor.price),
                           style: GoogleFonts.poppins(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
@@ -315,7 +307,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         ),
                         Text(
                           NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(widget.price + 2000),
+                              .format(widget.doctor.price + 2000),
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold, fontSize: 15),
                         )
@@ -337,23 +329,28 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () async {
-                  debugPrint(widget.id.toString());
+                  debugPrint(widget.doctor.id.toString());
                   debugPrint(widget.schedule);
                   debugPrint(2000.toString());
                   debugPrint(widget.typeConsul);
                   debugPrint(selectedRadio);
                   try {
                     await provider.scheduleOrder(
-                        widget.id,
-                        widget.schedule.toString(),
-                        2000,
-                        widget.price,
-                        widget.typeConsul,
-                        selectedRadio);
+                      widget.doctor.id,
+                      widget.schedule.toString(),
+                      2000,
+                      widget.doctor.price,
+                      widget.typeConsul,
+                      selectedRadio,
+                    );
                     if (context.mounted) {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
-                          return ConfirmPayment(typeConsul: widget.typeConsul);
+                          return ConfirmPayment(
+                            doctor: widget.doctor,
+                            typeConsul: widget.typeConsul,
+                            timeTransaction: widget.schedule,
+                          );
                         },
                       ));
                     }
