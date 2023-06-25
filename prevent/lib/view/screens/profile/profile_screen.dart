@@ -275,7 +275,7 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                               flex: 2,
                               child: Text(
-                                DateFormat('DD/MM/yyyy').format(DateTime.parse(
+                                DateFormat('yyyy/MM/dd').format(DateTime.parse(
                                     value.userProfile.birthdate)),
                                 style: GoogleFonts.inter(fontSize: 16),
                               ))
