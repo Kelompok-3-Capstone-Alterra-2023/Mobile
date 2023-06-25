@@ -68,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Consumer<LoginViewModel>(
                 builder: (context, value, child) {
                   return Form(
+                    autovalidateMode: AutovalidateMode.always,
                     key: formKey,
                     child: Column(
                       children: [
@@ -206,7 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   final email = emailController.text;
                                   final password = passwordController.text;
                                   if (context.mounted) {
-                                    context.read<HomeViewModel>().selectedIndex=0;
+                                    context
+                                        .read<HomeViewModel>()
+                                        .selectedIndex = 0;
                                   }
                                   await value.loginUser(email, password);
                                   Navigator.pushAndRemoveUntil(context,
