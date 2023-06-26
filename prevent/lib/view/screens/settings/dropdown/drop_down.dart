@@ -32,11 +32,7 @@ class _DropDownState extends State<DropDown> {
                 Expanded(
                     child: GestureDetector(
                   onTap: () {
-                    setState(
-                      () {
-                        provider.isStrechedDropDownTrue();
-                      },
-                    );
+                    provider.isStrechedDropDownTrue();
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -66,47 +62,54 @@ class _DropDownState extends State<DropDown> {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
-                                  child: Text(
-                                    // AppLocalizations.of(context)!
-                                    //     .dropDownFirst,
-                                    provider.title,
+                                  child: Consumer<SettingsViewModel>(
+                                    builder: (context, value, child) {
+                                      return Text(
+                                        provider.title,
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
-                              Icon(provider.isStrechedDropDown
-                                  ? Icons.keyboard_arrow_down_rounded
-                                  : Icons.keyboard_arrow_up_rounded)
+                              Consumer<SettingsViewModel>(
+                                builder: (context, value, _) {
+                                  return Icon(provider.isStrechedDropDown
+                                      ? Icons.keyboard_arrow_down_rounded
+                                      : Icons.keyboard_arrow_up_rounded);
+                                },
+                              )
                             ],
                           ),
                         ),
-                        ExpandedSection(
-                          expand: provider.isStrechedDropDown,
-                          height: 100,
-                          child: MyScrollbar(
-                            builder: (context, scrollController2) =>
-                                ListView.builder(
-                              padding: const EdgeInsets.all(0),
-                              controller: scrollController2,
-                              shrinkWrap: true,
-                              itemCount: provider.list.length,
-                              itemBuilder: (context, index) {
-                                return RadioListTile(
-                                  title: Text(provider.list.elementAt(index)),
-                                  value: index,
-                                  groupValue: provider.groupValue,
-                                  onChanged: (val) {
-                                    setState(
-                                      () {
+                        Consumer<SettingsViewModel>(
+                          builder: (context, value, _) {
+                            return ExpandedSection(
+                              expand: provider.isStrechedDropDown,
+                              height: 100,
+                              child: MyScrollbar(
+                                builder: (context, scrollController2) =>
+                                    ListView.builder(
+                                  padding: const EdgeInsets.all(0),
+                                  controller: scrollController2,
+                                  shrinkWrap: true,
+                                  itemCount: provider.list.length,
+                                  itemBuilder: (context, index) {
+                                    return RadioListTile(
+                                      title:
+                                          Text(provider.list.elementAt(index)),
+                                      value: index,
+                                      groupValue: provider.groupValue,
+                                      onChanged: (val) {
                                         provider.groupValue = val!;
                                         provider.title =
                                             provider.list.elementAt(index);
                                       },
                                     );
                                   },
-                                );
-                              },
-                            ),
-                          ),
+                                ),
+                              ),
+                            );
+                          },
                         )
                       ],
                     ),

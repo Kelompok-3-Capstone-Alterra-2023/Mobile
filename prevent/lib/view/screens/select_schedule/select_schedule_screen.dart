@@ -27,14 +27,13 @@ class SelectScheduleScreen extends StatefulWidget {
 }
 
 class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
-  String? selectedTime;
-
   Map<String, List<String>> timeOptions = {
     'time1': ['08:00', '09:00', '10:00', '11:00'],
     'time2': ['13:00', '14:00'],
     'time3': ['16:00', '17:00'],
     'time4': ['19:00'],
   };
+  late ValueNotifier<String?> selectedTime = ValueNotifier('');
 
   @override
   Widget build(BuildContext context) {
@@ -168,33 +167,42 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                                         return Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10, top: 5),
-                                          child: ChoiceChip(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 3, vertical: 2),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                side: BorderSide(
-                                                    color: colorStyleFifth)),
-                                            label: Text(time),
-                                            selected: selectedTime == time,
-                                            onSelected: (isSelected) {
-                                              setState(() {
-                                                if (isSelected) {
-                                                  selectedTime = time;
-                                                } else {
-                                                  selectedTime = null;
-                                                }
-                                              });
+                                          child: ListenableBuilder(
+                                            listenable: selectedTime,
+                                            builder: (context, _) {
+                                              return ChoiceChip(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3,
+                                                        vertical: 2),
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    side: BorderSide(
+                                                        color:
+                                                            colorStyleFifth)),
+                                                label: Text(time),
+                                                selected:
+                                                    selectedTime.value == time,
+                                                onSelected: (isSelected) {
+                                                  if (isSelected) {
+                                                    selectedTime.value = time;
+                                                  } else {
+                                                    selectedTime.value = '';
+                                                  }
+                                                },
+                                                selectedColor: colorStyleFifth,
+                                                labelStyle: TextStyle(
+                                                    color: selectedTime.value ==
+                                                            time
+                                                        ? whiteColor
+                                                        : colorStyleFifth,
+                                                    fontWeight: medium,
+                                                    fontSize: 10),
+                                                backgroundColor: whiteColor,
+                                              );
                                             },
-                                            selectedColor: colorStyleFifth,
-                                            labelStyle: TextStyle(
-                                                color: selectedTime == time
-                                                    ? whiteColor
-                                                    : colorStyleFifth,
-                                                fontWeight: medium,
-                                                fontSize: 10),
-                                            backgroundColor: whiteColor,
                                           ),
                                         );
                                       }).toList(),
@@ -222,7 +230,7 @@ class _SelectScheduleScreenState extends State<SelectScheduleScreen> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)))),
                             onPressed: () {
-                              if (selectedTime == null) {
+                              if (selectedTime.value == '') {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('Please choose time first!'),
