@@ -7,11 +7,13 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/widgets.dart' as pwlib;
 import 'package:path_provider/path_provider.dart';
 
+import '../../../models/consultation_history_model.dart';
 import '../../../util/common.dart';
 import '../../../util/theme.dart';
 
 class DetailConsultationHistoryScreen extends StatefulWidget {
-  const DetailConsultationHistoryScreen({super.key});
+  const DetailConsultationHistoryScreen({super.key, required this.history});
+  final ConsultationHistory history;
 
   @override
   State<DetailConsultationHistoryScreen> createState() =>
@@ -87,7 +89,7 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      ': Farid Ahmad',
+                                      ': ${widget.history.doctorName}',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                       overflow: TextOverflow.ellipsis,
@@ -113,9 +115,7 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      AppLocalizations.of(context)!
-                                          .detailConsulHistoryFifth,
-                                      // ': Psikolog',
+                                      ': ${widget.history.specialist}',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -140,9 +140,7 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      AppLocalizations.of(context)!
-                                          .detailConsulHistorySeventh,
-                                      // ': Telepon',
+                                      ': ${widget.history.method}',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -167,9 +165,7 @@ class _DetailConsultationHistoryScreenState
                                   Expanded(
                                     flex: 25,
                                     child: Text(
-                                      AppLocalizations.of(context)!
-                                          .detailConsulHistoryNinth,
-                                      // ': 1 Jam',
+                                      ': ${widget.history.duration} Hour',
                                       style: GoogleFonts.poppins(
                                           fontSize: 14, fontWeight: semiBold),
                                     ),
@@ -237,7 +233,7 @@ class _DetailConsultationHistoryScreenState
                         ),
                         Text(
                           NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(300000),
+                              .format(widget.history.consultationFee),
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -258,7 +254,7 @@ class _DetailConsultationHistoryScreenState
                         ),
                         Text(
                           NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(500000),
+                              .format(widget.history.drugCost),
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
@@ -285,8 +281,9 @@ class _DetailConsultationHistoryScreenState
                               fontSize: 16, fontWeight: semiBold),
                         ),
                         Text(
-                          NumberFormat.simpleCurrency(name: 'IDR')
-                              .format(800000),
+                          NumberFormat.simpleCurrency(name: 'IDR').format(
+                              widget.history.consultationFee +
+                                  widget.history.drugCost),
                           style: GoogleFonts.poppins(
                               fontSize: 16, fontWeight: semiBold),
                         ),
