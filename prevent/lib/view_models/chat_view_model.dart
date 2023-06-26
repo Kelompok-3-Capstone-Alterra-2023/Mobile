@@ -11,6 +11,7 @@ class ChatViewModel extends ChangeNotifier {
   }
   TextEditingController controller = TextEditingController();
   late WebSocketChannel _channel;
+  WebSocketChannel get channel => _channel;
   List<dynamic> _messages = [];
   List<dynamic> get messages => _messages;
   late SharedPreferences pref;

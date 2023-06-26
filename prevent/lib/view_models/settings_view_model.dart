@@ -16,7 +16,8 @@ class SettingsViewModel extends ChangeNotifier {
   bool isStrechedDropDown = false;
 
   int? groupValue;
-  String title = 'Pilih alasan yang sesuai';
+  String _title = 'Pilih alasan yang sesuai';
+  String get title => _title;
   // String titlee =   AppLocalizations.of(context)!.dropDownFirst;
 
   String termsAndConditionsFirst =
@@ -39,6 +40,12 @@ class SettingsViewModel extends ChangeNotifier {
     'Saya tidak akan menggunakan lagi',
     'Lainnya'
   ];
+  set title(String value) {
+    if (_title != value) {
+      _title = value;
+      notifyListeners();
+    }
+  }
 
   void toggleTermsAndConditions() {
     agreeToTheTermsAndConditions = !agreeToTheTermsAndConditions;

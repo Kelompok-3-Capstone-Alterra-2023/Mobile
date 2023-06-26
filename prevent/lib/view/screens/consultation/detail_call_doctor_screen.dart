@@ -61,7 +61,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 'assets/images/doctor1.png',
                                 fit: BoxFit.cover,
                               )
-                            : Image.network(doctor.propic)),
+                            : Image.network(
+                                doctor.propic,
+                                height: 150,
+                                fit: BoxFit.fill,
+                                width: MediaQuery.of(context).size.width,
+                              )),
                     Positioned(
                       right: 0,
                       child: Container(
