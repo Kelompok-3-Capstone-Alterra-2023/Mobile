@@ -1,0 +1,91 @@
+{
+  "consultations": [
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Audrey mulai pukul 13.00 - 14.00, 22 Juni 2023 via chat",
+      "dateTime": "22-06-2023 12.45",
+      "image": "assets/images/consultation_chat.png"
+    },
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Yahya mulai pukul 11.00 - 12.00, 18 Juni 2023 via telepon",
+      "dateTime": "18-06-2023 10.45",
+      "image": "assets/images/consultation_call.png"
+    },
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Fernand mulai pukul 10.00 - 11.00, 15 Juni 2023 via telepon",
+      "dateTime": "15-06-2023 09.45",
+      "image": "assets/images/consultation_call.png"
+    },
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Syifa mulai pukul 10.00 - 11.00, 15 Mei 2023 via chat",
+      "dateTime": "15-05-2023 09.45",
+      "image": "assets/images/consultation_chat.png"
+    },
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Yoga mulai pukul 14.00 - 15.00, 9 April 2023 via chat",
+      "dateTime": "09-04-2023 13.45",
+      "image": "assets/images/consultation_chat.png"
+    },
+    {
+      "title": "Sesi Konsultasi",
+      "message": "Hi, Kak! Jangan lupa sesi konsultasi Psikolog dengan Psikolog Tiodora mulai pukul 10.00 - 11.00, 5 April 2023 via telepon",
+      "dateTime": "5-04-2023 09.45",
+      "image": "assets/images/consultation_call.png"
+    }
+  ],
+
+  "payments": [
+    {
+      "title": "Pembayaran",
+      "message": "Yeayy, Pembayaran transaksi berhasil. Silakan mulai konsultasi",
+      "dateTime": "22-06-2023 09.30",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Opss! Pembayaran transaksi gagal. Silakan pesan kembali.",
+      "dateTime": "22-06-2023 09.15",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Opss! Pembayaran transaksi gagal. Silakan pesan kembali.",
+      "dateTime": "18-06-2023 10.12",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Yeayy, Pembayaran transaksi berhasil. Silakan mulai konsultasi",
+      "dateTime": "15-06-2023 09.30",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Opss! Pembayaran transaksi gagal. Silakan pesan kembali.",
+      "dateTime": "15-06-2023 09.22",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Yeayy, Pembayaran transaksi berhasil. Silakan mulai konsultasi",
+      "dateTime": "15-06-2023 09.30",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Yeayy, Pembayaran transaksi berhasil. Silakan mulai konsultasi",
+      "dateTime": "09-06-2023 12.59",
+      "image": "assets/images/notification_payment.png"
+    },
+    {
+      "title": "Pembayaran",
+      "message": "Opss! Pembayaran transaksi gagal. Silakan pesan kembali.",
+      "dateTime": "09-06-2023 12.55",
+      "image": "assets/images/notification_payment.png"
+    }
+  ]
+}
