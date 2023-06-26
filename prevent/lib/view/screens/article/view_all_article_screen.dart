@@ -150,6 +150,8 @@ class _ViewAllArticleScreenState extends State<ViewAllArticleScreen> {
                                 Image.network(
                                   data.thumbnail,
                                   fit: BoxFit.cover,
+                                  height: 100,
+                                  width: 100,
                                   loadingBuilder: (BuildContext context,
                                       Widget child,
                                       ImageChunkEvent? loadingProgress) {

@@ -166,7 +166,7 @@ class HomePage extends StatelessWidget {
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: provider.articles.length,
+                  itemCount: 4,
                   itemBuilder: (context, index) {
                     final data = provider.articles[index];
                     return Padding(
