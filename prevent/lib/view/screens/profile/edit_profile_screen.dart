@@ -90,6 +90,7 @@ class EditProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 17),
           Form(
+            autovalidateMode: AutovalidateMode.always,
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

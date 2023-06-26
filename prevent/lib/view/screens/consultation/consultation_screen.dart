@@ -149,7 +149,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                         mainAxisSpacing: 6,
                         crossAxisSpacing: 8,
                       ),
-                      itemCount: value.doctors.length,
+                      itemCount:
+                          value.doctors.length < 6 ? value.doctors.length : 6,
                       itemBuilder: (BuildContext context, int index) {
                         final doctor = value.doctors[index];
                         if (value.doctors.isEmpty) {
@@ -162,17 +163,7 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                 Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return DetailDoctorScreen(
-                                  fullname: doctor.fullName,
-                                  specialist: doctor.specialist,
-                                  description: doctor.description,
-                                  price: doctor.price,
-                                  alumnus: doctor.alumnus,
-                                  alumnus2: doctor.alumnus2,
-                                  practiceAddress: doctor.practiceAddress,
-                                  strNumber: doctor.strNumber,
-                                  statusOnline: doctor.statusOnline,
-                                  workExperience: doctor.workExperience,
-                                  propic: doctor.propic,
+                                  doctor: doctor,
                                 );
                               },
                             )),
@@ -190,8 +181,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                               )
                                             : Image.network(
                                                 doctor.propic,
-                                                height: 150,
-                                                fit: BoxFit.cover,
+                                                height: 130,
+                                                fit: BoxFit.fill,
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width,
@@ -223,11 +214,8 @@ class _ConsultationScreenState extends State<ConsultationScreen> {
                                                           color: whiteColor,
                                                         ))),
                                                 Text(
-                                                  doctor.statusOnline
-                                                      ? AppLocalizations.of(
-                                                              context)!
-                                                          .consultationSixth
-                                                      : 'Not Available',
+                                                  AppLocalizations.of(context)!
+                                                      .consultationSixth,
                                                   // 'Tersedia',
                                                   style: GoogleFonts.poppins(
                                                       fontSize: 12,

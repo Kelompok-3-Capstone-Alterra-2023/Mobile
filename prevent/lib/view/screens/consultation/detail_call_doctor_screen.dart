@@ -3,40 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ic.dart';
 import 'package:iconify_flutter/icons/material_symbols.dart';
-import 'package:iconify_flutter/icons/ph.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 import 'package:prevent/view/screens/payment/payment_screen.dart';
 import 'package:prevent/view/widgets/foz_button.dart';
 
+import '../../../models/doctor_model.dart';
 import '../../../util/common.dart';
+import '../select_schedule/select_schedule_screen.dart';
 
 class DetailCallDoctorScreen extends StatelessWidget {
-  const DetailCallDoctorScreen(
-      {super.key,
-      required this.fullname,
-      required this.specialist,
-      required this.description,
-      required this.price,
-      required this.alumnus,
-      required this.alumnus2,
-      required this.practiceAddress,
-      required this.strNumber,
-      required this.statusOnline,
-      required this.workExperience,
-      required this.propic});
-  final String fullname;
-  final String specialist;
-  final String description;
-  final int price;
-  final String alumnus;
-  final String alumnus2;
-  final String practiceAddress;
-  final String strNumber;
-  final bool statusOnline;
-  final int workExperience;
-  final String propic;
+  final Doctor doctor;
+  const DetailCallDoctorScreen({
+    super.key,
+    required this.doctor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +56,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox.expand(
-                      child: Image.asset(
-                        'assets/images/doctor_wide.png',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                        child: doctor.propic.isEmpty
+                            ? Image.asset(
+                                'assets/images/doctor1.png',
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(doctor.propic)),
                     Positioned(
                       right: 0,
                       child: Container(
@@ -89,7 +72,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                               color: offlineColor,
                               borderRadius: BorderRadius.circular(8)),
                           child: Iconify(
-                            Ph.chat_circle_dots_bold,
+                            Mdi.telephone_in_talk,
                             color: whiteColor,
                           )),
                     ),
@@ -108,13 +91,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 7, right: 4),
                               child: CircleAvatar(
-                                backgroundColor: onlineColor,
+                                backgroundColor: doctor.statusOnline
+                                    ? onlineColor
+                                    : offlineColor,
                                 radius: 7,
                               ),
                             ),
                             Text(
-                              AppLocalizations.of(context)!
-                                  .callDetailDoctorFirst,
+                              doctor.statusOnline ? 'Online' : 'Offline',
                               // 'online',
                               style: GoogleFonts.poppins(
                                   color: whiteColor,
@@ -140,7 +124,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Fauzan Hakim M.Psi, Psikolog',
+                            doctor.fullName,
                             style: GoogleFonts.poppins(
                                 fontSize: 16, fontWeight: semiBold),
                           ),
@@ -155,14 +139,12 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      AppLocalizations.of(context)!.callDetailDoctorSecond,
-                      // 'Psikolog Klinis',
+                      doctor.specialist,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.callDetailDoctorThird,
-                      // 'Trauma, Depresi, Gangguan Kecemasan, Gangguan Kepribadian',
+                      doctor.description,
                       style:
                           GoogleFonts.poppins(fontSize: 9, fontWeight: reguler),
                     ),
@@ -184,9 +166,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            AppLocalizations.of(context)!
-                                .callDetailDoctorFourth,
-                            // '4 Tahun',
+                            '${doctor.workExperience} years',
                             style: GoogleFonts.poppins(
                                 fontSize: 8, fontWeight: medium),
                           )
@@ -194,7 +174,8 @@ class DetailCallDoctorScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      NumberFormat.simpleCurrency(name: 'IDR').format(200000),
+                      NumberFormat.simpleCurrency(name: 'IDR')
+                          .format(doctor.price),
                       style: GoogleFonts.poppins(
                           fontSize: 20, fontWeight: semiBold),
                     ),
@@ -220,18 +201,14 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorSixth,
-                                // 'Universitas Padjadjaran, 2019',
+                                doctor.alumnus2,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorSeventh,
-                                // 'Universitas Airlangga, 2016',
+                                doctor.alumnus,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -264,9 +241,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                AppLocalizations.of(context)!
-                                    .callDetailDoctorNinth,
-                                // 'Praktik Soerojo Hospital Magelang, Jawa Tengah',
+                                doctor.practiceAddress,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -293,7 +268,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '14248822203190653321',
+                                doctor.strNumber,
                                 style: GoogleFonts.poppins(
                                   fontSize: 9,
                                   fontWeight: reguler,
@@ -343,12 +318,7 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     InkWell(
-                                      onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (_) => const PaymentScreen(
-                                                typeConsul: 'call'),
-                                          )),
+                                      onTap: () {},
                                       child: Text(
                                         AppLocalizations.of(context)!
                                             .callDetailDoctorEleventh,
@@ -372,7 +342,18 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => PaymentScreen(
+                                            doctor: doctor,
+                                            schedule:
+                                                '${DateFormat('EEEE, dd MMMM yyyy HH:mm:ss', 'id_ID').format(DateTime.now())} WIB',
+                                            typeConsul: 'call',
+                                          ),
+                                        ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),
@@ -419,7 +400,16 @@ class DetailCallDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return SelectScheduleScreen(
+                                          doctor: doctor,
+                                          typeConsul: 'call',
+                                        );
+                                      },
+                                    ));
+                                  },
                                   icon: const Icon(Icons.chevron_right_rounded))
                             ],
                           ),

@@ -2,17 +2,29 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/consultation/consultation_call_screen.dart';
 import 'package:prevent/view/screens/consultation/consultation_chat_screen.dart';
 import 'package:prevent/view/widgets/timer.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../../models/doctor_model.dart';
+import '../../../models/profile_model.dart';
 import '../../../util/common.dart';
+import '../../../view_models/profile_view_model.dart';
 
 class ConfirmPayment extends StatefulWidget {
-  const ConfirmPayment({Key? key, required this.typeConsul}) : super(key: key);
+  final Doctor doctor;
+  final String timeTransaction;
   final String typeConsul;
+  const ConfirmPayment(
+      {Key? key,
+      required this.typeConsul,
+      required this.doctor,
+      required this.timeTransaction})
+      : super(key: key);
   @override
   State<ConfirmPayment> createState() => _ConfirmPaymentState();
 }
@@ -31,12 +43,18 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => const ConsultationChatScreen(idDoctor: 1)));
+                  builder: (_) => ConsultationChatScreen(
+                        idDoctor: widget.doctor.id,
+                        doctor: widget.doctor,
+                      )));
         } else {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => const ConsultationCallScreen()));
+                  builder: (_) => ConsultationCallScreen(
+                        doctor: widget.doctor,
+                        timeTransaction: widget.timeTransaction,
+                      )));
         }
       });
     });
@@ -56,6 +74,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProfileViewModel>(context);
+    UserProfile profile = provider.userProfile;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -151,7 +171,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      'Anonymous@gmail.com',
+                      profile.email,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -167,8 +187,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           fontSize: 12, fontWeight: reguler),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.confirmPaymentSixth,
-                      // '21 Agustus 2023 20:11:17',
+                      widget.timeTransaction,
                       style: GoogleFonts.poppins(
                           fontSize: 12, fontWeight: reguler),
                     ),
@@ -195,8 +214,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),
                     Text(
-                      // AppLocalizations.of(context)!.telephoneMethod,
-                      'Rp. 202.000',
+                      NumberFormat.simpleCurrency(name: 'IDR')
+                          .format(widget.doctor.price + 2000),
                       style:
                           GoogleFonts.poppins(fontWeight: bold, fontSize: 15),
                     ),

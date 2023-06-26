@@ -8,6 +8,7 @@ import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/notifification_view_model.dart';
 import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
+import 'package:prevent/view_models/schedule_view_model.dart';
 import 'package:prevent/view_models/settings_view_model.dart';
 import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => NotificationViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ScheduleOrderViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => ChatViewModel(),

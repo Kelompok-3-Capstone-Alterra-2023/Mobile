@@ -81,17 +81,7 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                         onTap: () => Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return DetailDoctorScreen(
-                              fullname: doctor.fullName,
-                              specialist: doctor.specialist,
-                              description: doctor.description,
-                              price: doctor.price,
-                              alumnus: doctor.alumnus,
-                              alumnus2: doctor.alumnus2,
-                              practiceAddress: doctor.practiceAddress,
-                              strNumber: doctor.strNumber,
-                              statusOnline: doctor.statusOnline,
-                              workExperience: doctor.workExperience,
-                              propic: doctor.propic,
+                              doctor: doctor,
                             );
                           },
                         )),
@@ -108,8 +98,8 @@ class _ViewAllDoctorScreenState extends State<ViewAllDoctorScreen> {
                                         height: 140,
                                         child: doctor.propic.isEmpty
                                             ? Image.asset(
-                                                'assets/images/doctor_image.png',
-                                                fit: BoxFit.fill,
+                                                'assets/images/doctor1.png',
+                                                fit: BoxFit.cover,
                                               )
                                             : Image.network(
                                                 doctor.propic,
