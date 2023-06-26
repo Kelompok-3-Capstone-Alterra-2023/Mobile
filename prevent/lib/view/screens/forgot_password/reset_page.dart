@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/util/theme.dart';
 import 'package:prevent/view/screens/forgot_password/forgot_page.dart';
+import 'package:prevent/view/screens/login/login_screen.dart';
 
 import '../../../util/common.dart';
 
@@ -34,8 +35,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
           ),
           Container(
             margin: const EdgeInsets.all(9),
-            color: Colors.grey,
+            color: Colors.transparent,
             height: MediaQuery.of(context).size.height / 2,
+            child: Image.asset('assets/images/forgot.png'),
           ),
           Container(
             alignment: Alignment.centerLeft,
@@ -138,7 +140,12 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
                     Size(MediaQuery.of(context).size.width, 50),
                   ),
                   backgroundColor: MaterialStateProperty.all(colorStyleFifth)),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+              },
               child: Text(
                 AppLocalizations.of(context)!.resetFourth,
                 // 'Kirim',
