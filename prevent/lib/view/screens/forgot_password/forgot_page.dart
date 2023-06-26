@@ -19,7 +19,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
           Container(
             alignment: Alignment.centerLeft,
@@ -32,8 +32,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           ),
           Container(
             margin: const EdgeInsets.all(9),
-            color: Colors.grey,
+            color: Colors.transparent,
             height: MediaQuery.of(context).size.height / 2,
+            child: Image.asset('assets/images/forgot.png'),
           ),
           Container(
             alignment: Alignment.centerLeft,

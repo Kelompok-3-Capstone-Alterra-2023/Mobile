@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/confirm_payment/confirm_payment_screen.dart';
+import 'package:prevent/view/screens/payment/confirm_payment_screen.dart';
+import 'package:prevent/view_models/payment_view_model.dart';
 import 'package:prevent/view_models/schedule_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -24,23 +25,10 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  late String selectedRadio;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedRadio = 'qris';
-  }
-
-  setSelectedRadio(String value) {
-    setState(() {
-      selectedRadio = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ScheduleOrderViewModel>(context);
+    final PaymentViewModel provider =
+        Provider.of<PaymentViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -194,113 +182,121 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: <Widget>[
-                          RadioListTile(
-                            value: 'qris',
-                            groupValue: selectedRadio,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(
-                                  'assets/images/Qris.png',
-                                  width: 64,
-                                  height: 32,
+                      child: Consumer<PaymentViewModel>(
+                        builder: (context, value, child) {
+                          return Column(
+                            children: <Widget>[
+                              RadioListTile(
+                                value: 'qris',
+                                groupValue: provider.selectedRadio,
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/Qris.png',
+                                      width: 64,
+                                      height: 32,
+                                    ),
+                                    Text(
+                                      'Qris',
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    ),
+                                    Text(
+                                      NumberFormat.simpleCurrency(name: 'IDR')
+                                          .format(2000),
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  'Qris',
-                                  style: GoogleFonts.poppins(fontSize: 15),
+                                onChanged: (value) {
+                                  provider.setSelectedRadio(value!);
+                                },
+                              ),
+                              RadioListTile(
+                                value: 'gopay',
+                                groupValue: provider.selectedRadio,
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/GoPay.png',
+                                      width: 64,
+                                      height: 32,
+                                    ),
+                                    Text(
+                                      'GoPay',
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    ),
+                                    Text(
+                                      NumberFormat.simpleCurrency(name: 'IDR')
+                                          .format(2000),
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(2000),
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                )
-                              ],
-                            ),
-                            onChanged: (value) {
-                              setSelectedRadio(value!);
-                            },
-                          ),
-                          RadioListTile(
-                            value: 'gopay',
-                            groupValue: selectedRadio,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(
-                                  'assets/images/GoPay.png',
-                                  width: 64,
-                                  height: 32,
+                                onChanged: (value) {
+                                  provider.setSelectedRadio(value!);
+                                },
+                              ),
+                              RadioListTile(
+                                value: 'dana',
+                                groupValue: provider.selectedRadio,
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/Dana.png',
+                                      width: 64,
+                                      height: 32,
+                                    ),
+                                    Text(
+                                      'Dana',
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    ),
+                                    Text(
+                                      NumberFormat.simpleCurrency(name: 'IDR')
+                                          .format(2000),
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  'GoPay',
-                                  style: GoogleFonts.poppins(fontSize: 15),
+                                onChanged: (value) {
+                                  provider.setSelectedRadio(value!);
+                                },
+                              ),
+                              RadioListTile(
+                                value: 'linkaja',
+                                groupValue: provider.selectedRadio,
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/LinkAja.png',
+                                      width: 64,
+                                      height: 32,
+                                    ),
+                                    Text(
+                                      'LinkAja',
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    ),
+                                    Text(
+                                      NumberFormat.simpleCurrency(name: 'IDR')
+                                          .format(2000),
+                                      style: GoogleFonts.poppins(fontSize: 15),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(2000),
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                )
-                              ],
-                            ),
-                            onChanged: (value) {
-                              setSelectedRadio(value!);
-                            },
-                          ),
-                          RadioListTile(
-                            value: 'dana',
-                            groupValue: selectedRadio,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(
-                                  'assets/images/Dana.png',
-                                  width: 64,
-                                  height: 32,
-                                ),
-                                Text(
-                                  'Dana',
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                ),
-                                Text(
-                                  NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(2000),
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                )
-                              ],
-                            ),
-                            onChanged: (value) {
-                              setSelectedRadio(value!);
-                            },
-                          ),
-                          RadioListTile(
-                            value: 'linkaja',
-                            groupValue: selectedRadio,
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset(
-                                  'assets/images/LinkAja.png',
-                                  width: 64,
-                                  height: 32,
-                                ),
-                                Text(
-                                  'LinkAja',
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                ),
-                                Text(
-                                  NumberFormat.simpleCurrency(name: 'IDR')
-                                      .format(2000),
-                                  style: GoogleFonts.poppins(fontSize: 15),
-                                )
-                              ],
-                            ),
-                            onChanged: (value) {
-                              setSelectedRadio(value!);
-                            },
-                          ),
-                        ],
+                                onChanged: (value) {
+                                  provider.setSelectedRadio(value!);
+                                },
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -338,20 +334,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     backgroundColor:
                         MaterialStateProperty.all(colorStyleFifth)),
                 onPressed: () async {
-                  debugPrint(widget.doctor.id.toString());
-                  debugPrint(widget.schedule);
-                  debugPrint(2000.toString());
-                  debugPrint(widget.typeConsul);
-                  debugPrint(selectedRadio);
                   try {
-                    await provider.scheduleOrder(
-                      widget.doctor.id,
-                      widget.schedule.toString(),
-                      2000,
-                      widget.doctor.price,
-                      widget.typeConsul,
-                      selectedRadio,
-                    );
+                    await context.read<ScheduleOrderViewModel>().scheduleOrder(
+                          widget.doctor.id,
+                          widget.schedule.toString(),
+                          2000,
+                          widget.doctor.price,
+                          widget.typeConsul,
+                          provider.selectedRadio,
+                        );
                     if (context.mounted) {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {

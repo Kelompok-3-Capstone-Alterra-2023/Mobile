@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:prevent/util/common.dart';
 import 'package:prevent/view_models/articles_view_model.dart';
 import 'package:prevent/view_models/chat_view_model.dart';
+import 'package:prevent/view_models/consultation_history_view_model.dart';
 import 'package:prevent/view_models/doctor_view_model.dart';
 import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
 import 'package:prevent/view_models/notifification_view_model.dart';
+import 'package:prevent/view_models/payment_view_model.dart';
 import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
 import 'package:prevent/view_models/schedule_view_model.dart';
@@ -61,6 +63,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ChatViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PaymentViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ConsultationViewModel(),
         ),
       ],
       child: MaterialApp(
