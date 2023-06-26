@@ -1,56 +1,80 @@
 import 'package:flutter/material.dart';
 
+import '../services/user_api.dart';
+
 class RegisterViewModel extends ChangeNotifier {
-  final formKey = GlobalKey<FormState>();
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  TextEditingController tanggalController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
-  final primaryColor = const Color(0xff7CA153);
-
-  bool obscureText = true;
-  // tanggal
-  DateTime _date = DateTime.now();
+  // date
+  List<DateTime?> _date = [
+    DateTime.now(),
+  ];
   final currentDate = DateTime.now();
-  DateTime get date => _date;
+  List<DateTime?> get date => _date;
 
-  void toggleObscureText() {
-    obscureText = !obscureText;
+  final UserApiService apiService = UserApiService();
+
+  void toggleObscurePassword() {
+    obscurePassword = !obscurePassword;
     notifyListeners();
   }
 
-  void updateDate(DateTime selectDate) {
-    _date = selectDate;
+  void toggleObscureConfirmPassword() {
+    obscureConfirmPassword = !obscureConfirmPassword;
     notifyListeners();
   }
 
-  Future<void> selectDate(
-      BuildContext context, RegisterViewModel provider) async {
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme.copyWith(
-      primary: primaryColor,
-      onPrimary: Colors.white,
-    );
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: theme.copyWith(
-            colorScheme: colorScheme,
-          ),
-          child: child!,
-        );
-      },
-    );
+  void setDate(List<DateTime?> value) {
+    _date = value;
+    notifyListeners();
+  }
 
-    if (pickedDate != null) {
-      provider.updateDate(pickedDate);
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  bool _isLoadingOtp = false;
+  bool get isLoadingOtp => _isLoadingOtp;
+
+  bool _isRegisterSuccess = false;
+  bool _isOTPVerificationSuccess = false;
+
+  bool get isRegisterSuccess => _isRegisterSuccess;
+  bool get isOTPVerificationSuccess => _isOTPVerificationSuccess;
+
+  Future<void> registerUser(
+      String email, String username, String password, String birthdate) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      _isRegisterSuccess =
+          await apiService.registerUser(email, username, password, birthdate);
+
+      _isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoading = false;
+      notifyListeners();
+      rethrow;
+    }
+  }
+
+  Future<void> checkOtp(String email, String username, String password,
+      String birthdate, String otp) async {
+    _isLoadingOtp = true;
+    notifyListeners();
+
+    try {
+      _isOTPVerificationSuccess =
+          await apiService.checkOtp(email, username, password, birthdate, otp);
+
+      _isLoadingOtp = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoadingOtp = false;
+      notifyListeners();
+      rethrow;
     }
   }
 }
