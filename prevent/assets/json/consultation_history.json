@@ -7,7 +7,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
     }
   ],
   "consultation_history": [
@@ -18,7 +19,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
     },
     {
       "doctor_name": "Yahya Aiman",
@@ -27,7 +29,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
     },
     {
       "doctor_name": "Federick",
@@ -36,7 +39,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
     },
     {
       "doctor_name": "Yoga Pramana",
@@ -45,7 +49,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
     },
     {
       "doctor_name": "Vevy Ananda",
@@ -54,7 +59,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
     },
     {
       "doctor_name": "Assyifa Nurul",
@@ -63,7 +69,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
     },
     {
       "doctor_name": "Yahyoy",
@@ -72,7 +79,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
     },
     {
       "doctor_name": "Melki Jonathan Liandi",
@@ -81,7 +89,8 @@
       "specialist": "Psikolog",
       "duration": "1",
       "consultation_fee": 300000,
-      "drug_cost": 200000
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
     }
   ]
 }

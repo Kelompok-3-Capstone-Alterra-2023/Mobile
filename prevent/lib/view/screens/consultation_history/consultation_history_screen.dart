@@ -84,10 +84,9 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                                     },
                                   ));
                                 },
-                                leading: const CircleAvatar(
+                                leading: CircleAvatar(
                                   radius: 25,
-                                  backgroundImage: AssetImage(
-                                      'assets/images/doctor_image.png'),
+                                  backgroundImage: AssetImage(doctor.image),
                                 ),
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,10 +149,9 @@ class _ConsultationHistoryScreenState extends State<ConsultationHistoryScreen> {
                                     },
                                   ));
                                 },
-                                leading: const CircleAvatar(
+                                leading: CircleAvatar(
                                   radius: 25,
-                                  backgroundImage: AssetImage(
-                                      'assets/images/doctor_image.png'),
+                                  backgroundImage: AssetImage(doctor.image),
                                 ),
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
