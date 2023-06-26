@@ -19,7 +19,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
           Container(
             alignment: Alignment.centerLeft,

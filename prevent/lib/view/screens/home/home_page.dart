@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prevent/view/screens/article/detail_article_screen.dart';
@@ -166,7 +168,7 @@ class HomePage extends StatelessWidget {
                 child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 4,
+                  itemCount: min(4, provider.articles.length),
                   itemBuilder: (context, index) {
                     final data = provider.articles[index];
                     return Padding(
