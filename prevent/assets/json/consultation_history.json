@@ -1,0 +1,96 @@
+{
+  "consultation_running": [
+    {
+      "doctor_name": "Audrey",
+      "method": "Chat",
+      "dateTime": "26-06-2023 12.00-13.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
+    }
+  ],
+  "consultation_history": [
+    {
+      "doctor_name": "Audrey",
+      "method": "Chat",
+      "dateTime": "24-06-2023 10.00-11.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
+    },
+    {
+      "doctor_name": "Yahya Aiman",
+      "method": "Call",
+      "dateTime": "22-06-2023 14.00-15.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
+    },
+    {
+      "doctor_name": "Federick",
+      "method": "Chat",
+      "dateTime": "10-06-2023 14.00-15.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
+    },
+    {
+      "doctor_name": "Yoga Pramana",
+      "method": "Chat",
+      "dateTime": "01-05-2023 14.00-15.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
+    },
+    {
+      "doctor_name": "Vevy Ananda",
+      "method": "Call",
+      "dateTime": "05-04-2023 14.00-15.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
+    },
+    {
+      "doctor_name": "Assyifa Nurul",
+      "method": "Chat",
+      "dateTime": "04-04-2023 11.00-12.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
+    },
+    {
+      "doctor_name": "Yahyoy",
+      "method": "Chat",
+      "dateTime": "02-04-2023 10.00-11.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor_image.png"
+    },
+    {
+      "doctor_name": "Melki Jonathan Liandi",
+      "method": "Call",
+      "dateTime": "01-04-2023 09.00-10.00",
+      "specialist": "Psikolog",
+      "duration": "1",
+      "consultation_fee": 300000,
+      "drug_cost": 200000,
+      "image": "assets/images/doctor1.png"
+    }
+  ]
+}
