@@ -28,13 +28,6 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
   }
 
   @override
-  void dispose() {
-    context.read<ChatViewModel>().channel.sink.close();
-    context.read<ChatViewModel>().controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final ChatViewModel provider =
         Provider.of<ChatViewModel>(context, listen: false);
