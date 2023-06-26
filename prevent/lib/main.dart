@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:prevent/util/common.dart';
+import 'package:prevent/view_models/articles_view_model.dart';
+import 'package:prevent/view_models/chat_view_model.dart';
+import 'package:prevent/view_models/doctor_view_model.dart';
+import 'package:prevent/view_models/home_view_model.dart';
 import 'package:prevent/view_models/login_view_model.dart';
+import 'package:prevent/view_models/notifification_view_model.dart';
+import 'package:prevent/view_models/profile_view_model.dart';
 import 'package:prevent/view_models/register_view_model.dart';
+import 'package:prevent/view_models/schedule_view_model.dart';
+import 'package:prevent/view_models/settings_view_model.dart';
+import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:prevent/view/screens/on_boarding/on_boarding.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -26,9 +35,38 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => RegisterViewModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => HomeViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SettingsViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ArticlesViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DoctorViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProfileViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NotificationViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ScheduleOrderViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ChatViewModel(),
+        ),
       ],
       child: MaterialApp(
         title: 'Prevent',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

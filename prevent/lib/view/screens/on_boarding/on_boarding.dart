@@ -2,10 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:prevent/util/theme.dart';
-import 'package:prevent/view/screens/login/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class OnBoarding extends StatelessWidget {
+import '../../../util/common.dart';
+import '../home/home_screen.dart';
+
+class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
+
+  @override
+  State<OnBoarding> createState() => _OnBoardingState();
+}
+
+class _OnBoardingState extends State<OnBoarding> {
+  @override
+  void initState() {
+    checkOnBoarding();
+    super.initState();
+  }
+
+  void checkOnBoarding() async {
+    SharedPreferences logindata = await SharedPreferences.getInstance();
+    final bool alrdyOnBoarding = logindata.containsKey('onboarding_completed');
+
+    if (alrdyOnBoarding && context.mounted) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ));
+    }
+  }
+
+  void setOnboardingCompleted() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setBool('onboarding_completed', true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +51,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 1
         PageViewModel(
           titleWidget: Text(
-            'Psikolog Terbaik',
+            AppLocalizations.of(context)!.onBoardingOneTitle,
+            // 'Psikolog Terbaik',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -28,7 +61,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Kamu gak harus selesein semua masalahmu sendirian kok! Temukan psikolog terbaik di prevent yang siap bantu kamu kapanpun.',
+            AppLocalizations.of(context)!.onBoardingOneSubTitle,
+            // 'Kamu gak harus selesein semua masalahmu sendirian kok! Temukan psikolog terbaik di prevent yang siap bantu kamu kapanpun.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -51,7 +85,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 2
         PageViewModel(
           titleWidget: Text(
-            'Update Artikel',
+            AppLocalizations.of(context)!.onBoardingTwoTitle,
+            // 'Update Artikel',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -60,7 +95,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Bingung mau baca informasi kesehatan mental dimana? Tenang! Prevent selalu update artikel terbaru agar kamu selalu terinformasi dimanapun!.',
+            AppLocalizations.of(context)!.onBoardingTwoSubTitle,
+            // 'Bingung mau baca informasi kesehatan mental dimana? Tenang! Prevent selalu update artikel terbaru agar kamu selalu terinformasi dimanapun!.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -84,7 +120,8 @@ class OnBoarding extends StatelessWidget {
         // Screen 3
         PageViewModel(
           titleWidget: Text(
-            'Manfaatnya Terbukti',
+            AppLocalizations.of(context)!.onBoardingThreeTitle,
+            // 'Manfaatnya Terbukti',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: bold,
@@ -93,7 +130,8 @@ class OnBoarding extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           bodyWidget: Text(
-            'Banyak pengguna yang telah berhasil melalui masa sulitnya bareng prevent!.',
+            AppLocalizations.of(context)!.onBoardingThreeSubTitle,
+            // 'Banyak pengguna yang telah berhasil melalui masa sulitnya bareng prevent!.',
             style: GoogleFonts.poppins(
               fontSize: 15,
               fontWeight: reguler,
@@ -120,8 +158,10 @@ class OnBoarding extends StatelessWidget {
               height: 50,
               child: TextButton(
                 onPressed: () {
+                  setOnboardingCompleted();
+
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => const LoginScreen()));
+                      MaterialPageRoute(builder: (_) => const HomeScreen()));
                 },
                 style: TextButton.styleFrom(
                   side: BorderSide(
@@ -134,7 +174,8 @@ class OnBoarding extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Tutup',
+                  AppLocalizations.of(context)!.btnTutup,
+                  // 'Tutup',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: reguler,
@@ -147,8 +188,10 @@ class OnBoarding extends StatelessWidget {
         ),
       ],
       onDone: () {
+        setOnboardingCompleted();
+        checkOnBoarding();
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
       },
       showSkipButton: true,
       showNextButton: true,
